@@ -7,16 +7,16 @@ colors:
   neutral: "#F5F8F4"
 typography:
   h1:
-    fontFamily: Instrument Serif
+    fontFamily: Syne
     fontSize: 3.5rem
   h2:
-    fontFamily: Instrument Serif
+    fontFamily: Syne
     fontSize: 2.25rem
   body-md:
-    fontFamily: Instrument Sans
+    fontFamily: Space Grotesk
     fontSize: 1rem
   label-caps:
-    fontFamily: IBM Plex Mono
+    fontFamily: Space Mono
     fontSize: 0.75rem
 rounded:
   sm: 8px
@@ -62,9 +62,9 @@ on dark surfaces. Comparison / previous-period series use de-emphasized sage
 
 | Style        | Family          | Use |
 | ------------ | --------------- | --- |
-| `h1`, `h2`   | Instrument Serif | Display and section headings. Editorial serif, weight 400 only — never faux-bold. |
-| `body-md`    | Instrument Sans  | Body copy, values, UI labels. |
-| `label-caps` | IBM Plex Mono    | Uppercase micro-labels, stats, deltas. |
+| `h1`, `h2`   | Syne (700–800)   | Display and section headings. Distinctive geometric grotesque. |
+| `body-md`    | Space Grotesk    | Body copy, values, UI labels. Techy proportional sans. |
+| `label-caps` | Space Mono       | Uppercase micro-labels, stats, deltas. |
 
 Never use Inter, Roboto, or Arial. Big standalone figures use proportional
 figures; `tabular-nums` only in aligned columns.

@@ -9,9 +9,9 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@fontsource-variable/instrument-sans": "^5.2.8",
-    "@fontsource/ibm-plex-mono": "^5.2.7",
-    "@fontsource/instrument-serif": "^5.2.8",
+    "@fontsource-variable/space-grotesk": "^5.2.10",
+    "@fontsource-variable/syne": "^5.2.7",
+    "@fontsource/space-mono": "^5.2.9",
     "@google/model-viewer": "^4.3.1",
     "react": "^18.3.1",
     "react-dom": "^18.3.1"

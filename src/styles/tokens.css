@@ -1,56 +1,66 @@
 /* ————————————————————————————————————————————————
-   Algo Media design tokens — source of truth: DESIGN.md
+   Algo Media — dark glassmorphism token system
    ———————————————————————————————————————————————— */
 :root {
-  /* Color */
-  --ink: #111513;
-  --ink-soft: #2a322d;
-  --sage: #627067;
-  --sage-dim: #8a9990;
+  /* Base / ink */
+  --void: #070a08; /* deepest background */
+  --void-2: #0a0f0c;
+  --ink: #eaf2ec; /* primary text on dark */
+  --ink-soft: rgba(234, 242, 236, 0.66);
+  --ink-faint: rgba(234, 242, 236, 0.42);
+  --ink-ghost: rgba(234, 242, 236, 0.16);
+
+  /* Green system */
   --accent: #22c55e;
-  --accent-deep: #16a34a; /* chart marks: >=3:1 on surface */
-  --accent-700: #15803d;
-  --accent-800: #166534;
-  --accent-wash: rgba(34, 197, 94, 0.1);
-  --surface: #f5f8f4;
-  --card: #fcfdfb;
-  --card-raised: #ffffff;
-  --line: rgba(17, 21, 19, 0.08);
-  --line-strong: rgba(17, 21, 19, 0.14);
-  --grid: rgba(17, 21, 19, 0.06);
-  --negative: #b45309;
+  --accent-bright: #4ade80;
+  --accent-deep: #16a34a;
+  --accent-lo: rgba(34, 197, 94, 0.14);
+  --accent-glow: rgba(34, 197, 94, 0.55);
+  --teal: #2dd4bf; /* secondary node hue */
+  --lime: #a3e635;
 
-  /* Dark shell (sidebar) */
-  --shell: #111513;
-  --shell-line: rgba(245, 248, 244, 0.08);
-  --shell-text: rgba(245, 248, 244, 0.56);
-  --shell-text-strong: #f5f8f4;
+  /* Glass */
+  --glass-bg: linear-gradient(
+    150deg,
+    rgba(46, 62, 52, 0.42) 0%,
+    rgba(16, 24, 19, 0.34) 55%,
+    rgba(22, 34, 27, 0.4) 100%
+  );
+  --glass-bg-strong: linear-gradient(
+    150deg,
+    rgba(52, 72, 60, 0.62) 0%,
+    rgba(14, 22, 17, 0.6) 100%
+  );
+  --glass-border: rgba(234, 242, 236, 0.14);
+  --glass-hi: rgba(234, 242, 236, 0.5);
+  --glass-blur: 22px;
 
-  /* Typography */
-  --font-display: "Instrument Serif", "Iowan Old Style", Georgia, serif;
-  --font-body: "Instrument Sans Variable", "Instrument Sans", "Avenir Next", "Segoe UI", sans-serif;
-  --font-mono: "IBM Plex Mono", "SF Mono", "Cascadia Mono", monospace;
+  /* Typography — distinctive, techy */
+  --font-display: "Syne Variable", "Syne", "Iowan Old Style", serif;
+  --font-body: "Space Grotesk Variable", "Space Grotesk", "Segoe UI", sans-serif;
+  --font-mono: "Space Mono", "SF Mono", "Cascadia Mono", monospace;
 
   /* Shape */
-  --r-sm: 8px;
-  --r-md: 14px;
-  --r-lg: 24px;
+  --r-sm: 10px;
+  --r-md: 18px;
+  --r-lg: 28px;
+  --r-xl: 36px;
 
   /* Space */
   --s-xs: 4px;
   --s-sm: 8px;
   --s-md: 16px;
   --s-lg: 32px;
-  --s-xl: 56px;
+  --s-xl: 64px;
 
-  /* Elevation — subtle, layered, never floaty */
-  --shadow-1: 0 1px 2px rgba(17, 21, 19, 0.04), 0 1px 1px rgba(17, 21, 19, 0.03);
-  --shadow-2: 0 1px 2px rgba(17, 21, 19, 0.05), 0 4px 12px rgba(17, 21, 19, 0.05);
-  --shadow-3: 0 2px 4px rgba(17, 21, 19, 0.06), 0 12px 28px rgba(17, 21, 19, 0.08);
+  /* Elevation */
+  --shadow-glass: 0 8px 32px rgba(0, 0, 0, 0.36), inset 0 1px 0 rgba(234, 242, 236, 0.08);
+  --shadow-lift: 0 20px 60px -18px rgba(0, 0, 0, 0.7);
 
   /* Motion */
   --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
-  --t-fast: 160ms;
-  --t-med: 320ms;
-  --t-chart: 850ms;
+  --ease-io: cubic-bezier(0.65, 0, 0.35, 1);
+  --t-fast: 200ms;
+  --t-med: 420ms;
+  --t-slow: 800ms;
 }

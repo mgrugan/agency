@@ -88,7 +88,7 @@ export function Mark3D() {
 
   return (
     <section
-      className="mark3d section-dark"
+      className="mark3d"
       id="mark"
       ref={secRef}
       style={ready ? undefined : { display: "none" }}
@@ -96,9 +96,7 @@ export function Mark3D() {
       <div className="wrap mark3d-grid">
         <Reveal>
           <div className="mark3d-copy">
-            <div className="label-caps" style={{ color: "rgba(245,248,244,0.4)" }}>
-              The mark
-            </div>
+            <div className="label-caps">The mark</div>
             <h2>
               Growth, <em>cast in chrome.</em>
             </h2>
@@ -109,7 +107,7 @@ export function Mark3D() {
           </div>
         </Reveal>
         <div
-          className="mark3d-stage"
+          className="mark3d-stage glass"
           onPointerDown={() => (dragging.current = true)}
           onPointerUp={() => (dragging.current = false)}
           onPointerCancel={() => (dragging.current = false)}
