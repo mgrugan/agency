@@ -24,6 +24,14 @@ jobs:
           node-version: 22
           cache: npm
       - run: npm ci
+      - name: Fetch generated 3D asset (skipped once committed to the repo)
+        run: |
+          if [ ! -f public/algo-mark.glb ]; then
+            mkdir -p public
+            curl -fsSL -o public/algo-mark.glb \
+              "https://d3u0tzju9qaucj.cloudfront.net/7d051b5a-7bfe-49fe-a484-24e7b3a9458a/1c1af68d-ab67-45e9-8cde-715bd993287d.glb"
+            ls -la public/algo-mark.glb
+          fi
       - run: npm run build
       - uses: actions/upload-pages-artifact@v3
         with:

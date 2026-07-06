@@ -6,6 +6,7 @@ const BASE = import.meta.env.BASE_URL;
 
 interface ModelViewerEl extends HTMLElement {
   cameraOrbit: string;
+  loaded?: boolean;
   model?: {
     materials: Array<{
       pbrMetallicRoughness: {
@@ -26,32 +27,38 @@ export function Mark3D() {
   const secRef = useRef<HTMLElement | null>(null);
   const mvRef = useRef<ModelViewerEl | null>(null);
   const dragging = useRef(false);
-  // Section stays hidden unless the GLB actually loads, so a missing or
-  // failed asset never leaves an empty stage in production.
+  // Probe for the GLB before showing the section: a hidden model-viewer
+  // never lays out, so it can't be the thing that decides visibility.
   const [ready, setReady] = useState(false);
 
   useEffect(() => {
+    let alive = true;
+    fetch(`${BASE}algo-mark.glb`, { method: "HEAD" })
+      .then((r) => alive && setReady(r.ok))
+      .catch(() => alive && setReady(false));
+    return () => {
+      alive = false;
+    };
+  }, []);
+
+  useEffect(() => {
+    if (!ready) return;
     const mv = mvRef.current;
     if (!mv) return;
-    const onLoad = () => {
-      // The generated mesh ships untextured — dress it in live chrome:
-      // full metallic, near-mirror roughness, faint sage-white base so the
-      // environment reflections read as polished steel.
+    // The generated mesh ships untextured — dress it in live chrome:
+    // full metallic, near-mirror roughness, faint sage-white base so the
+    // environment reflections read as polished steel.
+    const chrome = () => {
       mv.model?.materials.forEach((m) => {
         m.pbrMetallicRoughness.setMetallicFactor(1);
         m.pbrMetallicRoughness.setRoughnessFactor(0.16);
         m.pbrMetallicRoughness.setBaseColorFactor([0.88, 0.93, 0.9, 1]);
       });
-      setReady(true);
     };
-    const onError = () => setReady(false);
-    mv.addEventListener("load", onLoad);
-    mv.addEventListener("error", onError);
-    return () => {
-      mv.removeEventListener("load", onLoad);
-      mv.removeEventListener("error", onError);
-    };
-  }, []);
+    mv.addEventListener("load", chrome);
+    if (mv.loaded) chrome();
+    return () => mv.removeEventListener("load", chrome);
+  }, [ready]);
 
   useEffect(() => {
     if (matchMedia("(prefers-reduced-motion: reduce)").matches) return;
