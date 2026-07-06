@@ -1,44 +1,36 @@
 /* ————————————————————————————————————————————————
-   Algo Media — vivid editorial tokens
-   bone paper · deep forest · a green→lime→amber mesh
+   Algo Media — dramatic dark, marble & emerald
    ———————————————————————————————————————————————— */
 :root {
-  /* Surfaces */
-  --paper: #efe7da; /* warm bone */
-  --paper-2: #e7ddcc;
-  --card: #fbf8f1;
-  --forest: #0b1712; /* deep green panel */
-  --forest-2: #10231a;
+  /* Ground */
+  --bg: #0c110e;
+  --bg-2: #10171200;
+  --panel: #121a15;
 
-  /* Ink (neutrals biased toward the green accent) */
-  --ink: #12190f;
-  --ink-2: #414a3f;
-  --ink-3: #6b7268;
-  --paper-ink: #f3efe4;
-  --paper-ink-2: rgba(243, 239, 228, 0.66);
-  --paper-ink-3: rgba(243, 239, 228, 0.42);
+  /* Ink */
+  --ink: #f1efe7;
+  --ink-2: rgba(241, 239, 231, 0.64);
+  --ink-3: rgba(241, 239, 231, 0.4);
+  --ink-ghost: rgba(241, 239, 231, 0.14);
 
-  /* Mesh hues — the colour comes from here */
-  --emerald: #1fa85b;
-  --emerald-deep: #0e7c46;
-  --teal: #14b8a6;
-  --lime: #84cc16;
-  --amber: #f2c14e; /* warm pop, used tiny */
+  /* Green system */
+  --emerald: #1f9d57;
+  --emerald-deep: #0f6d3b;
+  --emerald-lo: rgba(31, 157, 87, 0.16);
+  --lime: #8ff0a4;
   --accent: #22c55e;
+  --clay: #b8c9a6; /* pale sculpted clay-green */
+  --clay-2: #8fa87b;
 
   /* Lines */
-  --line: rgba(18, 25, 15, 0.12);
-  --line-2: rgba(18, 25, 15, 0.22);
-  --line-on-forest: rgba(243, 239, 228, 0.16);
+  --line: rgba(241, 239, 231, 0.12);
+  --line-2: rgba(241, 239, 231, 0.2);
 
   /* Glass */
-  --glass-light: rgba(251, 248, 241, 0.5);
-  --glass-light-border: rgba(255, 255, 255, 0.6);
-  --glass-dark: rgba(243, 239, 228, 0.1);
-  --glass-dark-border: rgba(243, 239, 228, 0.24);
-  --glass-blur: 16px;
+  --glass: rgba(241, 239, 231, 0.06);
+  --glass-border: rgba(241, 239, 231, 0.2);
 
-  /* Typography — per request */
+  /* Type */
   --font-display: "Space Grotesk Variable", "Space Grotesk", system-ui, sans-serif;
   --font-body: "Inter Variable", "Inter", system-ui, sans-serif;
 
@@ -56,9 +48,8 @@
   --s-2xl: 120px;
 
   /* Elevation */
-  --shadow-1: 0 1px 2px rgba(18, 25, 15, 0.05), 0 2px 10px rgba(18, 25, 15, 0.05);
-  --shadow-2: 0 6px 16px rgba(18, 25, 15, 0.08), 0 20px 44px -14px rgba(18, 25, 15, 0.16);
-  --shadow-3: 0 30px 70px -22px rgba(0, 0, 0, 0.5);
+  --shadow-2: 0 20px 50px -18px rgba(0, 0, 0, 0.6);
+  --shadow-3: 0 34px 80px -24px rgba(0, 0, 0, 0.72);
 
   /* Motion */
   --ease: cubic-bezier(0.22, 1, 0.36, 1);
