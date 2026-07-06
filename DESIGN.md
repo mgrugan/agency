@@ -7,16 +7,16 @@ colors:
   neutral: "#F5F8F4"
 typography:
   h1:
-    fontFamily: Fraunces
+    fontFamily: Space Grotesk
     fontSize: 3.5rem
   h2:
-    fontFamily: Fraunces
+    fontFamily: Space Grotesk
     fontSize: 2.25rem
   body-md:
-    fontFamily: Schibsted Grotesk
+    fontFamily: Inter
     fontSize: 1rem
   label-caps:
-    fontFamily: Schibsted Grotesk
+    fontFamily: Inter
     fontSize: 0.75rem
 rounded:
   sm: 8px
@@ -62,11 +62,11 @@ on dark surfaces. Comparison / previous-period series use de-emphasized sage
 
 | Style        | Family          | Use |
 | ------------ | --------------- | --- |
-| `h1`, `h2`   | Fraunces         | Display & headings. Editorial optical serif, weights 300–500. |
-| `body-md`    | Schibsted Grotesk | Body copy, values, UI labels. Professional grotesque. |
-| `label-caps` | Schibsted Grotesk | Uppercase tracked micro-labels (eyebrows). |
+| `h1`, `h2`   | Space Grotesk    | Display & headings, incl. the knockout hero word. |
+| `body-md`    | Inter            | Body copy, values, UI labels. |
+| `label-caps` | Inter            | Uppercase tracked micro-labels (eyebrows). |
 
-Never use Inter, Roboto, or Arial. Big standalone figures use proportional
+Type pairing is Space Grotesk + Inter (per brief). Big standalone figures use proportional
 figures; `tabular-nums` only in aligned columns.
 
 ## Shape & space

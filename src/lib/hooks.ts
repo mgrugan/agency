@@ -1,5 +1,40 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 
+/**
+ * Scroll parallax. Returns a ref; while it's on screen the element's
+ * `--p` custom property tracks progress (-1 above → 1 below viewport
+ * centre), which CSS turns into a translate. Disabled for reduced motion.
+ */
+export function useParallax<T extends HTMLElement>(speed = 1) {
+  const ref = useRef<T | null>(null);
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    if (matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    let raf = 0;
+    const update = () => {
+      raf = 0;
+      const r = el.getBoundingClientRect();
+      const vh = window.innerHeight;
+      const centre = r.top + r.height / 2;
+      const p = (centre - vh / 2) / vh; // 0 at centre
+      el.style.setProperty("--p", (p * speed).toFixed(4));
+    };
+    const onScroll = () => {
+      if (!raf) raf = requestAnimationFrame(update);
+    };
+    update();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+      cancelAnimationFrame(raf);
+    };
+  }, [speed]);
+  return ref;
+}
+
 /** True once the element has scrolled into view (fires once). */
 export function useInView<T extends HTMLElement>(margin = "-40px") {
   const ref = useRef<T | null>(null);

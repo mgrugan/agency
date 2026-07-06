@@ -1,55 +1,64 @@
 /* ————————————————————————————————————————————————
-   Algo Media — editorial premium token system
-   Bone paper · deep forest green · one emerald accent
+   Algo Media — vivid editorial tokens
+   bone paper · deep forest · a green→lime→amber mesh
    ———————————————————————————————————————————————— */
 :root {
   /* Surfaces */
-  --paper: #f2f0e9; /* warm bone */
-  --paper-2: #eae7dd;
-  --card: #fbfaf6;
-  --forest: #0c1712; /* deep green, hero + dark panels */
-  --forest-2: #12211a;
-  --forest-3: #1a2c23;
+  --paper: #efe7da; /* warm bone */
+  --paper-2: #e7ddcc;
+  --card: #fbf8f1;
+  --forest: #0b1712; /* deep green panel */
+  --forest-2: #10231a;
 
-  /* Ink */
-  --ink: #161a17; /* near-black on paper */
-  --ink-2: #454c47;
-  --ink-3: #6d746e;
-  --paper-ink: #eef1ea; /* text on forest */
-  --paper-ink-2: rgba(238, 241, 234, 0.62);
-  --paper-ink-3: rgba(238, 241, 234, 0.4);
+  /* Ink (neutrals biased toward the green accent) */
+  --ink: #12190f;
+  --ink-2: #414a3f;
+  --ink-3: #6b7268;
+  --paper-ink: #f3efe4;
+  --paper-ink-2: rgba(243, 239, 228, 0.66);
+  --paper-ink-3: rgba(243, 239, 228, 0.42);
 
-  /* Green */
-  --emerald: #1c6b45; /* sophisticated working green */
-  --emerald-deep: #124a30;
-  --accent: #2fbf6b; /* growth pop, used sparingly */
-  --accent-lo: rgba(47, 191, 107, 0.12);
+  /* Mesh hues — the colour comes from here */
+  --emerald: #1fa85b;
+  --emerald-deep: #0e7c46;
+  --teal: #14b8a6;
+  --lime: #84cc16;
+  --amber: #f2c14e; /* warm pop, used tiny */
+  --accent: #22c55e;
 
   /* Lines */
-  --line: rgba(22, 26, 23, 0.12);
-  --line-2: rgba(22, 26, 23, 0.2);
-  --line-on-forest: rgba(238, 241, 234, 0.14);
+  --line: rgba(18, 25, 15, 0.12);
+  --line-2: rgba(18, 25, 15, 0.22);
+  --line-on-forest: rgba(243, 239, 228, 0.16);
 
-  /* Typography */
-  --font-display: "Fraunces Variable", "Fraunces", "Iowan Old Style", Georgia, serif;
-  --font-body: "Schibsted Grotesk Variable", "Schibsted Grotesk", "Segoe UI", sans-serif;
+  /* Glass */
+  --glass-light: rgba(251, 248, 241, 0.5);
+  --glass-light-border: rgba(255, 255, 255, 0.6);
+  --glass-dark: rgba(243, 239, 228, 0.1);
+  --glass-dark-border: rgba(243, 239, 228, 0.24);
+  --glass-blur: 16px;
 
-  /* Shape — restrained, editorial */
-  --r-sm: 6px;
-  --r-md: 10px;
-  --r-lg: 16px;
+  /* Typography — per request */
+  --font-display: "Space Grotesk Variable", "Space Grotesk", system-ui, sans-serif;
+  --font-body: "Inter Variable", "Inter", system-ui, sans-serif;
+
+  /* Shape */
+  --r-sm: 8px;
+  --r-md: 12px;
+  --r-lg: 20px;
+  --r-pill: 999px;
 
   /* Space */
   --s-sm: 8px;
   --s-md: 16px;
   --s-lg: 32px;
   --s-xl: 64px;
-  --s-2xl: 112px;
+  --s-2xl: 120px;
 
-  /* Elevation — soft, believable */
-  --shadow-1: 0 1px 2px rgba(22, 26, 23, 0.05), 0 2px 8px rgba(22, 26, 23, 0.04);
-  --shadow-2: 0 4px 12px rgba(22, 26, 23, 0.07), 0 18px 40px -12px rgba(22, 26, 23, 0.14);
-  --shadow-3: 0 30px 60px -20px rgba(0, 0, 0, 0.45);
+  /* Elevation */
+  --shadow-1: 0 1px 2px rgba(18, 25, 15, 0.05), 0 2px 10px rgba(18, 25, 15, 0.05);
+  --shadow-2: 0 6px 16px rgba(18, 25, 15, 0.08), 0 20px 44px -14px rgba(18, 25, 15, 0.16);
+  --shadow-3: 0 30px 70px -22px rgba(0, 0, 0, 0.5);
 
   /* Motion */
   --ease: cubic-bezier(0.22, 1, 0.36, 1);

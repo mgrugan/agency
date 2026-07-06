@@ -1,7 +1,53 @@
 import { useEffect, useState } from "react";
 import { accounts } from "../data";
 import { compact } from "../lib/format";
+import { useCountUp, useInView } from "../lib/hooks";
 import { Reveal } from "./Reveal";
+
+function Stat({ value, suffix, label, run }: { value: number; suffix: string; label: string; run: boolean }) {
+  const n = useCountUp(value, run, 1200);
+  return (
+    <div className="hstat">
+      <div className="v">
+        {value % 1 === 0 ? Math.round(n) : n.toFixed(1)}
+        {suffix}
+      </div>
+      <div className="k">{label}</div>
+    </div>
+  );
+}
+
+/** Airy value-prop band beneath the hero. */
+export function Intro() {
+  const { ref, inView } = useInView<HTMLDivElement>();
+  return (
+    <section className="intro" id="about">
+      <div className="wrap">
+        <Reveal>
+          <div className="intro-grid" ref={ref}>
+            <div>
+              <span className="eyebrow">Algo Media — social growth partner</span>
+              <h2 style={{ marginTop: 16 }}>
+                Audiences, <em>engineered</em> — not rented.
+              </h2>
+            </div>
+            <div>
+              <p>
+                We operate 24 media brands reaching 45 million followers, and put that distribution
+                machine — and the data behind it — to work for ambitious companies.
+              </p>
+              <div className="intro-stats">
+                <Stat value={45.4} suffix="M" label="Followers" run={inView} />
+                <Stat value={128} suffix="M+" label="Monthly reach" run={inView} />
+                <Stat value={24} suffix="" label="Brands" run={inView} />
+              </div>
+            </div>
+          </div>
+        </Reveal>
+      </div>
+    </section>
+  );
+}
 
 export function Nav() {
   const [scrolled, setScrolled] = useState(false);
@@ -232,7 +278,7 @@ export function CtaBand() {
                 and numbers that get you there.
               </p>
             </div>
-            <a className="btn btn-green" href="mailto:growth@algomedia.co">
+            <a className="btn btn-glass" href="mailto:growth@algomedia.co">
               Book a strategy call →
             </a>
           </div>
