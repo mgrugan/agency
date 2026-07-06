@@ -24,8 +24,8 @@ Pushes to the default branch auto-deploy to GitHub Pages via
   CSS transforms driven by pointer events and requestAnimationFrame.
 - **Design tokens** live in [`DESIGN.md`](./DESIGN.md) and are mirrored in
   `src/styles/tokens.css`.
-- **Fonts** self-hosted via Fontsource: Syne (display), Space Grotesk
-  (body), Space Mono (labels). No Inter, Roboto, Arial, Geist, or Instrument.
+- **Fonts** self-hosted via Fontsource: Fraunces (editorial display serif)
+  and Schibsted Grotesk (body / UI). No Inter, Roboto, Arial, or Geist.
 
 ## Signature pieces
 

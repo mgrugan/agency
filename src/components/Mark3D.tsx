@@ -88,7 +88,7 @@ export function Mark3D() {
 
   return (
     <section
-      className="mark3d"
+      className="mark3d on-forest"
       id="mark"
       ref={secRef}
       style={ready ? undefined : { display: "none" }}

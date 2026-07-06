@@ -1,13 +1,21 @@
+import { useEffect, useState } from "react";
 import { accounts } from "../data";
 import { compact } from "../lib/format";
 import { Reveal } from "./Reveal";
 
 export function Nav() {
+  const [scrolled, setScrolled] = useState(false);
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 40);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
   return (
-    <nav className="nav">
+    <nav className={`nav ${scrolled ? "scrolled" : ""}`}>
       <div className="nav-inner">
         <a className="wordmark" href="#top">
-          Algo<span style={{ color: "var(--accent)" }}>Media</span> <i>128M/MO</i>
+          Algo<span style={{ color: "var(--emerald)" }}>Media</span> <i>128M / MO</i>
         </a>
         <div className="nav-links">
           <a href="#portfolio">Network</a>
@@ -147,7 +155,7 @@ const results = [
 
 export function Results() {
   return (
-    <section className="section" id="results">
+    <section className="section on-forest" id="results">
       <Reveal>
         <div className="sec-head">
           <div>
@@ -240,7 +248,7 @@ export function Footer() {
       <div className="wrap">
         <div className="footer-inner">
           <span className="fm">
-            Algo<span style={{ color: "var(--accent)" }}>Media</span>
+            Algo<span style={{ color: "var(--emerald)" }}>Media</span>
           </span>
           <span>Algorithmic social growth · 24 brands · 45.4M followers</span>
           <span className="mono">© 2026 Algo Media</span>
