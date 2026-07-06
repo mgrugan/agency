@@ -27,9 +27,9 @@
   --shell-text-strong: #f5f8f4;
 
   /* Typography */
-  --font-display: "Fraunces Variable", "Fraunces", "Iowan Old Style", Georgia, serif;
-  --font-body: "Geist Sans", "Geist", "Avenir Next", "Segoe UI", sans-serif;
-  --font-mono: "Geist Mono", "SF Mono", "Cascadia Mono", monospace;
+  --font-display: "Instrument Serif", "Iowan Old Style", Georgia, serif;
+  --font-body: "Instrument Sans Variable", "Instrument Sans", "Avenir Next", "Segoe UI", sans-serif;
+  --font-mono: "IBM Plex Mono", "SF Mono", "Cascadia Mono", monospace;
 
   /* Shape */
   --r-sm: 8px;

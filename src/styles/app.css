@@ -32,7 +32,7 @@ h1,
 h2,
 h3 {
   margin: 0;
-  font-weight: 500;
+  font-weight: 400;
 }
 
 a {
@@ -224,10 +224,10 @@ img {
 
 .hero h1 {
   font-family: var(--font-display);
-  font-size: clamp(2.6rem, 5vw, 4.25rem);
-  line-height: 1.04;
-  letter-spacing: -0.015em;
-  font-weight: 500;
+  font-size: clamp(2.8rem, 5.5vw, 4.6rem);
+  line-height: 1.02;
+  letter-spacing: -0.01em;
+  font-weight: 400;
 }
 
 .hero h1 em {
@@ -414,8 +414,8 @@ img {
   place-items: center;
   background: #0d100e;
   font-family: var(--font-display);
-  font-size: 0.875rem;
-  font-weight: 600;
+  font-size: 0.9375rem;
+  font-weight: 400;
   color: #e8eee7;
 }
 
@@ -697,6 +697,65 @@ img {
   margin: 0;
   font-size: 0.875rem;
   color: rgba(245, 248, 244, 0.55);
+}
+
+/* ————— 3D mark ————— */
+.mark3d {
+  padding: 96px 0;
+  overflow: hidden;
+}
+
+.mark3d-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr);
+  gap: 48px;
+  align-items: center;
+}
+
+.mark3d-copy h2 {
+  font-family: var(--font-display);
+  font-size: clamp(1.9rem, 3.2vw, 2.75rem);
+  line-height: 1.1;
+  margin-top: 12px;
+}
+
+.mark3d-copy h2 em {
+  font-style: italic;
+  color: var(--accent);
+}
+
+.mark3d-copy p {
+  margin: 16px 0 0;
+  color: rgba(245, 248, 244, 0.55);
+  max-width: 42ch;
+}
+
+.mark3d-stage {
+  height: 460px;
+  border-radius: var(--r-lg);
+  border: 1px solid rgba(245, 248, 244, 0.1);
+  background: radial-gradient(600px 300px at 50% 110%, rgba(34, 197, 94, 0.12), transparent 65%);
+}
+
+.mark3d-stage model-viewer {
+  width: 100%;
+  height: 100%;
+  --poster-color: transparent;
+  cursor: grab;
+}
+
+.mark3d-stage model-viewer:active {
+  cursor: grabbing;
+}
+
+@media (max-width: 1020px) {
+  .mark3d-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .mark3d-stage {
+    height: 380px;
+  }
 }
 
 /* ————— Process ————— */

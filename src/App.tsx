@@ -1,5 +1,6 @@
 import { Hero } from "./components/Hero";
 import { Carousel3D } from "./components/Carousel3D";
+import { Mark3D } from "./components/Mark3D";
 import { CtaBand, Footer, Nav, Process, Results, Services } from "./components/Sections";
 import { Reveal } from "./components/Reveal";
 
@@ -27,6 +28,7 @@ export default function App() {
 
       <Services />
       <Results />
+      <Mark3D />
       <Process />
       <CtaBand />
       <Footer />

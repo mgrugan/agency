@@ -7,16 +7,16 @@ colors:
   neutral: "#F5F8F4"
 typography:
   h1:
-    fontFamily: Fraunces
+    fontFamily: Instrument Serif
     fontSize: 3.5rem
   h2:
-    fontFamily: Fraunces
+    fontFamily: Instrument Serif
     fontSize: 2.25rem
   body-md:
-    fontFamily: Geist
+    fontFamily: Instrument Sans
     fontSize: 1rem
   label-caps:
-    fontFamily: Geist Mono
+    fontFamily: IBM Plex Mono
     fontSize: 0.75rem
 rounded:
   sm: 8px
@@ -60,11 +60,11 @@ on dark surfaces. Comparison / previous-period series use de-emphasized sage
 
 ## Typography
 
-| Style        | Family     | Use |
-| ------------ | ---------- | --- |
-| `h1`, `h2`   | Fraunces   | Display and section headings. Editorial, high-contrast serif. |
-| `body-md`    | Geist      | Body copy, values, UI labels. |
-| `label-caps` | Geist Mono | Uppercase micro-labels, table columns, axis ticks, deltas. |
+| Style        | Family          | Use |
+| ------------ | --------------- | --- |
+| `h1`, `h2`   | Instrument Serif | Display and section headings. Editorial serif, weight 400 only — never faux-bold. |
+| `body-md`    | Instrument Sans  | Body copy, values, UI labels. |
+| `label-caps` | IBM Plex Mono    | Uppercase micro-labels, stats, deltas. |
 
 Never use Inter, Roboto, or Arial. Big standalone figures use proportional
 figures; `tabular-nums` only in aligned columns.
