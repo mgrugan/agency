@@ -6,6 +6,15 @@ const BASE = import.meta.env.BASE_URL;
 
 interface ModelViewerEl extends HTMLElement {
   cameraOrbit: string;
+  model?: {
+    materials: Array<{
+      pbrMetallicRoughness: {
+        setMetallicFactor(v: number): void;
+        setRoughnessFactor(v: number): void;
+        setBaseColorFactor(v: [number, number, number, number]): void;
+      };
+    }>;
+  };
 }
 
 /**
@@ -24,7 +33,17 @@ export function Mark3D() {
   useEffect(() => {
     const mv = mvRef.current;
     if (!mv) return;
-    const onLoad = () => setReady(true);
+    const onLoad = () => {
+      // The generated mesh ships untextured — dress it in live chrome:
+      // full metallic, near-mirror roughness, faint sage-white base so the
+      // environment reflections read as polished steel.
+      mv.model?.materials.forEach((m) => {
+        m.pbrMetallicRoughness.setMetallicFactor(1);
+        m.pbrMetallicRoughness.setRoughnessFactor(0.16);
+        m.pbrMetallicRoughness.setBaseColorFactor([0.88, 0.93, 0.9, 1]);
+      });
+      setReady(true);
+    };
     const onError = () => setReady(false);
     mv.addEventListener("load", onLoad);
     mv.addEventListener("error", onError);
