@@ -68,6 +68,64 @@ img {
   position: relative;
 }
 
+/* content sits above the fixed clay layer */
+#top {
+  position: relative;
+  z-index: 1;
+}
+
+/* ————— Clay scroll actor (fixed, behind everything) ————— */
+.clayscroll {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.clayscroll-disc {
+  position: absolute;
+  right: -1%;
+  top: 13%;
+  width: min(42vw, 588px);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: radial-gradient(circle at 44% 36%, #23a862, var(--emerald) 50%, var(--emerald-deep) 82%);
+  box-shadow: 0 40px 140px -18px rgba(31, 157, 87, 0.5);
+  will-change: opacity;
+}
+
+.clayscroll-ball {
+  position: absolute;
+  left: 0;
+  top: 0;
+  overflow: hidden;
+  will-change: transform, width, height;
+  box-shadow:
+    0 40px 90px -24px rgba(0, 0, 0, 0.7),
+    0 0 120px -10px rgba(31, 157, 87, 0.35);
+}
+
+.clayscroll-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: opacity var(--t-med) var(--ease);
+}
+
+.clayscroll-orb {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background:
+    radial-gradient(36% 32% at 36% 30%, #cfe0bd, transparent 60%),
+    radial-gradient(60% 60% at 66% 72%, var(--emerald-deep), transparent 74%),
+    linear-gradient(150deg, var(--clay), var(--clay-2) 60%, var(--emerald-deep));
+  transition: opacity var(--t-med) var(--ease);
+}
+
 .eyebrow,
 .label-caps {
   display: inline-block;
@@ -225,66 +283,7 @@ img {
 .shero {
   position: relative;
   min-height: 100vh;
-  overflow: hidden;
-  background:
-    radial-gradient(90% 80% at 78% 42%, rgba(31, 157, 87, 0.1), transparent 60%),
-    var(--bg);
-}
-
-.shero-stage {
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  pointer-events: none;
-}
-
-.shero-disc {
-  position: absolute;
-  right: -1%;
-  top: 13%;
-  width: min(42vw, 588px);
-  aspect-ratio: 1;
-  border-radius: 50%;
-  background: radial-gradient(circle at 44% 36%, #23a862, var(--emerald) 50%, var(--emerald-deep) 82%);
-  box-shadow: 0 40px 120px -20px rgba(31, 157, 87, 0.45);
-  transform: translate(calc(var(--mx, 0) * -22px), calc(var(--my, 0) * -18px + var(--sy, 0) * -40px));
-  transition: transform 400ms var(--ease);
-}
-
-.shero-disc-sm {
-  position: absolute;
-  right: 6%;
-  bottom: -8%;
-  width: min(20vw, 260px);
-  aspect-ratio: 1;
-  border-radius: 50%;
-  background: radial-gradient(circle at 40% 35%, var(--emerald), var(--emerald-deep) 80%);
-  opacity: 0.9;
-  transform: translateY(calc(var(--sy, 0) * -30px));
-}
-
-.shero-statue,
-.shero-statue-fallback {
-  position: absolute;
-  right: 4%;
-  bottom: 0;
-  height: 94%;
-  max-width: 50%;
-  object-fit: contain;
-  object-position: bottom center;
-  transform: translate(calc(var(--mx, 0) * 16px), calc(var(--sy, 0) * -28px));
-  transition: transform 400ms var(--ease);
-  filter: drop-shadow(0 30px 60px rgba(0, 0, 0, 0.55));
-}
-
-/* placeholder sculpted glow until the real statue lands */
-.shero-statue-fallback {
-  width: min(42vw, 520px);
-  background:
-    radial-gradient(40% 60% at 50% 40%, rgba(143, 240, 164, 0.28), transparent 70%),
-    linear-gradient(180deg, rgba(184, 201, 166, 0.22), rgba(143, 168, 123, 0.06));
-  -webkit-mask: radial-gradient(50% 62% at 50% 42%, #000 55%, transparent 72%);
-  mask: radial-gradient(50% 62% at 50% 42%, #000 55%, transparent 72%);
+  background: transparent;
 }
 
 .shero-content {
@@ -378,65 +377,6 @@ img {
   position: absolute;
   inset: 0 66% 0 0;
   background: var(--lime);
-}
-
-/* ————— Clay scroll-position rail ————— */
-.clayrail {
-  position: fixed;
-  right: 24px;
-  top: 16vh;
-  bottom: 16vh;
-  width: 48px;
-  z-index: 90;
-  pointer-events: none;
-}
-
-.clayrail-track {
-  position: relative;
-  width: 2px;
-  height: 100%;
-  margin: 0 auto;
-  background: var(--line);
-}
-
-.clayrail-thumb {
-  position: absolute;
-  left: 50%;
-  top: 0;
-  width: 62px;
-  height: 62px;
-  margin-left: -31px;
-  border-radius: 50%;
-  overflow: hidden;
-  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.55), 0 0 0 1px var(--line-2);
-  will-change: transform;
-}
-
-.clayrail-video {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: opacity var(--t-med) var(--ease);
-}
-
-.clayrail-orb {
-  position: absolute;
-  inset: 0;
-  border-radius: 50%;
-  background:
-    radial-gradient(38% 34% at 36% 30%, #d6e2c6, transparent 60%),
-    radial-gradient(60% 60% at 64% 70%, var(--clay-2), transparent 72%),
-    linear-gradient(150deg, var(--clay), var(--clay-2));
-  transition: opacity var(--t-med) var(--ease);
-  animation: claySpin 14s linear infinite;
-}
-
-@keyframes claySpin {
-  to {
-    transform: rotate(360deg);
-  }
 }
 
 /* ————— Sections (dark) ————— */
@@ -882,7 +822,7 @@ img {
 
 /* ————— Results ————— */
 .on-forest {
-  background: var(--panel);
+  background: transparent;
 }
 
 .res-grid {
@@ -1116,18 +1056,9 @@ img {
     max-width: 90%;
   }
 
-  .shero-disc {
-    right: -6%;
-    opacity: 0.5;
-  }
-
-  .shero-statue,
-  .shero-statue-fallback {
-    opacity: 0.5;
-  }
-
-  .clayrail {
-    display: none;
+  .clayscroll-disc {
+    right: -18%;
+    opacity: 0.55;
   }
 
   .intro-grid,

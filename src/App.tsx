@@ -1,5 +1,5 @@
 import { StatueHero } from "./components/StatueHero";
-import { ScrollClay } from "./components/ScrollClay";
+import { ClayScroll } from "./components/ClayScroll";
 import { Carousel3D } from "./components/Carousel3D";
 import { Mark3D } from "./components/Mark3D";
 import { CtaBand, Footer, Intro, Marquee, Nav, Process, Results, Services } from "./components/Sections";
@@ -7,38 +7,40 @@ import { Reveal } from "./components/Reveal";
 
 export default function App() {
   return (
-    <div id="top">
-      <ScrollClay />
-      <Nav />
-      <StatueHero />
-      <Intro />
-      <Marquee />
+    <>
+      <ClayScroll />
+      <div id="top">
+        <Nav />
+        <StatueHero />
+        <Intro />
+        <Marquee />
 
-      <section className="carousel-sec" id="portfolio">
-        <div className="glowmesh" />
-        <Reveal>
-          <div className="sec-head">
-            <div>
-              <span className="eyebrow">The network</span>
-              <h2>
-                Twenty-four brands. <em>One</em> growth machine.
-              </h2>
+        <section className="carousel-sec" id="portfolio">
+          <div className="glowmesh" />
+          <Reveal>
+            <div className="sec-head">
+              <div>
+                <span className="eyebrow">The network</span>
+                <h2>
+                  Twenty-four brands. <em>One</em> growth machine.
+                </h2>
+              </div>
+              <p>
+                Every account here is owned and operated by Algo Media — a living laboratory for
+                what works on social. Drag to explore.
+              </p>
             </div>
-            <p>
-              Every account here is owned and operated by Algo Media — a living laboratory for what
-              works on social. Drag to explore.
-            </p>
-          </div>
-        </Reveal>
-        <Carousel3D />
-      </section>
+          </Reveal>
+          <Carousel3D />
+        </section>
 
-      <Services />
-      <Results />
-      <Mark3D />
-      <Process />
-      <CtaBand />
-      <Footer />
-    </div>
+        <Services />
+        <Results />
+        <Mark3D />
+        <Process />
+        <CtaBand />
+        <Footer />
+      </div>
+    </>
   );
 }
