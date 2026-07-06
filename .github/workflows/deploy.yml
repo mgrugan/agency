@@ -26,6 +26,7 @@ jobs:
       - run: npm ci
       - name: Fetch generated assets (Higgsfield CDN — the sandbox can't reach it)
         run: |
+          command -v ffmpeg >/dev/null 2>&1 || { sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg; }
           mkdir -p public
           [ -f public/algo-mark.glb ] || curl -fsSL -o public/algo-mark.glb \
             "https://d3u0tzju9qaucj.cloudfront.net/7d051b5a-7bfe-49fe-a484-24e7b3a9458a/1c1af68d-ab67-45e9-8cde-715bd993287d.glb"
