@@ -1,0 +1,56 @@
+/* ————————————————————————————————————————————————
+   Algo Media design tokens — source of truth: DESIGN.md
+   ———————————————————————————————————————————————— */
+:root {
+  /* Color */
+  --ink: #111513;
+  --ink-soft: #2a322d;
+  --sage: #627067;
+  --sage-dim: #8a9990;
+  --accent: #22c55e;
+  --accent-deep: #16a34a; /* chart marks: >=3:1 on surface */
+  --accent-700: #15803d;
+  --accent-800: #166534;
+  --accent-wash: rgba(34, 197, 94, 0.1);
+  --surface: #f5f8f4;
+  --card: #fcfdfb;
+  --card-raised: #ffffff;
+  --line: rgba(17, 21, 19, 0.08);
+  --line-strong: rgba(17, 21, 19, 0.14);
+  --grid: rgba(17, 21, 19, 0.06);
+  --negative: #b45309;
+
+  /* Dark shell (sidebar) */
+  --shell: #111513;
+  --shell-line: rgba(245, 248, 244, 0.08);
+  --shell-text: rgba(245, 248, 244, 0.56);
+  --shell-text-strong: #f5f8f4;
+
+  /* Typography */
+  --font-display: "Fraunces Variable", "Fraunces", "Iowan Old Style", Georgia, serif;
+  --font-body: "Geist Sans", "Geist", "Avenir Next", "Segoe UI", sans-serif;
+  --font-mono: "Geist Mono", "SF Mono", "Cascadia Mono", monospace;
+
+  /* Shape */
+  --r-sm: 8px;
+  --r-md: 14px;
+  --r-lg: 24px;
+
+  /* Space */
+  --s-xs: 4px;
+  --s-sm: 8px;
+  --s-md: 16px;
+  --s-lg: 32px;
+  --s-xl: 56px;
+
+  /* Elevation — subtle, layered, never floaty */
+  --shadow-1: 0 1px 2px rgba(17, 21, 19, 0.04), 0 1px 1px rgba(17, 21, 19, 0.03);
+  --shadow-2: 0 1px 2px rgba(17, 21, 19, 0.05), 0 4px 12px rgba(17, 21, 19, 0.05);
+  --shadow-3: 0 2px 4px rgba(17, 21, 19, 0.06), 0 12px 28px rgba(17, 21, 19, 0.08);
+
+  /* Motion */
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --t-fast: 160ms;
+  --t-med: 320ms;
+  --t-chart: 850ms;
+}
