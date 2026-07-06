@@ -95,35 +95,36 @@ img {
   will-change: opacity;
 }
 
+/* clean cut-out statue standing on the page (no box) */
+.clayscroll-statue {
+  position: absolute;
+  right: 4%;
+  bottom: 0;
+  height: 94%;
+  max-width: 50%;
+  object-fit: contain;
+  object-position: bottom center;
+  z-index: 2;
+  will-change: opacity, transform, filter;
+}
+
+/* a real ball of clay — a shaded sphere, no video, no box */
 .clayscroll-ball {
   position: absolute;
   left: 0;
   top: 0;
-  overflow: hidden;
-  will-change: transform, width, height;
-  box-shadow:
-    0 40px 90px -24px rgba(0, 0, 0, 0.7),
-    0 0 120px -10px rgba(31, 157, 87, 0.35);
-}
-
-.clayscroll-video {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: opacity var(--t-med) var(--ease);
-}
-
-.clayscroll-orb {
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
+  z-index: 1;
+  border-radius: 50%;
+  will-change: transform, opacity;
   background:
-    radial-gradient(36% 32% at 36% 30%, #cfe0bd, transparent 60%),
-    radial-gradient(60% 60% at 66% 72%, var(--emerald-deep), transparent 74%),
-    linear-gradient(150deg, var(--clay), var(--clay-2) 60%, var(--emerald-deep));
-  transition: opacity var(--t-med) var(--ease);
+    radial-gradient(38% 36% at 34% 28%, #e2eccf, transparent 56%),
+    radial-gradient(75% 75% at 68% 76%, #0e5f37, transparent 78%),
+    linear-gradient(150deg, #a9c48f, #6f9160 52%, #2f6a45);
+  box-shadow:
+    inset -12px -16px 34px rgba(0, 0, 0, 0.42),
+    inset 10px 12px 26px rgba(255, 255, 255, 0.22),
+    0 34px 80px -24px rgba(0, 0, 0, 0.7),
+    0 0 90px -18px rgba(31, 157, 87, 0.4);
 }
 
 .eyebrow,
