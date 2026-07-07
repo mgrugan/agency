@@ -31,6 +31,8 @@ jobs:
             "https://d3u0tzju9qaucj.cloudfront.net/7d051b5a-7bfe-49fe-a484-24e7b3a9458a/1c1af68d-ab67-45e9-8cde-715bd993287d.glb"
           [ -f public/statue.png ] || curl -fsSL -o public/statue.png \
             "https://d8j0ntlcm91z4.cloudfront.net/user_3BHCD7igI1rNUgPcHwyKdHyLWCw/hf_20260706_225605_45d7a579-1b1a-439e-8a2a-495beb9b9a41.png"
+          [ -f public/telos-statue.glb ] || curl -fsSL -o public/telos-statue.glb \
+            "https://d3u0tzju9qaucj.cloudfront.net/7d051b5a-7bfe-49fe-a484-24e7b3a9458a/dbde1c2f-d7c6-4e7b-bf97-41f260ceb2bd.glb"
           ls -la public/
       - run: npm run build
       - uses: actions/upload-pages-artifact@v3
