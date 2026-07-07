@@ -23,7 +23,7 @@ export function Hero3D() {
   const apply = useCallback(() => {
     const mv = mvRef.current;
     const stage = stageRef.current;
-    const theta = -18 + mouse.current.x * 18 + scroll.current * 52; // yaw — larger rotation
+    const theta = 0 + mouse.current.x * 14 + scroll.current * 95; // yaw — faces forward, turns more on scroll
     const phi = 90 - mouse.current.y * 9 - scroll.current * 12; // pitch
     if (mv) mv.cameraOrbit = `${theta.toFixed(1)}deg ${phi.toFixed(1)}deg 105%`;
     if (stage) {
@@ -80,7 +80,7 @@ export function Hero3D() {
           disable-zoom
           disable-pan
           interaction-prompt="none"
-          camera-orbit="-14deg 88deg 105%"
+          camera-orbit="0deg 90deg 105%"
           min-camera-orbit="auto auto 60%"
           max-camera-orbit="auto auto 200%"
           environment-image="neutral"
