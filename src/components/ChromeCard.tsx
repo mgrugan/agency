@@ -23,12 +23,18 @@ export function ChromeCard({ acct, className = "" }: Props) {
     const y = (e.clientY - r.top) / r.height;
     el.style.setProperty("--gx", `${(x * 100).toFixed(1)}%`);
     el.style.setProperty("--gy", `${(y * 100).toFixed(1)}%`);
-    el.style.setProperty("--px", `${(x - 0.5).toFixed(3)}`);
-    el.style.setProperty("--sheen", `${((x - 0.5) * 60).toFixed(1)}`);
+    el.style.setProperty("--rx", `${((0.5 - y) * 12).toFixed(2)}deg`);
+    el.style.setProperty("--ry", `${((x - 0.5) * 15).toFixed(2)}deg`);
+  }, []);
+
+  const onMouseLeave = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
+    const el = e.currentTarget;
+    el.style.setProperty("--rx", "0deg");
+    el.style.setProperty("--ry", "0deg");
   }, []);
 
   return (
-    <div className={`chrome-card ${className}`.trim()} onMouseMove={onMouseMove}>
+    <div className={`chrome-card ${className}`.trim()} onMouseMove={onMouseMove} onMouseLeave={onMouseLeave}>
       <div className="cc-body">
         <div className="cc-top">
           <div className="cc-avatar" aria-hidden="true">

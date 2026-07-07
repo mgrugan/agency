@@ -40,6 +40,10 @@ h3 {
   text-wrap: balance;
 }
 
+p {
+  text-wrap: pretty;
+}
+
 a {
   color: inherit;
   text-decoration: none;
@@ -308,12 +312,18 @@ img {
   line-height: 0.92;
   font-weight: 600;
   letter-spacing: 0.01em;
-  background: linear-gradient(180deg, var(--marble), var(--marble-2) 70%, var(--gold));
+  background: linear-gradient(120deg, var(--lime), var(--emerald) 52%, var(--emerald-deep));
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
   position: relative;
   z-index: 2;
+  min-height: 0.92em;
+}
+
+/* keep the cipher glyphs inside the gradient clip */
+.shero h1 .cipher {
+  color: inherit;
 }
 
 .shero-content p {
@@ -503,14 +513,70 @@ img {
 
 /* ————— Account card (dark glass) ————— */
 .chrome-card {
+  position: relative;
   width: 244px;
   border-radius: var(--r-md);
-  background: rgba(18, 26, 21, 0.86);
+  background:
+    linear-gradient(158deg, rgba(38, 50, 44, 0.92), rgba(11, 17, 14, 0.95));
   backdrop-filter: blur(16px) saturate(140%);
   -webkit-backdrop-filter: blur(16px) saturate(140%);
-  border: 1px solid var(--line-2);
-  box-shadow: var(--shadow-3);
+  border: 1px solid transparent;
+  box-shadow:
+    0 34px 60px -24px rgba(0, 0, 0, 0.8),
+    0 8px 20px -10px rgba(0, 0, 0, 0.6),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  transform: perspective(780px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg));
+  transition:
+    transform 0.35s var(--ease),
+    box-shadow 0.35s var(--ease);
+  transform-style: preserve-3d;
   user-select: none;
+}
+
+/* brushed-chrome rim */
+.chrome-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1.4px;
+  background: linear-gradient(
+    150deg,
+    #eaf6ee 0%,
+    #90b4a1 15%,
+    #29382f 37%,
+    #9feec0 58%,
+    #33463b 78%,
+    #d9ede1 100%
+  );
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0.92;
+  pointer-events: none;
+  z-index: 3;
+}
+
+/* glossy sheen sweep tracking the pointer */
+.chrome-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(
+    150px 130px at var(--gx, 50%) var(--gy, 0%),
+    rgba(255, 255, 255, 0.22),
+    rgba(159, 238, 192, 0.08) 42%,
+    transparent 66%
+  );
+  mix-blend-mode: screen;
+  pointer-events: none;
+  z-index: 3;
 }
 
 .cc-body {
@@ -715,7 +781,7 @@ img {
 
 .carousel-stage {
   height: 460px;
-  perspective: 2200px;
+  perspective: 1500px;
   cursor: grab;
   touch-action: pan-y;
   position: relative;

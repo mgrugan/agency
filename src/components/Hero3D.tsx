@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useRef } from "react";
 import "@google/model-viewer";
+import { CipherText } from "./CipherText";
 
 const BASE = import.meta.env.BASE_URL;
 
@@ -92,7 +93,9 @@ export function Hero3D() {
 
       <div className="shero-content">
         <span className="eyebrow">Telos — the end we build toward</span>
-        <h1>AMPLIFY</h1>
+        <h1>
+          <CipherText text="AMPLIFY" delay={260} />
+        </h1>
         <p>
           We turn classical patience into modern momentum — engineering audiences that reach 128
           million people a month, and make brands impossible to ignore.
