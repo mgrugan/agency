@@ -24,7 +24,7 @@ export function Hero3D() {
     const stage = stageRef.current;
     const theta = -18 + mouse.current.x * 18 + scroll.current * 52; // yaw — larger rotation
     const phi = 90 - mouse.current.y * 9 - scroll.current * 12; // pitch
-    if (mv) mv.cameraOrbit = `${theta.toFixed(1)}deg ${phi.toFixed(1)}deg 72%`;
+    if (mv) mv.cameraOrbit = `${theta.toFixed(1)}deg ${phi.toFixed(1)}deg 78%`;
     if (stage) {
       stage.style.transform = `translate3d(${(mouse.current.x * 24).toFixed(1)}px, ${(scroll.current * -120 + mouse.current.y * 16).toFixed(1)}px, 0)`;
     }
@@ -79,8 +79,8 @@ export function Hero3D() {
           disable-zoom
           disable-pan
           interaction-prompt="none"
-          camera-orbit="-14deg 88deg 72%"
-          field-of-view="12deg"
+          camera-orbit="-14deg 88deg 78%"
+          field-of-view="19deg"
           environment-image="neutral"
           tone-mapping="neutral"
           shadow-intensity="0.5"
@@ -102,14 +102,6 @@ export function Hero3D() {
           </span>
           <span>See the network</span>
         </a>
-      </div>
-
-      <div className="shero-index">
-        <span className="cur">I</span>
-        <span className="bar">
-          <i />
-        </span>
-        <span className="tot">III</span>
       </div>
     </header>
   );

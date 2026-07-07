@@ -433,7 +433,13 @@ img {
 
 /* ————— Intro ————— */
 .intro {
-  padding: var(--s-2xl) 0 var(--s-lg);
+  padding: var(--s-lg) 0 var(--s-xl);
+}
+
+.intro-center {
+  max-width: 720px;
+  margin: 0 auto;
+  text-align: center;
 }
 
 .intro-grid {
@@ -459,17 +465,23 @@ img {
 }
 
 .intro p {
-  margin: 0 0 28px;
+  margin: 0 auto 32px;
   color: var(--ink-2);
-  font-size: 1.0625rem;
-  max-width: 46ch;
+  font-size: 1.125rem;
+  line-height: 1.5;
+  max-width: 52ch;
 }
 
 .intro-stats {
   display: flex;
-  gap: 44px;
-  padding-top: 28px;
+  gap: 56px;
+  justify-content: center;
+  padding-top: 32px;
   border-top: 1px solid var(--line);
+}
+
+.intro-center .hstat {
+  text-align: center;
 }
 
 .hstat .v {
