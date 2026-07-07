@@ -22,11 +22,11 @@ export function Hero3D() {
   const apply = useCallback(() => {
     const mv = mvRef.current;
     const stage = stageRef.current;
-    const theta = -14 + mouse.current.x * 12 + scroll.current * 26; // yaw
-    const phi = 90 - mouse.current.y * 6 - scroll.current * 6; // pitch
-    if (mv) mv.cameraOrbit = `${theta.toFixed(1)}deg ${phi.toFixed(1)}deg 100%`;
+    const theta = -18 + mouse.current.x * 18 + scroll.current * 52; // yaw — larger rotation
+    const phi = 90 - mouse.current.y * 9 - scroll.current * 12; // pitch
+    if (mv) mv.cameraOrbit = `${theta.toFixed(1)}deg ${phi.toFixed(1)}deg 80%`;
     if (stage) {
-      stage.style.transform = `translate3d(${(mouse.current.x * 14).toFixed(1)}px, ${(scroll.current * -60 + mouse.current.y * 10).toFixed(1)}px, 0)`;
+      stage.style.transform = `translate3d(${(mouse.current.x * 24).toFixed(1)}px, ${(scroll.current * -120 + mouse.current.y * 16).toFixed(1)}px, 0)`;
     }
   }, []);
 
@@ -79,10 +79,12 @@ export function Hero3D() {
           disable-zoom
           disable-pan
           interaction-prompt="none"
-          camera-orbit="-14deg 90deg 100%"
-          field-of-view="30deg"
-          shadow-intensity="0.5"
-          exposure="1.05"
+          camera-orbit="-18deg 90deg 80%"
+          field-of-view="22deg"
+          tone-mapping="neutral"
+          shadow-intensity="0.35"
+          shadow-softness="1"
+          exposure="0.72"
         />
       </div>
 

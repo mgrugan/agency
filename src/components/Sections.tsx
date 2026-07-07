@@ -1,25 +1,13 @@
 import { useEffect, useState } from "react";
 import { accounts } from "../data";
 import { compact } from "../lib/format";
-import { useCountUp, useInView } from "../lib/hooks";
+import { useInView } from "../lib/hooks";
+import { GlitchStat } from "./GlitchStat";
 import { Reveal } from "./Reveal";
 
-function Stat({ value, suffix, label, run }: { value: number; suffix: string; label: string; run: boolean }) {
-  const n = useCountUp(value, run, 1200);
-  return (
-    <div className="hstat">
-      <div className="v">
-        {value % 1 === 0 ? Math.round(n) : n.toFixed(1)}
-        {suffix}
-      </div>
-      <div className="k">{label}</div>
-    </div>
-  );
-}
-
-/** Airy value-prop band beneath the hero. */
+/** Value-prop band — first thing on the page so its glyph animation is seen. */
 export function Intro() {
-  const { ref, inView } = useInView<HTMLDivElement>();
+  const { ref, inView } = useInView<HTMLDivElement>("0px");
   return (
     <section className="intro" id="about">
       <div className="wrap">
@@ -37,9 +25,9 @@ export function Intro() {
                 machine — and the data behind it — to work for ambitious companies.
               </p>
               <div className="intro-stats">
-                <Stat value={45.4} suffix="M" label="Followers" run={inView} />
-                <Stat value={128} suffix="M+" label="Monthly reach" run={inView} />
-                <Stat value={24} suffix="" label="Brands" run={inView} />
+                <GlitchStat value="45.4M" label="Followers" run={inView} delay={0} />
+                <GlitchStat value="128M+" label="Monthly reach" run={inView} delay={180} />
+                <GlitchStat value="24" label="Brands" run={inView} delay={360} />
               </div>
             </div>
           </div>

@@ -36,8 +36,8 @@
   --glass: rgba(241, 239, 231, 0.06);
   --glass-border: rgba(241, 239, 231, 0.2);
 
-  /* Type — classical serif display + neutral sans body */
-  --font-display: "Cormorant Garamond Variable", "Cormorant Garamond", Georgia, serif;
+  /* Type — Roman inscriptional display + neutral sans body */
+  --font-display: "Cinzel Variable", "Cinzel", Georgia, serif;
   --font-body: "Inter Variable", "Inter", system-ui, sans-serif;
 
   /* Shape */

@@ -12,6 +12,8 @@ declare namespace JSX {
         "camera-orbit"?: string;
         "field-of-view"?: string;
         "shadow-intensity"?: string;
+        "shadow-softness"?: string;
+        "tone-mapping"?: string;
         "environment-image"?: string;
         "auto-rotate"?: boolean;
         poster?: string;

@@ -8,8 +8,8 @@ export default function App() {
   return (
     <div id="top">
       <Nav />
-      <Hero3D />
       <Intro />
+      <Hero3D />
       <Marquee />
 
       <section className="carousel-sec" id="portfolio">

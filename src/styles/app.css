@@ -34,7 +34,8 @@ h3 {
   margin: 0;
   font-family: var(--font-display);
   font-weight: 500;
-  letter-spacing: -0.005em;
+  letter-spacing: 0.02em;
+  line-height: 1.12;
   color: var(--marble);
   text-wrap: balance;
 }
@@ -73,21 +74,23 @@ img {
 /* ————— 3D statue hero ————— */
 .shero-stage {
   position: absolute;
-  inset: 0 0 0 42%;
+  inset: 0 0 0 44%;
   z-index: 0;
   will-change: transform;
 }
 
+/* soft glow behind the statue (not a hard disc) */
 .shero-disc {
   position: absolute;
-  right: 4%;
-  top: 12%;
-  width: min(40vw, 560px);
+  left: 50%;
+  top: 48%;
+  width: min(36vw, 540px);
   aspect-ratio: 1;
+  transform: translate(-50%, -50%);
   border-radius: 50%;
-  background: radial-gradient(circle at 44% 36%, #1f9d57, var(--emerald-deep) 60%, transparent 78%);
-  opacity: 0.65;
-  filter: blur(2px);
+  background: radial-gradient(circle, rgba(31, 157, 87, 0.55), rgba(15, 109, 59, 0.28) 46%, transparent 70%);
+  filter: blur(46px);
+  z-index: 0;
 }
 
 .shero-model {
@@ -95,6 +98,7 @@ img {
   inset: 0;
   width: 100%;
   height: 100%;
+  z-index: 1;
   --poster-color: transparent;
   background: transparent;
 }
