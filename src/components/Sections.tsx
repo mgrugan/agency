@@ -26,7 +26,7 @@ export function Intro() {
         <Reveal>
           <div className="intro-grid" ref={ref}>
             <div>
-              <span className="eyebrow">Algo Media — social growth partner</span>
+              <span className="eyebrow">Telos Media — social growth partner</span>
               <h2 style={{ marginTop: 16 }}>
                 Audiences, <em>engineered</em> — not rented.
               </h2>
@@ -61,7 +61,7 @@ export function Nav() {
     <nav className={`nav ${scrolled ? "scrolled" : ""}`}>
       <div className="nav-inner">
         <a className="wordmark" href="#top">
-          Algo<span style={{ color: "var(--emerald)" }}>Media</span> <i>128M / MO</i>
+          Telos<span style={{ color: "var(--emerald)" }}>Media</span> <i>128M / MO</i>
         </a>
         <div className="nav-links">
           <a href="#portfolio">Network</a>
@@ -164,7 +164,7 @@ export function Services() {
             <Reveal key={s.num} delay={i * 90}>
               <div className="svc glass">
                 <div className="ico">{s.icon}</div>
-                <div className="num">{s.num}</div>
+                <div className="num">{["I", "II", "III"][i]}</div>
                 <h3>{s.title}</h3>
                 <p>{s.body}</p>
                 <ul>
@@ -251,7 +251,7 @@ export function Process() {
           {steps.map((s, i) => (
             <Reveal key={s.num} delay={i * 110}>
               <div className="proc glass">
-                <div className="num">{s.num}</div>
+                <div className="num">{["I", "II", "III", "IV"][i]}</div>
                 <h3>{s.title}</h3>
                 <p>{s.body}</p>
               </div>
@@ -292,12 +292,13 @@ export function Footer() {
   return (
     <footer className="footer">
       <div className="wrap">
+        <div className="meander" style={{ marginBottom: 32 }} aria-hidden="true" />
         <div className="footer-inner">
           <span className="fm">
-            Algo<span style={{ color: "var(--emerald)" }}>Media</span>
+            Telos<span style={{ color: "var(--emerald)" }}>Media</span>
           </span>
-          <span>Algorithmic social growth · 24 brands · 45.4M followers</span>
-          <span className="mono">© 2026 Algo Media</span>
+          <span>Social growth, engineered · 24 brands · 45.4M followers</span>
+          <span className="mono">© 2026 Telos Media</span>
         </div>
       </div>
     </footer>

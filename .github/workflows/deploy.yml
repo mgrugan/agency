@@ -26,20 +26,11 @@ jobs:
       - run: npm ci
       - name: Fetch generated assets (Higgsfield CDN — the sandbox can't reach it)
         run: |
-          command -v ffmpeg >/dev/null 2>&1 || { sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg; }
           mkdir -p public
           [ -f public/algo-mark.glb ] || curl -fsSL -o public/algo-mark.glb \
             "https://d3u0tzju9qaucj.cloudfront.net/7d051b5a-7bfe-49fe-a484-24e7b3a9458a/1c1af68d-ab67-45e9-8cde-715bd993287d.glb"
           [ -f public/statue.png ] || curl -fsSL -o public/statue.png \
             "https://d8j0ntlcm91z4.cloudfront.net/user_3BHCD7igI1rNUgPcHwyKdHyLWCw/hf_20260706_225605_45d7a579-1b1a-439e-8a2a-495beb9b9a41.png"
-          # crumble clip → re-encode every frame as a keyframe so it scrubs
-          # smoothly under scroll (arbitrary currentTime seeks stay sharp)
-          if [ ! -f public/crumble.mp4 ]; then
-            curl -fsSL -o /tmp/crumble_src.mp4 \
-              "https://d8j0ntlcm91z4.cloudfront.net/user_3BHCD7igI1rNUgPcHwyKdHyLWCw/hf_20260706_225624_2e68768d-383c-4b81-9cf6-422a9986d7ed.mp4"
-            ffmpeg -y -i /tmp/crumble_src.mp4 -an -c:v libx264 -preset veryfast \
-              -g 1 -keyint_min 1 -pix_fmt yuv420p -movflags +faststart public/crumble.mp4
-          fi
           ls -la public/
       - run: npm run build
       - uses: actions/upload-pages-artifact@v3

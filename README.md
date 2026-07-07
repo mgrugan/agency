@@ -24,8 +24,8 @@ Pushes to the default branch auto-deploy to GitHub Pages via
   CSS transforms driven by pointer events and requestAnimationFrame.
 - **Design tokens** live in [`DESIGN.md`](./DESIGN.md) and are mirrored in
   `src/styles/tokens.css`.
-- **Fonts** self-hosted via Fontsource: Space Grotesk (display / hero
-  knockout word) and Inter (body / UI).
+- **Fonts** self-hosted via Fontsource: Cormorant Garamond (classical serif
+  display) and Inter (body / UI).
 
 ## Signature pieces
 

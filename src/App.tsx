@@ -1,4 +1,4 @@
-import { HeroFilm } from "./components/HeroFilm";
+import { Hero3D } from "./components/Hero3D";
 import { Carousel3D } from "./components/Carousel3D";
 import { Mark3D } from "./components/Mark3D";
 import { CtaBand, Footer, Intro, Marquee, Nav, Process, Results, Services } from "./components/Sections";
@@ -8,7 +8,7 @@ export default function App() {
   return (
     <div id="top">
       <Nav />
-      <HeroFilm />
+      <Hero3D />
       <Intro />
       <Marquee />
 
@@ -23,7 +23,7 @@ export default function App() {
               </h2>
             </div>
             <p>
-              Every account here is owned and operated by Algo Media — a living laboratory for what
+              Every account here is owned and operated by Telos Media — a living laboratory for what
               works on social. Drag to explore.
             </p>
           </div>

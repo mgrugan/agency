@@ -1,5 +1,5 @@
 ---
-name: Algo Media
+name: Telos Media
 colors:
   primary: "#111513"
   secondary: "#627067"
@@ -7,10 +7,10 @@ colors:
   neutral: "#F5F8F4"
 typography:
   h1:
-    fontFamily: Space Grotesk
+    fontFamily: Cormorant Garamond
     fontSize: 3.5rem
   h2:
-    fontFamily: Space Grotesk
+    fontFamily: Cormorant Garamond
     fontSize: 2.25rem
   body-md:
     fontFamily: Inter
@@ -62,7 +62,7 @@ on dark surfaces. Comparison / previous-period series use de-emphasized sage
 
 | Style        | Family          | Use |
 | ------------ | --------------- | --- |
-| `h1`, `h2`   | Space Grotesk    | Display & headings, incl. the knockout hero word. |
+| `h1`, `h2`   | Cormorant Garamond | Classical serif display & headings. |
 | `body-md`    | Inter            | Body copy, values, UI labels. |
 | `label-caps` | Inter            | Uppercase tracked micro-labels (eyebrows). |
 

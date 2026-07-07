@@ -1,5 +1,5 @@
 /* ————————————————————————————————————————————————
-   Algo Media — dramatic dark, marble & emerald
+   Telos Media — dark, marble & emerald with classical undertones
    ———————————————————————————————————————————————— */
 :root {
   /* Ground */
@@ -22,6 +22,12 @@
   --clay: #b8c9a6; /* pale sculpted clay-green */
   --clay-2: #8fa87b;
 
+  /* Classical accents */
+  --marble: #ece6d8; /* ivory — display headings */
+  --marble-2: #c9c2b0;
+  --gold: #c8a45c; /* muted antique bronze/gold, fine detail only */
+  --gold-lo: rgba(200, 164, 92, 0.22);
+
   /* Lines */
   --line: rgba(241, 239, 231, 0.12);
   --line-2: rgba(241, 239, 231, 0.2);
@@ -30,8 +36,8 @@
   --glass: rgba(241, 239, 231, 0.06);
   --glass-border: rgba(241, 239, 231, 0.2);
 
-  /* Type */
-  --font-display: "Space Grotesk Variable", "Space Grotesk", system-ui, sans-serif;
+  /* Type — classical serif display + neutral sans body */
+  --font-display: "Cormorant Garamond Variable", "Cormorant Garamond", Georgia, serif;
   --font-body: "Inter Variable", "Inter", system-ui, sans-serif;
 
   /* Shape */

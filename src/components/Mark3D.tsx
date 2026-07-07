@@ -101,7 +101,7 @@ export function Mark3D() {
               Growth, <em>cast in chrome.</em>
             </h2>
             <p>
-              The Algo arrow — one direction, forged from the same discipline we bring to every
+              The Telos mark — one direction, forged from the same discipline we bring to every
               account we run. Scroll and it turns. Grab it and look closer.
             </p>
           </div>
