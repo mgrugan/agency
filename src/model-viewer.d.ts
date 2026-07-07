@@ -10,6 +10,8 @@ declare namespace JSX {
         "disable-tap"?: boolean;
         "interaction-prompt"?: string;
         "camera-orbit"?: string;
+        "min-camera-orbit"?: string;
+        "max-camera-orbit"?: string;
         "field-of-view"?: string;
         "shadow-intensity"?: string;
         "shadow-softness"?: string;
