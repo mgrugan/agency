@@ -74,10 +74,10 @@ img {
 /* ————— 3D statue hero ————— */
 .shero-stage {
   position: absolute;
-  top: -3%;
-  right: -1%;
-  bottom: -13%;
-  left: 40%;
+  top: 8%;
+  right: 0;
+  bottom: 4%;
+  left: 42%;
   z-index: 1;
   will-change: transform;
 }
