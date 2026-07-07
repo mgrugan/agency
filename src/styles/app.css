@@ -74,25 +74,29 @@ img {
 /* ————— 3D statue hero ————— */
 .shero-stage {
   position: absolute;
-  inset: 0 0 0 44%;
-  z-index: 0;
+  top: -3%;
+  right: -1%;
+  bottom: -13%;
+  left: 40%;
+  z-index: 1;
   will-change: transform;
 }
 
 /* soft glow behind the statue (not a hard disc) */
 .shero-disc {
   position: absolute;
-  left: 50%;
-  top: 48%;
-  width: min(36vw, 540px);
+  left: 47%;
+  top: 40%;
+  width: min(48vw, 700px);
   aspect-ratio: 1;
   transform: translate(-50%, -50%);
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(31, 157, 87, 0.55), rgba(15, 109, 59, 0.28) 46%, transparent 70%);
-  filter: blur(46px);
+  background: radial-gradient(circle, rgba(31, 157, 87, 0.5), rgba(15, 109, 59, 0.2) 44%, transparent 70%);
+  filter: blur(64px);
   z-index: 0;
 }
 
+.shero-stage model-viewer,
 .shero-model {
   position: absolute;
   inset: 0;
@@ -279,10 +283,10 @@ img {
 /* ————— Statue hero ————— */
 .shero {
   position: relative;
-  min-height: 100vh;
+  min-height: 92vh;
   overflow: hidden;
   background:
-    radial-gradient(70% 70% at 76% 44%, rgba(31, 157, 87, 0.08), transparent 62%),
+    radial-gradient(60% 62% at 66% 52%, rgba(31, 157, 87, 0.09), transparent 64%),
     var(--bg);
 }
 
@@ -291,8 +295,8 @@ img {
   top: 50%;
   transform: translateY(-50%);
   left: max(40px, calc((100% - 1240px) / 2 + 40px));
-  z-index: 2;
-  max-width: 560px;
+  z-index: 3;
+  max-width: 620px;
 }
 
 .shero-content .eyebrow {
@@ -300,7 +304,7 @@ img {
 }
 
 .shero h1 {
-  font-size: clamp(4rem, 9vw, 9rem);
+  font-size: clamp(3.4rem, 7.4vw, 7.2rem);
   line-height: 0.92;
   font-weight: 600;
   letter-spacing: 0.01em;
@@ -429,7 +433,7 @@ img {
 
 /* ————— Intro ————— */
 .intro {
-  padding: var(--s-2xl) 0 var(--s-xl);
+  padding: var(--s-2xl) 0 var(--s-lg);
 }
 
 .intro-grid {
