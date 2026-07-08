@@ -431,16 +431,16 @@ img {
   text-shadow: 0 2px 24px rgba(6, 12, 9, 0.85);
 }
 
-/* stats + CTA, stacked lower-right, aligned under the right of AMPLIFY */
+/* stats + CTA, stacked lower-right, clearly below the AMPLIFY word */
 .shero-right {
   position: absolute;
-  top: 58%;
+  top: 70%;
   right: max(40px, calc((100% - 1240px) / 2 + 40px));
   z-index: 3;
   display: flex;
   flex-direction: column;
   align-items: flex-end;
-  gap: 22px;
+  gap: 20px;
 }
 
 .hero-stats {
@@ -946,6 +946,33 @@ img {
   z-index: 1;
 }
 
+/* flat, swipeable card row — phone fallback for the 3D ring */
+.carousel-scroll {
+  display: flex;
+  gap: 16px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  padding: 10px 22px 18px;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+
+.carousel-scroll::-webkit-scrollbar {
+  display: none;
+}
+
+.carousel-scroll .chrome-card {
+  flex: 0 0 auto;
+  width: 250px;
+  scroll-snap-align: center;
+}
+
+/* no tilt/perspective on touch cards */
+.chrome-card.cc-flat {
+  perspective: none;
+  transform: none;
+}
+
 /* ————— Services ————— */
 .svc-grid {
   display: grid;
@@ -979,18 +1006,22 @@ img {
   margin-bottom: 24px;
 }
 
-.svc .num {
+/* roman numeral sits inline, to the left of the service title */
+.svc-num {
   font-family: var(--font-display);
-  font-size: 0.8125rem;
+  font-size: 1.05rem;
   font-weight: 600;
   color: var(--ink-3);
+  margin-right: 12px;
 }
 
 .svc h3 {
   font-size: 1.5rem;
   font-weight: 600;
-  margin: 6px 0 12px;
+  margin: 0 0 12px;
   color: var(--ink);
+  display: flex;
+  align-items: baseline;
 }
 
 .svc p {
@@ -1142,6 +1173,20 @@ img {
   width: 40px;
   height: 3px;
   background: linear-gradient(90deg, var(--lime), var(--emerald));
+}
+
+/* the progress bar grows across the four steps */
+.proc:nth-child(1)::before {
+  width: 22%;
+}
+.proc:nth-child(2)::before {
+  width: 46%;
+}
+.proc:nth-child(3)::before {
+  width: 72%;
+}
+.proc:nth-child(4)::before {
+  width: calc(100% - 24px);
 }
 
 .proc .num {
@@ -1428,22 +1473,22 @@ img {
     max-width: 300px;
   }
 
-  /* statue centered, wider, leaving room below for stats + CTA */
+  /* statue centered and large, filling most of the height */
   .shero-stage {
-    left: 8%;
-    right: 8%;
-    top: 20%;
-    bottom: 28%;
+    left: 6%;
+    right: 6%;
+    top: 19%;
+    bottom: 21%;
   }
 
-  /* stats + CTA move to a centered block pinned near the bottom */
+  /* stats + CTA sit just below the statue, not pinned to the viewport bottom */
   .shero-right {
-    top: auto;
-    bottom: 5%;
+    top: 76%;
+    bottom: auto;
     left: 0;
     right: 0;
     align-items: center;
-    gap: 18px;
+    gap: 16px;
   }
   .hero-stats {
     justify-content: center;
@@ -1473,4 +1518,51 @@ img {
     white-space: nowrap;
     padding: 9px 16px;
   }
+}
+
+/* ————— Theme toggle ————— */
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-left: auto;
+}
+
+.theme-toggle {
+  width: 38px;
+  height: 38px;
+  flex: none;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  border: 1px solid var(--line-2);
+  color: var(--ink-2);
+  background: var(--glass);
+  transition:
+    color var(--t-fast) var(--ease),
+    border-color var(--t-fast) var(--ease),
+    transform var(--t-fast) var(--ease);
+}
+
+.theme-toggle:hover {
+  color: var(--ink);
+  border-color: var(--ink-3);
+  transform: rotate(12deg);
+}
+
+/* ————— Light theme surface overrides ————— */
+:root[data-theme="light"] .nav.scrolled {
+  background: rgba(255, 255, 255, 0.78);
+}
+
+:root[data-theme="light"] .chrome-card {
+  background:
+    linear-gradient(155deg, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0) 30%),
+    linear-gradient(158deg, #ffffff, #edece4);
+}
+
+/* the aurora reads heavy over a light page — soften it */
+:root[data-theme="light"] .aurora::before,
+:root[data-theme="light"] .aurora::after {
+  opacity: 0.16;
 }

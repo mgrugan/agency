@@ -114,9 +114,6 @@ export function Hero3D({ entered }: { entered: boolean }) {
           src={`${BASE}telos-statue.glb`}
           poster={`${BASE}statue.png`}
           alt="Classical statue, the Telos Media mark"
-          camera-controls
-          disable-zoom
-          disable-pan
           interaction-prompt="none"
           camera-orbit="0deg 90deg 105%"
           min-camera-orbit="auto auto 60%"

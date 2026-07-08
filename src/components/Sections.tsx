@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { accounts } from "../data";
 import { compact } from "../lib/format";
 import { Reveal } from "./Reveal";
+import { ThemeToggle } from "./ThemeToggle";
 
 export function Nav() {
   const [scrolled, setScrolled] = useState(false);
@@ -23,9 +24,12 @@ export function Nav() {
           <a href="#results">Results</a>
           <a href="#process">Process</a>
         </div>
-        <a className="btn btn-green" href="#contact">
-          Book a call
-        </a>
+        <div className="nav-actions">
+          <ThemeToggle />
+          <a className="btn btn-green" href="#contact">
+            Book a call
+          </a>
+        </div>
       </div>
     </nav>
   );
@@ -75,23 +79,23 @@ const services = [
   {
     num: "01",
     icon: <NodeIcon />,
-    title: "Audience growth",
-    body: "We spent eight years growing our own pages past a million followers — 40+ posts a day, every dollar reinvested, the algorithm reverse-engineered. That same playbook now grows yours.",
-    points: ["Theme-page & niche account building", "Daily hook & format testing", "Amplification across a 100M+ network"],
+    title: "Brand & identity",
+    body: "Logo, positioning, and a full visual identity — the system that makes a new company look like it has been winning for years.",
+    points: ["Logo & brand identity", "Design systems & guidelines", "Messaging & positioning"],
   },
   {
     num: "02",
     icon: <BoltIcon />,
-    title: "Content & creative",
-    body: "A team of editors and designers producing content built to stop the scroll — the same craft that turned test posts into a network reaching 100 million people a month.",
-    points: ["Short-form editing & packaging", "Brand & visual identity", "Always-on publishing calendar"],
+    title: "Websites & apps",
+    body: "Designers and developers who ship the site or app your product deserves — fast, beautiful, and built to convert.",
+    points: ["Web design & development", "Product & app interfaces", "Landing pages that convert"],
   },
   {
     num: "03",
     icon: <ShareIcon />,
-    title: "Brands, sites & apps",
-    body: "Designers and developers who build the whole thing — brand, website, app — then make people actually care. Anyone can ship a product; we get the world to pay attention.",
-    points: ["Web & app development", "Brand & product design", "Launches built to travel"],
+    title: "Content & virality",
+    body: "Editing, short-form, and campaigns engineered to travel — the same instincts that put our work in front of 100 million people a month.",
+    points: ["Short-form editing & production", "Organic growth & virality", "Always-on content engine"],
   },
 ];
 
@@ -107,8 +111,8 @@ export function Services() {
             </h2>
           </div>
           <p>
-            Eight years, a network that reaches 100 million people a month, and a team of designers,
-            developers, and editors — we sell what we've spent a decade practicing.
+            Full-stack marketing for startups and growing businesses — brand, website, and content
+            from one team that has spent a decade getting people to care.
           </p>
         </div>
       </Reveal>
@@ -118,8 +122,10 @@ export function Services() {
             <Reveal key={s.num} delay={i * 90}>
               <div className="svc glass">
                 <div className="ico">{s.icon}</div>
-                <div className="num">{["I", "II", "III"][i]}</div>
-                <h3>{s.title}</h3>
+                <h3>
+                  <span className="svc-num">{["I", "II", "III"][i]}</span>
+                  {s.title}
+                </h3>
                 <p>{s.body}</p>
                 <ul>
                   {s.points.map((p) => (
@@ -138,18 +144,18 @@ export function Services() {
 const results = [
   {
     v: "48M",
-    t: "views on a single reel",
-    p: "One foodsbible edit out-delivered a national TV spot — produced in an afternoon.",
+    t: "views on a single video",
+    p: "One edit out-delivered a national TV spot — produced in an afternoon.",
   },
   {
     v: "+212K",
     t: "followers in 30 days",
-    p: "ocean.destinations' record month, driven by a repeatable hook framework.",
+    p: "A brand's record growth month, driven by a repeatable hook framework.",
   },
   {
     v: "9.2%",
     t: "peak engagement rate",
-    p: "howallstuffworks carousel — 3× the account average, engineered from comment data.",
+    p: "3× the account average, engineered from real comment and retention data.",
   },
 ];
 
@@ -183,10 +189,10 @@ export function Results() {
 }
 
 const steps = [
-  { num: "01", title: "Audit", body: "We tear down your current presence against live benchmarks from 24 operating brands." },
-  { num: "02", title: "Strategy", body: "A 90-day growth plan: positioning, formats, cadence, and the metrics that matter." },
-  { num: "03", title: "Production", body: "Our content engine ships daily. You approve; the machine publishes." },
-  { num: "04", title: "Scale", body: "Winners get amplified across the network. Losers get killed fast." },
+  { num: "01", title: "Discover", body: "We learn your product, market, and goals — then pressure-test the positioning against what actually spreads." },
+  { num: "02", title: "Design", body: "Brand, identity, and the site or app — the full look and feel, built to convert from day one." },
+  { num: "03", title: "Produce", body: "Our team ships content on a steady cadence: short-form, campaigns, and everything in between." },
+  { num: "04", title: "Amplify", body: "We put it in front of the right people and scale what works across our 100M-reach network." },
 ];
 
 export function Process() {

@@ -62,4 +62,52 @@
   --ease: cubic-bezier(0.22, 1, 0.36, 1);
   --t-fast: 240ms;
   --t-med: 520ms;
+
+  color-scheme: dark;
+}
+
+/* ————— Light theme ————— */
+:root[data-theme="light"] {
+  color-scheme: light;
+
+  --bg: #f2f1ea; /* warm ivory */
+  --bg-2: #ffffff00;
+  --panel: #ffffff;
+
+  --ink: #16190f;
+  --ink-2: rgba(22, 25, 15, 0.66);
+  --ink-3: rgba(22, 25, 15, 0.46);
+  --ink-ghost: rgba(22, 25, 15, 0.12);
+
+  --emerald: #178a4b;
+  --emerald-deep: #0c5a30;
+  --emerald-lo: rgba(23, 138, 75, 0.14);
+  --lime: #2f9d5b;
+  --accent: #199150;
+  --clay: #6f8a5a;
+  --clay-2: #5c7449;
+
+  --marble: #17210f; /* dark ink for display headings on light */
+  --marble-2: #3a4634;
+  --gold: #9a7a2f;
+  --gold-lo: rgba(154, 122, 47, 0.2);
+
+  --line: rgba(22, 25, 15, 0.12);
+  --line-2: rgba(22, 25, 15, 0.22);
+
+  --glass: rgba(22, 25, 15, 0.05);
+  --glass-border: rgba(22, 25, 15, 0.14);
+
+  --dot-rgb: 23, 138, 75;
+}
+
+/* smooth the flip between themes */
+body,
+.nav.scrolled,
+.svc,
+.chrome-card,
+.loader {
+  transition:
+    background-color var(--t-med) var(--ease),
+    color var(--t-med) var(--ease);
 }

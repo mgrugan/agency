@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { accounts } from "../data";
 import { ChromeCard } from "./ChromeCard";
 
@@ -9,8 +9,37 @@ const STEP = 360 / N;
 const RADIUS = Math.round((CARD_W / 2 + GAP) / Math.tan(Math.PI / N));
 const IDLE_SPEED = -0.045; // deg per frame @60fps — slow, stately drift
 
-/** Draggable auto-rotating 3D ring of the full portfolio. */
+/** Draggable auto-rotating 3D ring of the full portfolio. On phones the 3D
+ *  ring is janky, so it falls back to a flat, swipeable scroll row. */
 export function Carousel3D() {
+  const [mobile, setMobile] = useState(() =>
+    typeof matchMedia !== "undefined" ? matchMedia("(max-width: 760px)").matches : false,
+  );
+  useEffect(() => {
+    const mq = matchMedia("(max-width: 760px)");
+    const onChange = (e: MediaQueryListEvent) => setMobile(e.matches);
+    mq.addEventListener("change", onChange);
+    return () => mq.removeEventListener("change", onChange);
+  }, []);
+
+  if (mobile) {
+    return (
+      <>
+        <div className="carousel-scroll" role="group" aria-label="Portfolio of managed accounts. Swipe to browse.">
+          {accounts.map((a) => (
+            <ChromeCard key={a.handle} acct={a} className="cc-flat" />
+          ))}
+        </div>
+        <div className="carousel-hint">Swipe · 24 accounts · 45.4M followers</div>
+      </>
+    );
+  }
+
+  return <Carousel3DRing />;
+}
+
+/** Desktop-only 3D ring. */
+function Carousel3DRing() {
   const ringRef = useRef<HTMLDivElement | null>(null);
   const state = useRef({ angle: 0, velocity: IDLE_SPEED, dragging: false, hovering: false, lastX: 0 });
 
@@ -66,7 +95,7 @@ export function Carousel3D() {
         onPointerCancel={endDrag}
         onPointerLeave={endDrag}
         role="group"
-        aria-label="Portfolio of 24 managed Instagram accounts. Drag to rotate."
+        aria-label="Portfolio of managed accounts. Drag to rotate."
       >
         <div ref={ringRef} className="carousel-ring">
           {accounts.map((a, i) => (

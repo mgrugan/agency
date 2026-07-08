@@ -28,8 +28,8 @@ export default function App() {
               </h2>
             </div>
             <p>
-              Every account here is owned and operated by Telos Media — a living laboratory for what
-              works on social. Drag to explore.
+              Brands we built and run ourselves — the distribution network behind everything we make,
+              and the proof we practice what we sell.
             </p>
           </div>
         </Reveal>
