@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useRef } from "react";
+import { motion } from "framer-motion";
 import "@google/model-viewer";
 import { useCipher } from "./CipherText";
 import { GlitchStat } from "./GlitchStat";
@@ -112,29 +113,41 @@ export function Hero3D() {
 
       {/* left flank: value prop + CTA */}
       <div className="shero-side shero-left">
-        <p>
-          We turn classical patience into modern momentum — engineering audiences that reach 128
-          million people a month, and make brands impossible to ignore.
-        </p>
-        <a className="shero-cta" href="#portfolio">
-          <span className="ring" aria-hidden="true">
-            →
-          </span>
-          <span>See the network</span>
-        </a>
+        <motion.div
+          initial={{ opacity: 0, x: -18 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.7, delay: 0.5, ease: [0.22, 1, 0.36, 1] }}
+        >
+          <p>
+            We turn classical patience into modern momentum — engineering audiences that reach 128
+            million people a month, and make brands impossible to ignore.
+          </p>
+          <a className="shero-cta" href="#portfolio">
+            <span className="ring" aria-hidden="true">
+              →
+            </span>
+            <span>See the network</span>
+          </a>
+        </motion.div>
       </div>
 
       {/* right flank: network stats */}
       <div className="shero-side shero-right">
-        <p>
-          We operate 24 media brands reaching 45 million followers, and put that distribution
-          machine — and the data behind it — to work for ambitious companies.
-        </p>
-        <div className="hero-stats">
-          <GlitchStat value="45.4M" label="Followers" run delay={0} />
-          <GlitchStat value="128M+" label="Monthly reach" run delay={180} />
-          <GlitchStat value="24" label="Brands" run delay={360} />
-        </div>
+        <motion.div
+          initial={{ opacity: 0, x: 18 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.7, delay: 0.6, ease: [0.22, 1, 0.36, 1] }}
+        >
+          <p>
+            We operate 24 media brands reaching 45 million followers, and put that distribution
+            machine — and the data behind it — to work for ambitious companies.
+          </p>
+          <div className="hero-stats">
+            <GlitchStat value="45.4M" label="Followers" run delay={0} />
+            <GlitchStat value="128M+" label="Monthly reach" run delay={180} />
+            <GlitchStat value="24" label="Brands" run delay={360} />
+          </div>
+        </motion.div>
       </div>
     </header>
   );

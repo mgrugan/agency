@@ -1,5 +1,5 @@
 import { ReactNode } from "react";
-import { useInView } from "../lib/hooks";
+import { motion } from "framer-motion";
 
 interface Props {
   children: ReactNode;
@@ -7,16 +7,17 @@ interface Props {
   className?: string;
 }
 
-/** Fade + 12px rise once scrolled into view; also flips `.in` for child chart animations. */
+/** Fade + rise into view, powered by Framer Motion. Animates once. */
 export function Reveal({ children, delay = 0, className = "" }: Props) {
-  const { ref, inView } = useInView<HTMLDivElement>();
   return (
-    <div
-      ref={ref}
-      className={`reveal ${inView ? "in" : ""} ${className}`.trim()}
-      style={{ "--reveal-delay": `${delay}ms` } as React.CSSProperties}
+    <motion.div
+      className={className || undefined}
+      initial={{ opacity: 0, y: 22 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "0px 0px -12% 0px" }}
+      transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1], delay: delay / 1000 }}
     >
       {children}
-    </div>
+    </motion.div>
   );
 }
