@@ -351,58 +351,44 @@ img {
   -webkit-text-stroke: 1.5px rgba(236, 230, 216, 0.82);
 }
 
-/* flanking copy blocks */
-.shero-side {
+/* short lead sentence, upper-left */
+.shero-lead {
   position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  z-index: 3;
-  max-width: 300px;
-}
-
-/* soft dark halo so the flank copy reads clearly over the big letters */
-.shero-side::before {
-  content: "";
-  position: absolute;
-  inset: -30px -46px;
-  background: radial-gradient(ellipse at center, rgba(6, 11, 9, 0.92) 44%, transparent 76%);
-  z-index: -1;
-  pointer-events: none;
-}
-
-.shero-side p {
-  margin: 0 0 26px;
-  font-size: 1rem;
-  line-height: 1.55;
-  color: var(--ink-2);
-  text-shadow: 0 2px 24px rgba(6, 12, 9, 0.85);
-}
-
-.shero-left {
+  top: 25%;
   left: max(40px, calc((100% - 1240px) / 2 + 40px));
+  max-width: 340px;
+  z-index: 3;
 }
 
-.shero-right {
-  right: max(40px, calc((100% - 1240px) / 2 + 40px));
-  text-align: right;
+.shero-lead p {
+  margin: 0;
+  font-size: 1.2rem;
+  line-height: 1.45;
+  color: var(--ink);
+  text-shadow: 0 2px 22px rgba(6, 12, 9, 0.75);
 }
 
+/* stats, lower-right under AMPLIFY */
 .hero-stats {
+  position: absolute;
+  top: 63%;
+  right: max(40px, calc((100% - 1240px) / 2 + 40px));
+  z-index: 3;
   display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  gap: 14px;
-}
-
-.hero-stats .hstat {
-  text-align: right;
+  gap: 34px;
+  align-items: flex-start;
 }
 
 .hero-stats .hstat .v {
-  font-size: 1.5rem;
+  font-size: 1.7rem;
 }
 
+/* CTA, lower-left under AMPLIFY */
 .shero-cta {
+  position: absolute;
+  top: 63%;
+  left: max(40px, calc((100% - 1240px) / 2 + 40px));
+  z-index: 3;
   display: inline-flex;
   align-items: center;
   gap: 18px;

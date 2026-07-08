@@ -101,7 +101,7 @@ export function Hero3D() {
           tone-mapping="neutral"
           shadow-intensity="0.5"
           shadow-softness="1"
-          exposure="0.6"
+          exposure="0.42"
         />
       </div>
 
@@ -111,44 +111,41 @@ export function Hero3D() {
       </div>
       <h1 className="sr-only">Amplify</h1>
 
-      {/* left flank: value prop + CTA */}
-      <div className="shero-side shero-left">
-        <motion.div
-          initial={{ opacity: 0, x: -18 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.7, delay: 0.5, ease: [0.22, 1, 0.36, 1] }}
-        >
-          <p>
-            We turn classical patience into modern momentum — engineering audiences that reach 128
-            million people a month, and make brands impossible to ignore.
-          </p>
-          <a className="shero-cta" href="#portfolio">
-            <span className="ring" aria-hidden="true">
-              →
-            </span>
-            <span>See the network</span>
-          </a>
-        </motion.div>
-      </div>
+      {/* short lead sentence, upper-left */}
+      <motion.div
+        className="shero-lead"
+        initial={{ opacity: 0, y: 16 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.7, delay: 0.35, ease: [0.22, 1, 0.36, 1] }}
+      >
+        <p>We engineer audiences that reach 128 million people a month.</p>
+      </motion.div>
 
-      {/* right flank: network stats */}
-      <div className="shero-side shero-right">
-        <motion.div
-          initial={{ opacity: 0, x: 18 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.7, delay: 0.6, ease: [0.22, 1, 0.36, 1] }}
-        >
-          <p>
-            We operate 24 media brands reaching 45 million followers, and put that distribution
-            machine — and the data behind it — to work for ambitious companies.
-          </p>
-          <div className="hero-stats">
-            <GlitchStat value="45.4M" label="Followers" run delay={0} />
-            <GlitchStat value="128M+" label="Monthly reach" run delay={180} />
-            <GlitchStat value="24" label="Brands" run delay={360} />
-          </div>
-        </motion.div>
-      </div>
+      {/* CTA, lower-left under AMPLIFY */}
+      <motion.a
+        className="shero-cta"
+        href="#portfolio"
+        initial={{ opacity: 0, y: 16 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.7, delay: 0.6, ease: [0.22, 1, 0.36, 1] }}
+      >
+        <span className="ring" aria-hidden="true">
+          →
+        </span>
+        <span>See the network</span>
+      </motion.a>
+
+      {/* stats, lower-right under AMPLIFY */}
+      <motion.div
+        className="hero-stats"
+        initial={{ opacity: 0, y: 16 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.7, delay: 0.75, ease: [0.22, 1, 0.36, 1] }}
+      >
+        <GlitchStat value="45.4M" label="Followers" run delay={0} />
+        <GlitchStat value="128M+" label="Monthly reach" run delay={180} />
+        <GlitchStat value="24" label="Brands" run delay={360} />
+      </motion.div>
     </header>
   );
 }
