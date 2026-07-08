@@ -18,6 +18,7 @@
   --emerald-deep: #0f6d3b;
   --emerald-lo: rgba(31, 157, 87, 0.16);
   --lime: #8ff0a4;
+  --dot-rgb: 143, 240, 164; /* --lime as an rgb list, for the dotted-surface canvas */
   --accent: #22c55e;
   --clay: #b8c9a6; /* pale sculpted clay-green */
   --clay-2: #8fa87b;
