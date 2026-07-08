@@ -1,6 +1,5 @@
 import { useCallback, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
-import { useCipher } from "./CipherText";
 import { GlitchStat } from "./GlitchStat";
 
 const BASE = import.meta.env.BASE_URL;
@@ -79,8 +78,6 @@ export function Hero3D({ entered }: { entered: boolean }) {
     [apply],
   );
 
-  const amp = useCipher("AMPLIFY", { delay: 260, run: entered });
-
   return (
     <header className="shero" ref={secRef} onMouseMove={onMouseMove}>
       {/* subtle brand-tinted aurora wash */}
@@ -93,12 +90,19 @@ export function Hero3D({ entered }: { entered: boolean }) {
         animate={entered ? { opacity: 1, y: 0 } : { opacity: 0, y: 14 }}
         transition={{ duration: 0.7, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
       >
-        <p>Our purpose: social media marketing that grows brands to 128 million people a month.</p>
+        <p>Our purpose: full-stack marketing that moves culture and reaches millions.</p>
       </motion.div>
 
-      {/* solid AMPLIFY fill, sits behind the statue */}
-      <div className="amp amp-solid" aria-hidden="true">
-        {amp}
+      {/* AMPLIFY — rises up from below, sits behind the statue */}
+      <div className="amp-wrap" aria-hidden="true">
+        <motion.div
+          className="amp amp-solid"
+          initial={{ opacity: 0, y: 140 }}
+          animate={entered ? { opacity: 1, y: 0 } : { opacity: 0, y: 140 }}
+          transition={{ duration: 1, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+        >
+          AMPLIFY
+        </motion.div>
       </div>
 
       {/* centered statue */}
@@ -125,10 +129,6 @@ export function Hero3D({ entered }: { entered: boolean }) {
         />
       </div>
 
-      {/* front layer: hollow AMPLIFY, sits over the statue so the word reads */}
-      <div className="amp amp-hollow" aria-hidden="true">
-        {amp}
-      </div>
       <h1 className="sr-only">Amplify</h1>
 
       {/* stats + CTA, lower-right under AMPLIFY */}

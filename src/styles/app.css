@@ -372,23 +372,20 @@ img {
   }
 }
 
-/* eyebrow, centered above the title, behind the statue */
-.shero-eyebrow {
+/* AMPLIFY — a screen-wide word that rises up from below, behind the statue.
+   The wrapper centers it and clips the rise; the fill is a darker grainy
+   green gradient. */
+.amp-wrap {
   position: absolute;
-  left: 0;
-  right: 0;
-  top: 12%;
+  inset: 0;
   z-index: 0;
-  justify-content: center;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  pointer-events: none;
 }
 
-/* AMPLIFY — stretched across the screen, layered around the statue */
 .amp {
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 50%;
-  transform: translateY(-50%);
   margin: 0;
   text-align: center;
   font-family: var(--font-display);
@@ -397,35 +394,26 @@ img {
   line-height: 0.9;
   letter-spacing: 0.03em;
   white-space: nowrap;
-  pointer-events: none;
-  min-height: 0.9em;
 }
 
-/* solid green fill — behind the statue */
+/* darker green gradient with a fine grain speckle, clipped to the letters */
 .amp-solid {
-  z-index: 0;
-  background: linear-gradient(120deg, var(--lime), var(--emerald) 52%, var(--emerald-deep));
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.6 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"),
+    linear-gradient(120deg, var(--emerald), var(--emerald-deep) 55%, #0a4a2a);
+  background-size:
+    160px 160px,
+    cover;
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
-}
-
-/* hollow outline — only revealed across the central band where the statue
-   passes in front, so the letters stay readable over the figure and the rest
-   of the word stays a clean solid green */
-.amp-hollow {
-  z-index: 2;
-  color: transparent;
-  -webkit-text-stroke: 1.6px rgba(236, 230, 216, 0.92);
-  -webkit-mask-image: linear-gradient(90deg, transparent 34%, #000 40%, #000 60%, transparent 66%);
-  mask-image: linear-gradient(90deg, transparent 34%, #000 40%, #000 60%, transparent 66%);
 }
 
 /* purpose statement, centered at the top, sitting behind the statue */
 /* purpose statement, centered a little lower, behind the statue */
 .shero-center {
   position: absolute;
-  top: 10%;
+  top: 13%;
   left: 0;
   right: 0;
   z-index: 0;
@@ -443,16 +431,16 @@ img {
   text-shadow: 0 2px 24px rgba(6, 12, 9, 0.85);
 }
 
-/* stats + CTA, stacked lower-right under AMPLIFY */
+/* stats + CTA, stacked lower-right, aligned under the right of AMPLIFY */
 .shero-right {
   position: absolute;
-  top: 60%;
+  top: 58%;
   right: max(40px, calc((100% - 1240px) / 2 + 40px));
   z-index: 3;
   display: flex;
   flex-direction: column;
   align-items: flex-end;
-  gap: 26px;
+  gap: 22px;
 }
 
 .hero-stats {
@@ -626,7 +614,10 @@ img {
     0 34px 60px -24px rgba(0, 0, 0, 0.8),
     0 8px 20px -10px rgba(0, 0, 0, 0.6),
     inset 0 1px 0 rgba(255, 255, 255, 0.1);
-  transform: perspective(640px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg));
+  /* perspective PROPERTY (not the transform function) so the inner items'
+     translateZ actually pops toward the viewer */
+  perspective: 600px;
+  transform: rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg));
   transition:
     transform 0.1s var(--ease),
     box-shadow 0.35s var(--ease);
@@ -1414,4 +1405,72 @@ img {
   height: 100%;
   z-index: 0;
   pointer-events: none;
+}
+
+/* ————— Hero: phones ————— */
+@media (max-width: 760px) {
+  .shero {
+    min-height: 100svh;
+  }
+
+  /* smaller word so it doesn't overwhelm the small viewport */
+  .amp {
+    font-size: clamp(3.25rem, 21vw, 6rem);
+    letter-spacing: 0.01em;
+  }
+
+  /* purpose sits at the very top, clear of the statue's head */
+  .shero-center {
+    top: 10%;
+  }
+  .shero-center p {
+    font-size: 0.875rem;
+    max-width: 300px;
+  }
+
+  /* statue centered, wider, leaving room below for stats + CTA */
+  .shero-stage {
+    left: 8%;
+    right: 8%;
+    top: 20%;
+    bottom: 28%;
+  }
+
+  /* stats + CTA move to a centered block pinned near the bottom */
+  .shero-right {
+    top: auto;
+    bottom: 5%;
+    left: 0;
+    right: 0;
+    align-items: center;
+    gap: 18px;
+  }
+  .hero-stats {
+    justify-content: center;
+    gap: 22px;
+  }
+  .hero-stats .hstat {
+    text-align: center;
+  }
+  .hero-stats .hstat .v {
+    font-size: 1.3rem;
+  }
+  .shero-cta {
+    font-size: 0.875rem;
+  }
+
+  /* tidy the nav so 'Book a call' never wraps */
+  .nav-inner {
+    gap: 14px;
+  }
+  .nav .wordmark {
+    font-size: 1.25rem;
+  }
+  .nav .wordmark i {
+    display: none;
+  }
+  .nav .btn {
+    white-space: nowrap;
+    padding: 9px 16px;
+  }
 }

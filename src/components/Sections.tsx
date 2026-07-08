@@ -76,22 +76,22 @@ const services = [
     num: "01",
     icon: <NodeIcon />,
     title: "Audience growth",
-    body: "We grow accounts the way we grew our own — testing hooks daily across a 45M-follower network and doubling down on what the algorithm rewards.",
-    points: ["Organic follower acquisition", "Format & hook testing at scale", "Cross-network amplification"],
+    body: "We spent eight years growing our own pages past a million followers — 40+ posts a day, every dollar reinvested, the algorithm reverse-engineered. That same playbook now grows yours.",
+    points: ["Theme-page & niche account building", "Daily hook & format testing", "Amplification across a 100M+ network"],
   },
   {
     num: "02",
     icon: <BoltIcon />,
-    title: "Viral content engine",
-    body: "A production system shipping 80+ pieces of content a week, engineered from performance data across hundreds of millions of impressions.",
-    points: ["Short-form editing & packaging", "Trend and audio intelligence", "Always-on publishing calendar"],
+    title: "Content & creative",
+    body: "A team of editors and designers producing content built to stop the scroll — the same craft that turned test posts into a network reaching 100 million people a month.",
+    points: ["Short-form editing & packaging", "Brand & visual identity", "Always-on publishing calendar"],
   },
   {
     num: "03",
     icon: <ShareIcon />,
-    title: "Distribution & partnerships",
-    body: "Launch products, campaigns, and creators through owned reach — instead of renting it from an ad auction.",
-    points: ["Campaigns across 24 owned brands", "Creator & brand collaborations", "Attribution-ready reporting"],
+    title: "Brands, sites & apps",
+    body: "Designers and developers who build the whole thing — brand, website, app — then make people actually care. Anyone can ship a product; we get the world to pay attention.",
+    points: ["Web & app development", "Brand & product design", "Launches built to travel"],
   },
 ];
 
@@ -107,8 +107,8 @@ export function Services() {
             </h2>
           </div>
           <p>
-            Every service is powered by live signal from our own network — we sell what we practice
-            on 128 million impressions a month.
+            Eight years, a network that reaches 100 million people a month, and a team of designers,
+            developers, and editors — we sell what we've spent a decade practicing.
           </p>
         </div>
       </Reveal>
@@ -225,15 +225,15 @@ export function CtaBand() {
           <div className="cta-band glass">
             <div>
               <h2>
-                Ready to stop <em>renting</em> attention?
+                Building something worth <em>paying attention</em> to?
               </h2>
               <p>
-                Tell us where you want to be in 90 days. We'll show you the exact accounts, formats,
-                and numbers that get you there.
+                If you're launching a startup or growing a business and want a team that can build
+                great products and get people to care, send us a message.
               </p>
             </div>
-            <a className="btn btn-glass" href="mailto:growth@algomedia.co">
-              Book a strategy call →
+            <a className="btn btn-glass" href="mailto:hello@telosmedia.co">
+              Start a conversation →
             </a>
           </div>
         </Reveal>
