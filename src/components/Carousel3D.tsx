@@ -12,7 +12,7 @@ const IDLE_SPEED = -0.045; // deg per frame @60fps — slow, stately drift
 /** Draggable auto-rotating 3D ring of the full portfolio. */
 export function Carousel3D() {
   const ringRef = useRef<HTMLDivElement | null>(null);
-  const state = useRef({ angle: 0, velocity: IDLE_SPEED, dragging: false, lastX: 0 });
+  const state = useRef({ angle: 0, velocity: IDLE_SPEED, dragging: false, hovering: false, lastX: 0 });
 
   useEffect(() => {
     const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -20,7 +20,8 @@ export function Carousel3D() {
     let raf = 0;
     const tick = () => {
       const s = state.current;
-      if (!s.dragging) {
+      // Freeze the ring while hovering a card so it can be tilted with the cursor.
+      if (!s.dragging && !s.hovering) {
         s.angle += s.velocity;
         // decay drag momentum back to the idle drift
         if (!reduced) s.velocity += (IDLE_SPEED - s.velocity) * 0.02;
@@ -71,6 +72,8 @@ export function Carousel3D() {
           {accounts.map((a, i) => (
             <div
               key={a.handle}
+              onMouseEnter={() => (state.current.hovering = true)}
+              onMouseLeave={() => (state.current.hovering = false)}
               style={{
                 position: "absolute",
                 transform: `rotateY(${i * STEP}deg) translateZ(${RADIUS}px)`,
