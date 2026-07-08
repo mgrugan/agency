@@ -3,7 +3,7 @@ import { MotionConfig } from "framer-motion";
 import { Hero3D } from "./components/Hero3D";
 import { Carousel3D } from "./components/Carousel3D";
 import { Mark3D } from "./components/Mark3D";
-import { CtaBand, Footer, Marquee, Nav, NetworkField, Process, Results, Services } from "./components/Sections";
+import { CtaBand, Footer, Marquee, Nav, Process, Results, Services } from "./components/Sections";
 import { Reveal } from "./components/Reveal";
 import { LoadingScreen } from "./components/LoadingScreen";
 
@@ -40,7 +40,6 @@ export default function App() {
       <Results />
       <Mark3D />
       <Process />
-      <NetworkField />
       <CtaBand />
       <Footer />
     </div>

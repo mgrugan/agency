@@ -1,30 +1,7 @@
 import { useEffect, useState } from "react";
-import { motion } from "framer-motion";
 import { accounts } from "../data";
 import { compact } from "../lib/format";
-import { DottedSurface } from "./DottedSurface";
 import { Reveal } from "./Reveal";
-
-/** Animated dotted wave-field — a full-viewport statement of the network. */
-export function NetworkField() {
-  return (
-    <section className="dsurface" id="network-field">
-      <DottedSurface />
-      <div className="dsurface-glow" aria-hidden="true" />
-      <motion.div
-        className="dsurface-content"
-        initial={{ opacity: 0, y: 24 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: "0px 0px -15% 0px" }}
-        transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-      >
-        <h2 className="dsurface-title">One network. Every signal.</h2>
-        <p className="dsurface-sub">24 owned brands · 45.4M followers · 128M monthly reach</p>
-      </motion.div>
-      <span className="dsurface-badge">Telos Media</span>
-    </section>
-  );
-}
 
 export function Nav() {
   const [scrolled, setScrolled] = useState(false);

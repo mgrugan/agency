@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
+import { DottedSurface } from "./DottedSurface";
 
 /**
  * Full-screen branded loader shown while the app (fonts, the heavy
@@ -45,13 +46,17 @@ export function LoadingScreen({ onEnter }: { onEnter: () => void }) {
           exit={{ opacity: 0 }}
           transition={{ duration: 0.7, ease: [0.4, 0, 0.2, 1] }}
         >
+          <DottedSurface className="loader-dots" />
+          <div className="loader-glow" aria-hidden="true" />
           <div className="loader-inner">
+            <span className="loader-eyebrow">Telos Media</span>
             <span className="loader-mark">
               Telos<span>Media</span>
             </span>
             <span className="loader-bar" aria-hidden="true">
               <i />
             </span>
+            <span className="loader-note">Engineering the network…</span>
           </div>
         </motion.div>
       )}
