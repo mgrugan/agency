@@ -1,6 +1,5 @@
 import { useCallback, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
-import "@google/model-viewer";
 import { useCipher } from "./CipherText";
 import { GlitchStat } from "./GlitchStat";
 
@@ -13,15 +12,26 @@ interface MV extends HTMLElement {
 /**
  * Classical hero: a centered 3D statue mesh (model-viewer) sandwiched between
  * two layers of a screen-wide AMPLIFY — a solid green fill behind and a hollow
- * outline in front so the word stays readable across the figure. Value-prop
- * copy flanks the statue on the left, the network stats on the right.
+ * outline in front so the word stays readable across the figure. The heavy
+ * model-viewer runtime is code-split and loaded after mount so it never blocks
+ * first paint. Cipher animations wait for `entered` so they play on arrival.
  */
-export function Hero3D() {
+export function Hero3D({ entered }: { entered: boolean }) {
   const secRef = useRef<HTMLElement | null>(null);
   const mvRef = useRef<MV | null>(null);
   const stageRef = useRef<HTMLDivElement | null>(null);
   const mouse = useRef({ x: 0, y: 0 });
   const scroll = useRef(0);
+
+  // Load the ~1MB model-viewer custom element lazily, off the critical path.
+  useEffect(() => {
+    let cancelled = false;
+    import("@google/model-viewer").catch(() => {});
+    return () => {
+      cancelled = true;
+      void cancelled;
+    };
+  }, []);
 
   const apply = useCallback(() => {
     const mv = mvRef.current;
@@ -69,10 +79,13 @@ export function Hero3D() {
     [apply],
   );
 
-  const amp = useCipher("AMPLIFY", { delay: 260 });
+  const amp = useCipher("AMPLIFY", { delay: 260, run: entered });
 
   return (
     <header className="shero" ref={secRef} onMouseMove={onMouseMove}>
+      {/* subtle brand-tinted aurora wash */}
+      <div className="aurora" aria-hidden="true" />
+
       {/* back layer: eyebrow + solid AMPLIFY, sits behind the statue */}
       <span className="eyebrow shero-eyebrow" aria-hidden="true">
         Telos — the end we build toward
@@ -111,14 +124,15 @@ export function Hero3D() {
       </div>
       <h1 className="sr-only">Amplify</h1>
 
-      {/* short lead sentence, upper-left */}
+      {/* purpose lead, upper-left — the telos of the work */}
       <motion.div
         className="shero-lead"
         initial={{ opacity: 0, y: 16 }}
-        animate={{ opacity: 1, y: 0 }}
+        animate={entered ? { opacity: 1, y: 0 } : { opacity: 0, y: 16 }}
         transition={{ duration: 0.7, delay: 0.35, ease: [0.22, 1, 0.36, 1] }}
       >
-        <p>We engineer audiences that reach 128 million people a month.</p>
+        <span className="shero-kicker">Telos</span>
+        <p>Our purpose: audiences engineered to reach 128 million people a month.</p>
       </motion.div>
 
       {/* CTA, lower-left under AMPLIFY */}
@@ -126,7 +140,7 @@ export function Hero3D() {
         className="shero-cta"
         href="#portfolio"
         initial={{ opacity: 0, y: 16 }}
-        animate={{ opacity: 1, y: 0 }}
+        animate={entered ? { opacity: 1, y: 0 } : { opacity: 0, y: 16 }}
         transition={{ duration: 0.7, delay: 0.6, ease: [0.22, 1, 0.36, 1] }}
       >
         <span className="ring" aria-hidden="true">
@@ -139,12 +153,12 @@ export function Hero3D() {
       <motion.div
         className="hero-stats"
         initial={{ opacity: 0, y: 16 }}
-        animate={{ opacity: 1, y: 0 }}
+        animate={entered ? { opacity: 1, y: 0 } : { opacity: 0, y: 16 }}
         transition={{ duration: 0.7, delay: 0.75, ease: [0.22, 1, 0.36, 1] }}
       >
-        <GlitchStat value="45.4M" label="Followers" run delay={0} />
-        <GlitchStat value="128M+" label="Monthly reach" run delay={180} />
-        <GlitchStat value="24" label="Brands" run delay={360} />
+        <GlitchStat value="45.4M" label="Followers" run={entered} delay={0} />
+        <GlitchStat value="128M+" label="Monthly reach" run={entered} delay={180} />
+        <GlitchStat value="24" label="Brands" run={entered} delay={360} />
       </motion.div>
     </header>
   );

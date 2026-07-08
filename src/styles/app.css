@@ -306,6 +306,41 @@ img {
     var(--bg);
 }
 
+/* ————— Subtle brand aurora ————— */
+.aurora {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+  opacity: 0.4; /* dimmed so it stays a whisper, not a light show */
+}
+
+.aurora::before {
+  content: "";
+  position: absolute;
+  inset: -40%;
+  background:
+    radial-gradient(38% 46% at 28% 32%, rgba(31, 157, 87, 0.55), transparent 60%),
+    radial-gradient(34% 42% at 72% 40%, rgba(143, 240, 164, 0.4), transparent 62%),
+    radial-gradient(46% 40% at 52% 74%, rgba(15, 109, 59, 0.5), transparent 64%);
+  filter: blur(80px);
+  animation: aurora-drift 30s ease-in-out infinite;
+  will-change: transform;
+}
+
+@keyframes aurora-drift {
+  0% {
+    transform: translate3d(-6%, -4%, 0) rotate(0deg) scale(1.05);
+  }
+  50% {
+    transform: translate3d(6%, 4%, 0) rotate(6deg) scale(1.12);
+  }
+  100% {
+    transform: translate3d(-6%, -4%, 0) rotate(0deg) scale(1.05);
+  }
+}
+
 /* eyebrow, centered above the title, behind the statue */
 .shero-eyebrow {
   position: absolute;
@@ -351,20 +386,32 @@ img {
   -webkit-text-stroke: 1.5px rgba(236, 230, 216, 0.82);
 }
 
-/* short lead sentence, upper-left */
+/* purpose lead, upper-left */
 .shero-lead {
   position: absolute;
-  top: 25%;
+  top: 24%;
   left: max(40px, calc((100% - 1240px) / 2 + 40px));
   max-width: 340px;
   z-index: 3;
 }
 
+.shero-kicker {
+  display: inline-block;
+  margin-bottom: 12px;
+  font-family: var(--font-body);
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.34em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
 .shero-lead p {
   margin: 0;
-  font-size: 1.2rem;
-  line-height: 1.45;
-  color: var(--ink);
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  line-height: 1.3;
+  color: var(--marble);
   text-shadow: 0 2px 22px rgba(6, 12, 9, 0.75);
 }
 
@@ -539,9 +586,7 @@ img {
   background:
     linear-gradient(155deg, rgba(255, 255, 255, 0.14), rgba(255, 255, 255, 0) 26%),
     linear-gradient(300deg, rgba(159, 238, 192, 0.08), rgba(255, 255, 255, 0) 34%),
-    linear-gradient(158deg, rgba(44, 57, 50, 0.94), rgba(11, 17, 14, 0.96));
-  backdrop-filter: blur(16px) saturate(140%);
-  -webkit-backdrop-filter: blur(16px) saturate(140%);
+    linear-gradient(158deg, rgba(44, 57, 50, 0.97), rgba(11, 17, 14, 0.99));
   border: 1px solid transparent;
   box-shadow:
     0 34px 60px -24px rgba(0, 0, 0, 0.8),
@@ -605,10 +650,36 @@ img {
   position: relative;
   padding: 18px;
   color: var(--ink);
+  transform-style: preserve-3d;
 }
 
 .cc-body::after {
   display: none;
+}
+
+/* Aceternity-style depth: inner items float toward the viewer on hover */
+.cc-top,
+.cc-followers,
+.cc-growth,
+.cc-meta {
+  transition: transform 0.3s var(--ease);
+  transform: translateZ(0);
+}
+
+.chrome-card:hover .cc-top {
+  transform: translateZ(34px);
+}
+
+.chrome-card:hover .cc-followers {
+  transform: translateZ(52px);
+}
+
+.chrome-card:hover .cc-growth {
+  transform: translateZ(40px);
+}
+
+.chrome-card:hover .cc-meta {
+  transform: translateZ(26px);
 }
 
 .cc-top {
@@ -1248,5 +1319,69 @@ img {
 
   html {
     scroll-behavior: auto;
+  }
+}
+
+/* ————— Loading screen ————— */
+.loader {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: grid;
+  place-items: center;
+  background:
+    radial-gradient(60% 60% at 50% 45%, rgba(31, 157, 87, 0.08), transparent 70%),
+    var(--bg);
+}
+
+.loader-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+}
+
+.loader-mark {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 2rem;
+  letter-spacing: 0.02em;
+  color: var(--marble);
+}
+
+.loader-mark span {
+  color: var(--emerald);
+}
+
+.loader-bar {
+  position: relative;
+  width: 190px;
+  height: 2px;
+  border-radius: 2px;
+  background: var(--line-2);
+  overflow: hidden;
+}
+
+.loader-bar i {
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 42%;
+  background: linear-gradient(90deg, transparent, var(--emerald), var(--lime), transparent);
+  animation: loader-sweep 1.15s ease-in-out infinite;
+}
+
+@keyframes loader-sweep {
+  0% {
+    transform: translateX(-120%);
+  }
+  100% {
+    transform: translateX(330%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .aurora::before,
+  .loader-bar i {
+    animation: none;
   }
 }

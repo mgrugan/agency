@@ -1,16 +1,20 @@
+import { useState } from "react";
 import { MotionConfig } from "framer-motion";
 import { Hero3D } from "./components/Hero3D";
 import { Carousel3D } from "./components/Carousel3D";
 import { Mark3D } from "./components/Mark3D";
 import { CtaBand, Footer, Marquee, Nav, Process, Results, Services } from "./components/Sections";
 import { Reveal } from "./components/Reveal";
+import { LoadingScreen } from "./components/LoadingScreen";
 
 export default function App() {
+  const [entered, setEntered] = useState(false);
   return (
     <MotionConfig reducedMotion="user">
+    <LoadingScreen onEnter={() => setEntered(true)} />
     <div id="top">
       <Nav />
-      <Hero3D />
+      <Hero3D entered={entered} />
       <Marquee />
 
       <section className="carousel-sec" id="portfolio">
