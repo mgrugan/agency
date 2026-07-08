@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useRef } from "react";
 import "@google/model-viewer";
-import { CipherText } from "./CipherText";
+import { useCipher } from "./CipherText";
+import { GlitchStat } from "./GlitchStat";
 
 const BASE = import.meta.env.BASE_URL;
 
@@ -9,9 +10,10 @@ interface MV extends HTMLElement {
 }
 
 /**
- * Classical hero: a real 3D statue mesh (model-viewer) standing on the right
- * over an emerald disc. It parallaxes and rotates gently with scroll and the
- * pointer — no crumble. Falls back to the statue poster until the mesh loads.
+ * Classical hero: a centered 3D statue mesh (model-viewer) sandwiched between
+ * two layers of a screen-wide AMPLIFY — a solid green fill behind and a hollow
+ * outline in front so the word stays readable across the figure. Value-prop
+ * copy flanks the statue on the left, the network stats on the right.
  */
 export function Hero3D() {
   const secRef = useRef<HTMLElement | null>(null);
@@ -66,8 +68,19 @@ export function Hero3D() {
     [apply],
   );
 
+  const amp = useCipher("AMPLIFY", { delay: 260 });
+
   return (
     <header className="shero" ref={secRef} onMouseMove={onMouseMove}>
+      {/* back layer: eyebrow + solid AMPLIFY, sits behind the statue */}
+      <span className="eyebrow shero-eyebrow" aria-hidden="true">
+        Telos — the end we build toward
+      </span>
+      <div className="amp amp-solid" aria-hidden="true">
+        {amp}
+      </div>
+
+      {/* centered statue */}
       <div className="shero-stage" ref={stageRef} aria-hidden="true">
         <div className="shero-disc" />
         <model-viewer
@@ -91,11 +104,14 @@ export function Hero3D() {
         />
       </div>
 
-      <div className="shero-content">
-        <span className="eyebrow">Telos — the end we build toward</span>
-        <h1>
-          <CipherText text="AMPLIFY" delay={260} />
-        </h1>
+      {/* front layer: hollow AMPLIFY, sits over the statue so the word reads */}
+      <div className="amp amp-hollow" aria-hidden="true">
+        {amp}
+      </div>
+      <h1 className="sr-only">Amplify</h1>
+
+      {/* left flank: value prop + CTA */}
+      <div className="shero-side shero-left">
         <p>
           We turn classical patience into modern momentum — engineering audiences that reach 128
           million people a month, and make brands impossible to ignore.
@@ -106,6 +122,19 @@ export function Hero3D() {
           </span>
           <span>See the network</span>
         </a>
+      </div>
+
+      {/* right flank: network stats */}
+      <div className="shero-side shero-right">
+        <p>
+          We operate 24 media brands reaching 45 million followers, and put that distribution
+          machine — and the data behind it — to work for ambitious companies.
+        </p>
+        <div className="hero-stats">
+          <GlitchStat value="45.4M" label="Followers" run delay={0} />
+          <GlitchStat value="128M+" label="Monthly reach" run delay={180} />
+          <GlitchStat value="24" label="Brands" run delay={360} />
+        </div>
       </div>
     </header>
   );

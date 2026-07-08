@@ -1,7 +1,7 @@
 import { Hero3D } from "./components/Hero3D";
 import { Carousel3D } from "./components/Carousel3D";
 import { Mark3D } from "./components/Mark3D";
-import { CtaBand, Footer, Intro, Marquee, Nav, Process, Results, Services } from "./components/Sections";
+import { CtaBand, Footer, Marquee, Nav, Process, Results, Services } from "./components/Sections";
 import { Reveal } from "./components/Reveal";
 
 export default function App() {
@@ -9,7 +9,6 @@ export default function App() {
     <div id="top">
       <Nav />
       <Hero3D />
-      <Intro />
       <Marquee />
 
       <section className="carousel-sec" id="portfolio">

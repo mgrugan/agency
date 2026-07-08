@@ -1,33 +1,7 @@
 import { useEffect, useState } from "react";
 import { accounts } from "../data";
 import { compact } from "../lib/format";
-import { useInView } from "../lib/hooks";
-import { GlitchStat } from "./GlitchStat";
 import { Reveal } from "./Reveal";
-
-/** Value-prop band — centered directly under the hero. */
-export function Intro() {
-  const { ref, inView } = useInView<HTMLDivElement>("0px");
-  return (
-    <section className="intro" id="about">
-      <div className="wrap">
-        <Reveal>
-          <div className="intro-center" ref={ref}>
-            <p>
-              We operate 24 media brands reaching 45 million followers, and put that distribution
-              machine — and the data behind it — to work for ambitious companies.
-            </p>
-            <div className="intro-stats">
-              <GlitchStat value="45.4M" label="Followers" run={inView} delay={0} />
-              <GlitchStat value="128M+" label="Monthly reach" run={inView} delay={180} />
-              <GlitchStat value="24" label="Brands" run={inView} delay={360} />
-            </div>
-          </div>
-        </Reveal>
-      </div>
-    </section>
-  );
-}
 
 export function Nav() {
   const [scrolled, setScrolled] = useState(false);
