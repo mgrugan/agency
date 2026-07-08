@@ -306,39 +306,69 @@ img {
     var(--bg);
 }
 
-/* ————— Subtle brand aurora ————— */
+/* ————— Aurora (Aceternity technique, ported to vanilla CSS) —————
+   Two stacked repeating-linear-gradients — dark "curtain" stripes over a
+   colour aurora — with a sweeping background-position animation and a
+   difference blend, masked to a soft ellipse. Brand-green instead of the
+   original blue/violet. */
 .aurora {
   position: absolute;
   inset: 0;
   z-index: 0;
   overflow: hidden;
   pointer-events: none;
-  opacity: 0.75; /* visible, but still a soft wash rather than a light show */
+  -webkit-mask-image: radial-gradient(ellipse at 68% 0%, #000 10%, transparent 72%);
+  mask-image: radial-gradient(ellipse at 68% 0%, #000 10%, transparent 72%);
 }
 
-.aurora::before {
+.aurora::before,
+.aurora::after {
   content: "";
   position: absolute;
-  inset: -40%;
-  background:
-    radial-gradient(38% 46% at 26% 30%, rgba(31, 157, 87, 0.75), transparent 60%),
-    radial-gradient(32% 40% at 68% 34%, rgba(143, 240, 164, 0.55), transparent 62%),
-    radial-gradient(30% 38% at 82% 62%, rgba(34, 197, 130, 0.5), transparent 60%),
-    radial-gradient(46% 42% at 48% 76%, rgba(15, 109, 59, 0.7), transparent 64%);
-  filter: blur(80px);
-  animation: aurora-drift 26s ease-in-out infinite;
+  inset: -10px;
+  --stripes: repeating-linear-gradient(
+    100deg,
+    var(--bg) 0%,
+    var(--bg) 7%,
+    transparent 10%,
+    transparent 12%,
+    var(--bg) 16%
+  );
+  --aurora: repeating-linear-gradient(
+    100deg,
+    #0f6d3b 10%,
+    #1f9d57 15%,
+    #22c55e 20%,
+    #34d399 25%,
+    #8ff0a4 30%
+  );
+  background-image: var(--stripes), var(--aurora);
+  background-size: 300% 200%;
+  background-position:
+    50% 50%,
+    50% 50%;
+  filter: blur(12px);
+  opacity: 0.45; /* subtle wash */
   will-change: transform;
 }
 
-@keyframes aurora-drift {
-  0% {
-    transform: translate3d(-6%, -4%, 0) rotate(0deg) scale(1.05);
+.aurora::after {
+  background-size:
+    200% 100%;
+  mix-blend-mode: difference;
+  animation: aurora 60s linear infinite;
+}
+
+@keyframes aurora {
+  from {
+    background-position:
+      50% 50%,
+      50% 50%;
   }
-  50% {
-    transform: translate3d(6%, 4%, 0) rotate(6deg) scale(1.12);
-  }
-  100% {
-    transform: translate3d(-6%, -4%, 0) rotate(0deg) scale(1.05);
+  to {
+    background-position:
+      350% 50%,
+      350% 50%;
   }
 }
 
@@ -1388,7 +1418,7 @@ img {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .aurora::before,
+  .aurora::after,
   .loader-bar i {
     animation: none;
   }
