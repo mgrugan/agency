@@ -10,6 +10,13 @@ import { DottedSurface } from "./DottedSurface";
  */
 export function LoadingScreen({ onEnter }: { onEnter: () => void }) {
   const [gone, setGone] = useState(false);
+  const [dots, setDots] = useState(1);
+
+  // Animate the ellipsis: . -> .. -> ...
+  useEffect(() => {
+    const id = setInterval(() => setDots((d) => (d % 3) + 1), 450);
+    return () => clearInterval(id);
+  }, []);
 
   useEffect(() => {
     document.body.style.overflow = "hidden";
@@ -47,16 +54,13 @@ export function LoadingScreen({ onEnter }: { onEnter: () => void }) {
           transition={{ duration: 0.7, ease: [0.4, 0, 0.2, 1] }}
         >
           <DottedSurface className="loader-dots" />
-          <div className="loader-glow" aria-hidden="true" />
           <div className="loader-inner">
-            <span className="loader-eyebrow">Telos Media</span>
             <span className="loader-mark">
-              Telos<span>Media</span>
+              Loading
+              <span className="loader-ellipsis" aria-hidden="true">
+                {".".repeat(dots)}
+              </span>
             </span>
-            <span className="loader-bar" aria-hidden="true">
-              <i />
-            </span>
-            <span className="loader-note">Engineering the network…</span>
           </div>
         </motion.div>
       )}

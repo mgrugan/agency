@@ -86,15 +86,14 @@ export function Hero3D({ entered }: { entered: boolean }) {
       {/* subtle brand-tinted aurora wash */}
       <div className="aurora" aria-hidden="true" />
 
-      {/* centered purpose statement, top of the hero */}
+      {/* centered purpose statement, behind the statue */}
       <motion.div
         className="shero-center"
         initial={{ opacity: 0, y: 14 }}
         animate={entered ? { opacity: 1, y: 0 } : { opacity: 0, y: 14 }}
         transition={{ duration: 0.7, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
       >
-        <span className="shero-kicker">Telos</span>
-        <p>Our purpose: audiences engineered to reach 128 million people a month.</p>
+        <p>Our purpose: social media marketing that grows brands to 128 million people a month.</p>
       </motion.div>
 
       {/* solid AMPLIFY fill, sits behind the statue */}
@@ -132,30 +131,24 @@ export function Hero3D({ entered }: { entered: boolean }) {
       </div>
       <h1 className="sr-only">Amplify</h1>
 
-      {/* CTA, lower-left under AMPLIFY */}
-      <motion.a
-        className="shero-cta"
-        href="#portfolio"
-        initial={{ opacity: 0, y: 16 }}
-        animate={entered ? { opacity: 1, y: 0 } : { opacity: 0, y: 16 }}
-        transition={{ duration: 0.7, delay: 0.6, ease: [0.22, 1, 0.36, 1] }}
-      >
-        <span className="ring" aria-hidden="true">
-          →
-        </span>
-        <span>See the network</span>
-      </motion.a>
-
-      {/* stats, lower-right under AMPLIFY */}
+      {/* stats + CTA, lower-right under AMPLIFY */}
       <motion.div
-        className="hero-stats"
+        className="shero-right"
         initial={{ opacity: 0, y: 16 }}
         animate={entered ? { opacity: 1, y: 0 } : { opacity: 0, y: 16 }}
-        transition={{ duration: 0.7, delay: 0.75, ease: [0.22, 1, 0.36, 1] }}
+        transition={{ duration: 0.7, delay: 0.7, ease: [0.22, 1, 0.36, 1] }}
       >
-        <GlitchStat value="45.4M" label="Followers" run={entered} delay={0} />
-        <GlitchStat value="128M+" label="Monthly reach" run={entered} delay={180} />
-        <GlitchStat value="24" label="Brands" run={entered} delay={360} />
+        <div className="hero-stats">
+          <GlitchStat value="45.4M" label="Followers" run={entered} delay={0} />
+          <GlitchStat value="128M+" label="Monthly reach" run={entered} delay={180} />
+          <GlitchStat value="24" label="Brands" run={entered} delay={360} />
+        </div>
+        <a className="shero-cta" href="#portfolio">
+          <span className="ring" aria-hidden="true">
+            →
+          </span>
+          <span>See the network</span>
+        </a>
       </motion.div>
     </header>
   );

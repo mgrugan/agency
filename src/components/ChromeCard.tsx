@@ -23,8 +23,8 @@ export function ChromeCard({ acct, className = "" }: Props) {
     const y = (e.clientY - r.top) / r.height;
     el.style.setProperty("--gx", `${(x * 100).toFixed(1)}%`);
     el.style.setProperty("--gy", `${(y * 100).toFixed(1)}%`);
-    el.style.setProperty("--rx", `${((0.5 - y) * 18).toFixed(2)}deg`);
-    el.style.setProperty("--ry", `${((x - 0.5) * 24).toFixed(2)}deg`);
+    el.style.setProperty("--rx", `${((0.5 - y) * 22).toFixed(2)}deg`);
+    el.style.setProperty("--ry", `${((x - 0.5) * 28).toFixed(2)}deg`);
   }, []);
 
   const onMouseLeave = useCallback((e: React.MouseEvent<HTMLDivElement>) => {

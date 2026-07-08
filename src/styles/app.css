@@ -302,7 +302,7 @@ img {
   min-height: 100vh;
   overflow: hidden;
   background:
-    radial-gradient(56% 60% at 50% 52%, rgba(31, 157, 87, 0.1), transparent 66%),
+    radial-gradient(56% 60% at 50% 52%, rgba(31, 157, 87, 0.06), transparent 66%),
     var(--bg);
 }
 
@@ -348,7 +348,7 @@ img {
     50% 50%,
     50% 50%;
   filter: blur(12px);
-  opacity: 0.45; /* subtle wash */
+  opacity: 0.28; /* dimmer, subtler wash */
   will-change: transform;
 }
 
@@ -356,7 +356,7 @@ img {
   background-size:
     200% 100%;
   mix-blend-mode: difference;
-  animation: aurora 60s linear infinite;
+  animation: aurora 95s linear infinite; /* slower drift */
 }
 
 @keyframes aurora {
@@ -422,9 +422,10 @@ img {
 }
 
 /* purpose statement, centered at the top, sitting behind the statue */
+/* purpose statement, centered a little lower, behind the statue */
 .shero-center {
   position: absolute;
-  top: 7%;
+  top: 10%;
   left: 0;
   right: 0;
   z-index: 0;
@@ -432,48 +433,43 @@ img {
   text-align: center;
 }
 
-.shero-kicker {
-  display: inline-block;
-  margin-bottom: 8px;
-  font-family: var(--font-body);
-  font-size: 0.625rem;
-  font-weight: 600;
-  letter-spacing: 0.34em;
-  text-transform: uppercase;
-  color: var(--gold);
-}
-
 .shero-center p {
   margin: 0 auto;
-  max-width: 420px;
+  max-width: 400px;
   font-family: var(--font-display);
-  font-size: 1.0625rem;
-  line-height: 1.35;
+  font-size: 0.9375rem;
+  line-height: 1.4;
   color: var(--marble);
   text-shadow: 0 2px 24px rgba(6, 12, 9, 0.85);
 }
 
-/* stats, lower-right under AMPLIFY */
-.hero-stats {
+/* stats + CTA, stacked lower-right under AMPLIFY */
+.shero-right {
   position: absolute;
-  top: 63%;
+  top: 60%;
   right: max(40px, calc((100% - 1240px) / 2 + 40px));
   z-index: 3;
   display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 26px;
+}
+
+.hero-stats {
+  display: flex;
   gap: 34px;
   align-items: flex-start;
+}
+
+.hero-stats .hstat {
+  text-align: right;
 }
 
 .hero-stats .hstat .v {
   font-size: 1.7rem;
 }
 
-/* CTA, lower-left under AMPLIFY */
 .shero-cta {
-  position: absolute;
-  top: 63%;
-  left: max(40px, calc((100% - 1240px) / 2 + 40px));
-  z-index: 3;
   display: inline-flex;
   align-items: center;
   gap: 18px;
@@ -630,9 +626,9 @@ img {
     0 34px 60px -24px rgba(0, 0, 0, 0.8),
     0 8px 20px -10px rgba(0, 0, 0, 0.6),
     inset 0 1px 0 rgba(255, 255, 255, 0.1);
-  transform: perspective(760px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg));
+  transform: perspective(640px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg));
   transition:
-    transform 0.12s var(--ease),
+    transform 0.1s var(--ease),
     box-shadow 0.35s var(--ease);
   transform-style: preserve-3d;
   user-select: none;
@@ -705,19 +701,19 @@ img {
 }
 
 .chrome-card:hover .cc-top {
-  transform: translateZ(48px);
+  transform: translateZ(60px);
 }
 
 .chrome-card:hover .cc-followers {
-  transform: translateZ(75px);
+  transform: translateZ(95px);
 }
 
 .chrome-card:hover .cc-growth {
-  transform: translateZ(58px);
+  transform: translateZ(74px);
 }
 
 .chrome-card:hover .cc-meta {
-  transform: translateZ(36px);
+  transform: translateZ(46px);
 }
 
 .cc-top {
@@ -1373,22 +1369,8 @@ img {
     var(--bg);
 }
 
-/* the animated dot field fills the loader, behind the wordmark */
+/* the animated dot field fills the loader, behind the text */
 .loader .loader-dots {
-  z-index: 0;
-}
-
-/* soft emerald glow from the top */
-.loader-glow {
-  position: absolute;
-  top: -12rem;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 100%;
-  height: 100%;
-  background: radial-gradient(ellipse at center, var(--emerald-lo), transparent 52%);
-  filter: blur(30px);
-  pointer-events: none;
   z-index: 0;
 }
 
@@ -1396,72 +1378,30 @@ img {
   position: relative;
   z-index: 1;
   display: flex;
-  flex-direction: column;
   align-items: center;
-  gap: 20px;
-  padding-bottom: 6vh; /* lift the mark above the cresting wave */
-}
-
-.loader-eyebrow {
-  font-family: var(--font-body);
-  font-size: 0.625rem;
-  font-weight: 600;
-  letter-spacing: 0.34em;
-  text-transform: uppercase;
-  color: var(--gold);
+  justify-content: center;
+  padding-bottom: 8vh; /* lift the text above the cresting wave */
 }
 
 .loader-mark {
   font-family: var(--font-display);
   font-weight: 600;
-  font-size: clamp(2rem, 5vw, 2.75rem);
-  letter-spacing: 0.02em;
+  font-size: clamp(1.75rem, 4.5vw, 2.5rem);
+  letter-spacing: 0.03em;
   color: var(--marble);
-  text-shadow: 0 4px 30px rgba(6, 12, 9, 0.6);
+  text-shadow: 0 4px 30px rgba(6, 12, 9, 0.7);
 }
 
-.loader-mark span {
+/* fixed-width so the cycling dots don't shift the word */
+.loader-ellipsis {
+  display: inline-block;
+  width: 1.4em;
+  text-align: left;
   color: var(--emerald);
 }
 
-.loader-bar {
-  position: relative;
-  width: 190px;
-  height: 2px;
-  border-radius: 2px;
-  background: var(--line-2);
-  overflow: hidden;
-}
-
-.loader-bar i {
-  position: absolute;
-  inset: 0 auto 0 0;
-  width: 42%;
-  background: linear-gradient(90deg, transparent, var(--emerald), var(--lime), transparent);
-  animation: loader-sweep 1.15s ease-in-out infinite;
-}
-
-.loader-note {
-  font-family: var(--font-body);
-  font-size: 0.6875rem;
-  font-weight: 500;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: var(--ink-3);
-}
-
-@keyframes loader-sweep {
-  0% {
-    transform: translateX(-120%);
-  }
-  100% {
-    transform: translateX(330%);
-  }
-}
-
 @media (prefers-reduced-motion: reduce) {
-  .aurora::after,
-  .loader-bar i {
+  .aurora::after {
     animation: none;
   }
 }
