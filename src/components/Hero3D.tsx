@@ -86,10 +86,18 @@ export function Hero3D({ entered }: { entered: boolean }) {
       {/* subtle brand-tinted aurora wash */}
       <div className="aurora" aria-hidden="true" />
 
-      {/* back layer: eyebrow + solid AMPLIFY, sits behind the statue */}
-      <span className="eyebrow shero-eyebrow" aria-hidden="true">
-        Telos — the end we build toward
-      </span>
+      {/* centered purpose statement, top of the hero */}
+      <motion.div
+        className="shero-center"
+        initial={{ opacity: 0, y: 14 }}
+        animate={entered ? { opacity: 1, y: 0 } : { opacity: 0, y: 14 }}
+        transition={{ duration: 0.7, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
+      >
+        <span className="shero-kicker">Telos</span>
+        <p>Our purpose: audiences engineered to reach 128 million people a month.</p>
+      </motion.div>
+
+      {/* solid AMPLIFY fill, sits behind the statue */}
       <div className="amp amp-solid" aria-hidden="true">
         {amp}
       </div>
@@ -114,7 +122,7 @@ export function Hero3D({ entered }: { entered: boolean }) {
           tone-mapping="neutral"
           shadow-intensity="0.5"
           shadow-softness="1"
-          exposure="0.42"
+          exposure="0.3"
         />
       </div>
 
@@ -123,17 +131,6 @@ export function Hero3D({ entered }: { entered: boolean }) {
         {amp}
       </div>
       <h1 className="sr-only">Amplify</h1>
-
-      {/* purpose lead, upper-left — the telos of the work */}
-      <motion.div
-        className="shero-lead"
-        initial={{ opacity: 0, y: 16 }}
-        animate={entered ? { opacity: 1, y: 0 } : { opacity: 0, y: 16 }}
-        transition={{ duration: 0.7, delay: 0.35, ease: [0.22, 1, 0.36, 1] }}
-      >
-        <span className="shero-kicker">Telos</span>
-        <p>Our purpose: audiences engineered to reach 128 million people a month.</p>
-      </motion.div>
 
       {/* CTA, lower-left under AMPLIFY */}
       <motion.a
