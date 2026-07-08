@@ -413,7 +413,7 @@ img {
 /* purpose statement, centered a little lower, behind the statue */
 .shero-center {
   position: absolute;
-  top: 13%;
+  top: 15%;
   left: 0;
   right: 0;
   z-index: 0;
@@ -423,7 +423,7 @@ img {
 
 .shero-center p {
   margin: 0 auto;
-  max-width: 400px;
+  max-width: 760px; /* fits on one line on desktop */
   font-family: var(--font-display);
   font-size: 0.9375rem;
   line-height: 1.4;
@@ -457,34 +457,9 @@ img {
   font-size: 1.7rem;
 }
 
+/* 'See the network' is a plain pill button now */
 .shero-cta {
-  display: inline-flex;
-  align-items: center;
-  gap: 18px;
-  font-weight: 600;
-  font-size: 0.9375rem;
-}
-
-.shero-cta .ring {
-  width: 56px;
-  height: 56px;
-  border-radius: 50%;
-  border: 1px solid var(--line-2);
-  display: grid;
-  place-items: center;
-  font-size: 1.15rem;
-  color: var(--ink);
-  flex: none;
-  transition:
-    border-color var(--t-fast) var(--ease),
-    background var(--t-fast) var(--ease),
-    transform var(--t-fast) var(--ease);
-}
-
-.shero-cta:hover .ring {
-  border-color: var(--emerald);
-  background: var(--emerald-lo);
-  transform: translateX(4px);
+  padding: 12px 28px;
 }
 
 /* ————— Sections (dark) ————— */
@@ -978,9 +953,17 @@ img {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 24px;
+  align-items: stretch;
+}
+
+/* the Reveal wrapper is the grid item — let it fill the row so cards match */
+.svc-grid > * {
+  display: flex;
 }
 
 .svc {
+  flex: 1; /* fill the Reveal wrapper's width */
+  height: 100%; /* equal-height cards regardless of copy length */
   padding: 34px 30px 38px;
   background: var(--panel);
   border: 1px solid var(--line);
@@ -1464,20 +1447,20 @@ img {
     letter-spacing: 0.01em;
   }
 
-  /* purpose sits at the very top, clear of the statue's head */
+  /* purpose a touch lower on phones */
   .shero-center {
-    top: 10%;
+    top: 14%;
   }
   .shero-center p {
     font-size: 0.875rem;
     max-width: 300px;
   }
 
-  /* statue centered and large, filling most of the height */
+  /* statue large; nudged left so the raised arm doesn't skew it off-centre */
   .shero-stage {
-    left: 6%;
-    right: 6%;
-    top: 19%;
+    left: 3%;
+    right: 9%;
+    top: 20%;
     bottom: 21%;
   }
 

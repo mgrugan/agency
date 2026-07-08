@@ -8,9 +8,7 @@
       (function () {
         try {
           var t = localStorage.getItem("telos-theme");
-          if (t !== "light" && t !== "dark") {
-            t = window.matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark";
-          }
+          if (t !== "light" && t !== "dark") t = "dark"; // default to dark
           document.documentElement.setAttribute("data-theme", t);
         } catch (e) {
           document.documentElement.setAttribute("data-theme", "dark");
