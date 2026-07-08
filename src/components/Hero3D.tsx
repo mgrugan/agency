@@ -101,7 +101,7 @@ export function Hero3D() {
           tone-mapping="neutral"
           shadow-intensity="0.5"
           shadow-softness="1"
-          exposure="1"
+          exposure="0.6"
         />
       </div>
 
