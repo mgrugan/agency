@@ -123,6 +123,11 @@ img {
   background: transparent;
 }
 
+/* hide model-viewer's built-in loading bar (the dark bar at the top) */
+model-viewer::part(default-progress-bar) {
+  display: none;
+}
+
 .eyebrow,
 .label-caps {
   display: inline-flex;
@@ -1449,28 +1454,35 @@ img {
 
   /* purpose a touch lower on phones */
   .shero-center {
-    top: 14%;
+    top: 17%;
   }
   .shero-center p {
     font-size: 0.875rem;
     max-width: 300px;
   }
 
-  /* statue large; nudged left so the raised arm doesn't skew it off-centre */
-  .shero-stage {
-    left: 3%;
-    right: 9%;
-    top: 20%;
-    bottom: 21%;
+  /* AMPLIFY rides higher on phones */
+  .amp-wrap {
+    bottom: 22%;
   }
 
-  /* stats + CTA sit just below the statue, not pinned to the viewport bottom */
+  /* statue large, moved up; nudged left so the raised arm reads centred */
+  .shero-stage {
+    left: 4%;
+    right: 10%;
+    top: 16%;
+    bottom: 28%;
+  }
+
+  /* stats + CTA sit just below the statue, centred */
   .shero-right {
     top: 76%;
     bottom: auto;
     left: 0;
     right: 0;
     align-items: center;
+    justify-content: center;
+    text-align: center;
     gap: 16px;
   }
   .hero-stats {
@@ -1548,4 +1560,46 @@ img {
 :root[data-theme="light"] .aurora::before,
 :root[data-theme="light"] .aurora::after {
   opacity: 0.16;
+}
+
+/* ————— Glowing dot orbiting the 'Book a call' button ————— */
+@property --book-a {
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: 0deg;
+}
+
+.book-glow {
+  position: relative;
+  isolation: isolate;
+}
+
+.book-glow::before {
+  content: "";
+  position: absolute;
+  inset: -3px;
+  border-radius: inherit;
+  background: conic-gradient(
+    from var(--book-a),
+    transparent 0deg,
+    transparent 250deg,
+    var(--lime) 322deg,
+    var(--emerald) 346deg,
+    transparent 360deg
+  );
+  filter: blur(5px);
+  z-index: -1;
+  animation: book-orbit 3.4s linear infinite;
+}
+
+@keyframes book-orbit {
+  to {
+    --book-a: 360deg;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .book-glow::before {
+    animation: none;
+  }
 }

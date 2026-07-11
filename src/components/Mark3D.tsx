@@ -102,23 +102,15 @@ export function Mark3D() {
             </h2>
             <p>
               The Telos mark — one direction, forged from the same discipline we bring to every
-              account we run. Scroll and it turns. Grab it and look closer.
+              brand we build. Scroll and it turns.
             </p>
           </div>
         </Reveal>
-        <div
-          className="mark3d-stage glass"
-          onPointerDown={() => (dragging.current = true)}
-          onPointerUp={() => (dragging.current = false)}
-          onPointerCancel={() => (dragging.current = false)}
-        >
+        <div className="mark3d-stage glass">
           <model-viewer
             ref={mvRef as React.RefObject<HTMLElement>}
             src={`${BASE}algo-mark.glb`}
-            alt="Chrome Algo Media arrow monogram, 3D"
-            camera-controls
-            disable-zoom
-            disable-pan
+            alt="Chrome Telos arrow monogram, 3D"
             interaction-prompt="none"
             camera-orbit="-30deg 82deg 105%"
             shadow-intensity="0.6"
