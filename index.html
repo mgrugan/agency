@@ -7,7 +7,8 @@
       // Set the theme before first paint to avoid a flash.
       (function () {
         try {
-          var t = localStorage.getItem("telos-theme");
+          localStorage.removeItem("telos-theme"); // drop the old auto-persisted key
+          var t = localStorage.getItem("telos-theme-mode");
           if (t !== "light" && t !== "dark") t = "dark"; // default to dark
           document.documentElement.setAttribute("data-theme", t);
         } catch (e) {

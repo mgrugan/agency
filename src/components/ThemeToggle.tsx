@@ -27,20 +27,29 @@ const Moon = () => (
 export function ThemeToggle() {
   const [theme, setTheme] = useState<Theme>(initialTheme);
 
+  // Only apply the attribute — never persist here (that would auto-save the
+  // default on first load and defeat the intended dark default).
   useEffect(() => {
     document.documentElement.setAttribute("data-theme", theme);
-    try {
-      localStorage.setItem("telos-theme", theme);
-    } catch {
-      /* ignore */
-    }
   }, [theme]);
+
+  const flip = () => {
+    setTheme((t) => {
+      const next = t === "dark" ? "light" : "dark";
+      try {
+        localStorage.setItem("telos-theme-mode", next); // persist only on user action
+      } catch {
+        /* ignore */
+      }
+      return next;
+    });
+  };
 
   return (
     <button
       type="button"
       className="theme-toggle"
-      onClick={() => setTheme((t) => (t === "dark" ? "light" : "dark"))}
+      onClick={flip}
       aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} theme`}
       title={`Switch to ${theme === "dark" ? "light" : "dark"} theme`}
     >
