@@ -4,16 +4,14 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script>
-      // Set the theme before first paint to avoid a flash.
+      // Always open in dark. Clear any legacy stored theme so no old value can
+      // override the default; the toggle switches themes for the session only.
       (function () {
         try {
-          localStorage.removeItem("telos-theme"); // drop the old auto-persisted key
-          var t = localStorage.getItem("telos-theme-mode");
-          if (t !== "light" && t !== "dark") t = "dark"; // default to dark
-          document.documentElement.setAttribute("data-theme", t);
-        } catch (e) {
-          document.documentElement.setAttribute("data-theme", "dark");
-        }
+          localStorage.removeItem("telos-theme");
+          localStorage.removeItem("telos-theme-mode");
+        } catch (e) {}
+        document.documentElement.setAttribute("data-theme", "dark");
       })();
     </script>
     <title>Telos Media — audiences engineered toward their end</title>

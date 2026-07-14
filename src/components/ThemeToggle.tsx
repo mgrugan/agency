@@ -23,33 +23,21 @@ const Moon = () => (
   </svg>
 );
 
-/** Sun/moon toggle that flips the site (and loading screen) between themes. */
+/** Sun/moon toggle that flips the theme for the current session. It never
+ *  writes to localStorage, so the site always opens dark — no stored value can
+ *  override the default. */
 export function ThemeToggle() {
   const [theme, setTheme] = useState<Theme>(initialTheme);
 
-  // Only apply the attribute — never persist here (that would auto-save the
-  // default on first load and defeat the intended dark default).
   useEffect(() => {
     document.documentElement.setAttribute("data-theme", theme);
   }, [theme]);
-
-  const flip = () => {
-    setTheme((t) => {
-      const next = t === "dark" ? "light" : "dark";
-      try {
-        localStorage.setItem("telos-theme-mode", next); // persist only on user action
-      } catch {
-        /* ignore */
-      }
-      return next;
-    });
-  };
 
   return (
     <button
       type="button"
       className="theme-toggle"
-      onClick={flip}
+      onClick={() => setTheme((t) => (t === "dark" ? "light" : "dark"))}
       aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} theme`}
       title={`Switch to ${theme === "dark" ? "light" : "dark"} theme`}
     >
