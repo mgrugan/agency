@@ -24,14 +24,37 @@ jobs:
           node-version: 22
           cache: npm
       - run: npm ci
-      - name: Fetch generated assets (Higgsfield CDN — the sandbox can't reach it)
+      # Persist the 3D assets across runs so a build never depends on a live fetch.
+      - name: Cache generated 3D assets
+        uses: actions/cache@v4
+        with:
+          path: public
+          key: telos-assets-v1
+      - name: Fetch generated assets
         run: |
           mkdir -p public
-          [ -f public/algo-mark.glb ] || curl -fsSL -o public/algo-mark.glb \
+          # Primary source is our own live Pages site (the Higgsfield CDN links
+          # expire); the original CDN URLs are kept as a fallback.
+          SITE="https://mgrugan.github.io/agency"
+          fetch() {
+            out="$1"; shift
+            [ -s "$out" ] && { echo "cached: $out"; return 0; }
+            for url in "$@"; do
+              if curl -fsSL --retry 3 --retry-delay 2 -o "$out" "$url"; then
+                echo "fetched $out <- $url"; return 0
+              fi
+              echo "miss: $url" >&2
+            done
+            echo "ERROR: could not fetch $out" >&2; return 1
+          }
+          fetch public/algo-mark.glb \
+            "$SITE/algo-mark.glb" \
             "https://d3u0tzju9qaucj.cloudfront.net/7d051b5a-7bfe-49fe-a484-24e7b3a9458a/1c1af68d-ab67-45e9-8cde-715bd993287d.glb"
-          [ -f public/statue.png ] || curl -fsSL -o public/statue.png \
+          fetch public/statue.png \
+            "$SITE/statue.png" \
             "https://d8j0ntlcm91z4.cloudfront.net/user_3BHCD7igI1rNUgPcHwyKdHyLWCw/hf_20260706_225605_45d7a579-1b1a-439e-8a2a-495beb9b9a41.png"
-          [ -f public/telos-statue.glb ] || curl -fsSL -o public/telos-statue.glb \
+          fetch public/telos-statue.glb \
+            "$SITE/telos-statue.glb" \
             "https://d3u0tzju9qaucj.cloudfront.net/7d051b5a-7bfe-49fe-a484-24e7b3a9458a/dbde1c2f-d7c6-4e7b-bf97-41f260ceb2bd.glb"
           ls -la public/
       - run: npm run build
