@@ -4,6 +4,7 @@ import { compact } from "../lib/format";
 import { Reveal } from "./Reveal";
 import { ThemeToggle } from "./ThemeToggle";
 import { LiquidMetalButton } from "./LiquidMetalButton";
+import { openCalendly } from "../lib/calendly";
 
 export function Nav() {
   const [scrolled, setScrolled] = useState(false);
@@ -27,12 +28,7 @@ export function Nav() {
         </div>
         <div className="nav-actions">
           <ThemeToggle />
-          <LiquidMetalButton
-            label="Book a call"
-            onClick={() => {
-              window.location.hash = "contact";
-            }}
-          />
+          <LiquidMetalButton label="Book a call" onClick={() => openCalendly()} />
         </div>
       </div>
     </nav>
@@ -239,12 +235,12 @@ export function CtaBand() {
               </h2>
               <p>
                 If you're launching a startup or growing a business and want a team that can build
-                great products and get people to care, send us a message.
+                great products and get people to care, grab a time that works for you.
               </p>
             </div>
-            <a className="btn btn-glass" href="mailto:hello@telosmedia.co">
-              Start a conversation →
-            </a>
+            <button type="button" className="btn btn-glass" onClick={() => openCalendly()}>
+              Book a call →
+            </button>
           </div>
         </Reveal>
       </div>
