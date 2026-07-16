@@ -9,6 +9,27 @@ interface LiquidMetalButtonProps {
   className?: string;
 }
 
+/** Track the active site theme so the button face can differ between light and
+ *  dark while the metal border stays identical. */
+function useTheme(): "light" | "dark" {
+  const [theme, setTheme] = useState<"light" | "dark">(() =>
+    typeof document !== "undefined" &&
+    document.documentElement.getAttribute("data-theme") === "light"
+      ? "light"
+      : "dark",
+  );
+  useEffect(() => {
+    const el = document.documentElement;
+    const update = () =>
+      setTheme(el.getAttribute("data-theme") === "light" ? "light" : "dark");
+    update();
+    const obs = new MutationObserver(update);
+    obs.observe(el, { attributes: true, attributeFilter: ["data-theme"] });
+    return () => obs.disconnect();
+  }, []);
+  return theme;
+}
+
 /** Measure a label so the pill can size to its text (the shader layers are
  *  absolutely positioned, so they need explicit widths). */
 let measureCanvas: HTMLCanvasElement | null = null;
@@ -33,6 +54,7 @@ export function LiquidMetalButton({
   viewMode = "text",
   className,
 }: LiquidMetalButtonProps) {
+  const theme = useTheme();
   const [isHovered, setIsHovered] = useState(false);
   const [isPressed, setIsPressed] = useState(false);
   const [ripples, setRipples] = useState<Array<{ x: number; y: number; id: number }>>([]);
@@ -170,11 +192,14 @@ export function LiquidMetalButton({
             <span
               style={{
                 fontSize: "14px",
-                color: "#e9fff2",
+                color: theme === "light" ? "#0c1a11" : "#e9fff2",
                 fontWeight: 600,
                 letterSpacing: "0.01em",
-                textShadow: "0px 1px 2px rgba(0, 0, 0, 0.6)",
-                transition: "all 0.8s cubic-bezier(0.34, 1.56, 0.64, 1)",
+                textShadow:
+                  theme === "light"
+                    ? "0px 1px 1px rgba(255, 255, 255, 0.55)"
+                    : "0px 1px 2px rgba(0, 0, 0, 0.6)",
+                transition: "color 0.3s ease, all 0.8s cubic-bezier(0.34, 1.56, 0.64, 1)",
                 whiteSpace: "nowrap",
               }}
             >
@@ -202,12 +227,17 @@ export function LiquidMetalButton({
                 height: `${dimensions.innerHeight}px`,
                 margin: "2px",
                 borderRadius: "100px",
-                background: "linear-gradient(180deg, #14251b 0%, #05100a 100%)",
+                background:
+                  theme === "light"
+                    ? "linear-gradient(180deg, #ffffff 0%, #e7ece3 100%)"
+                    : "linear-gradient(180deg, #14251b 0%, #05100a 100%)",
                 boxShadow: isPressed
-                  ? "inset 0px 2px 4px rgba(0, 0, 0, 0.4), inset 0px 1px 2px rgba(0, 0, 0, 0.3)"
+                  ? theme === "light"
+                    ? "inset 0px 2px 4px rgba(0, 0, 0, 0.15), inset 0px 1px 2px rgba(0, 0, 0, 0.1)"
+                    : "inset 0px 2px 4px rgba(0, 0, 0, 0.4), inset 0px 1px 2px rgba(0, 0, 0, 0.3)"
                   : "none",
                 transition:
-                  "all 0.8s cubic-bezier(0.34, 1.56, 0.64, 1), width 0.4s ease, height 0.4s ease, box-shadow 0.15s cubic-bezier(0.4, 0, 0.2, 1)",
+                  "background 0.3s ease, all 0.8s cubic-bezier(0.34, 1.56, 0.64, 1), width 0.4s ease, height 0.4s ease, box-shadow 0.15s cubic-bezier(0.4, 0, 0.2, 1)",
               }}
             />
           </div>
