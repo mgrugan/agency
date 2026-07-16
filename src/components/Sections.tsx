@@ -26,8 +26,8 @@ export function Nav() {
         </div>
         <div className="nav-actions">
           <ThemeToggle />
-          <a className="btn btn-green" href="#contact">
-            Book a call
+          <a className="btn btn-metal" href="#contact">
+            <span className="btn-label">Book a call</span>
           </a>
         </div>
       </div>

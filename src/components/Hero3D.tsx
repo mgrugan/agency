@@ -140,8 +140,8 @@ export function Hero3D({ entered }: { entered: boolean }) {
           <GlitchStat value="128M+" label="Monthly reach" run={entered} delay={180} />
           <GlitchStat value="24" label="Brands" run={entered} delay={360} />
         </div>
-        <a className="btn btn-glass shero-cta" href="#portfolio">
-          See the network
+        <a className="btn btn-metal shero-cta" href="#portfolio">
+          <span className="btn-label">See the network</span>
         </a>
       </motion.div>
     </header>
