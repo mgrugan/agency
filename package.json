@@ -15,7 +15,9 @@
     "@fontsource-variable/space-grotesk": "^5.2.10",
     "@fontsource/cormorant-garamond": "^5.2.11",
     "@google/model-viewer": "^4.3.1",
+    "@paper-design/shaders": "^0.0.77",
     "framer-motion": "^12.42.2",
+    "lucide-react": "^1.24.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1"
   },

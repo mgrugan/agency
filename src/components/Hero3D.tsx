@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import { GlitchStat } from "./GlitchStat";
+import { LiquidMetalButton } from "./LiquidMetalButton";
 
 const BASE = import.meta.env.BASE_URL;
 
@@ -140,9 +141,13 @@ export function Hero3D({ entered }: { entered: boolean }) {
           <GlitchStat value="128M+" label="Monthly reach" run={entered} delay={180} />
           <GlitchStat value="24" label="Brands" run={entered} delay={360} />
         </div>
-        <a className="btn btn-metal shero-cta" href="#portfolio">
-          <span className="btn-label">See the network</span>
-        </a>
+        <LiquidMetalButton
+          label="See the network"
+          className="shero-cta"
+          onClick={() =>
+            document.querySelector("#portfolio")?.scrollIntoView({ behavior: "smooth" })
+          }
+        />
       </motion.div>
     </header>
   );

@@ -462,9 +462,79 @@ model-viewer::part(default-progress-bar) {
   font-size: 1.7rem;
 }
 
-/* 'See the network' is a plain pill button now */
+/* ————— Liquid-metal pill button (paper-design shader) ————— */
+.lm-btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 26px;
+  border: 0;
+  border-radius: 999px;
+  cursor: pointer;
+  overflow: hidden;
+  isolation: isolate;
+  font: inherit;
+  line-height: 1;
+  color: #f4fff8;
+  background: #0a130d;
+  box-shadow:
+    inset 0 0 0 1px rgba(159, 238, 192, 0.35),
+    0 8px 26px rgba(0, 0, 0, 0.4),
+    0 0 0 1px rgba(0, 0, 0, 0.5);
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.lm-btn:hover {
+  transform: translateY(-1px);
+  box-shadow:
+    inset 0 0 0 1px rgba(159, 238, 192, 0.55),
+    0 12px 34px rgba(0, 0, 0, 0.5),
+    0 0 22px rgba(34, 197, 94, 0.28);
+}
+
+.lm-btn:active {
+  transform: translateY(0);
+}
+
+/* WebGL surface fills the pill; CSS gradient is the fallback if it fails */
+.lm-shader {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: inherit;
+  background:
+    linear-gradient(135deg, #0f2417 0%, #1f5c39 34%, #9feec0 52%, #1c4a30 70%, #0a1a11 100%);
+}
+
+.lm-shader canvas {
+  display: block;
+  width: 100% !important;
+  height: 100% !important;
+  border-radius: inherit;
+}
+
+.lm-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  position: relative;
+  z-index: 1;
+  font-weight: 600;
+  font-size: 0.95rem;
+  letter-spacing: 0.01em;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.55);
+}
+
+.lm-label svg {
+  opacity: 0.9;
+}
+
+/* 'See the network' sits under the stats */
 .shero-cta {
-  padding: 12px 28px;
+  margin-top: 2px;
 }
 
 /* ————— Sections (dark) ————— */
@@ -612,15 +682,14 @@ model-viewer::part(default-progress-bar) {
   inset: 0;
   border-radius: inherit;
   padding: 1.4px;
-  /* static green brushed-metal rim (matches the metal buttons) */
   background: linear-gradient(
     150deg,
-    #d6efe0 0%,
-    #6fae86 20%,
-    #123d28 46%,
-    #0c2e1d 58%,
-    #8fe0ae 82%,
-    #cdeed9 100%
+    #eaf6ee 0%,
+    #90b4a1 15%,
+    #29382f 37%,
+    #9feec0 58%,
+    #33463b 78%,
+    #d9ede1 100%
   );
   -webkit-mask:
     linear-gradient(#000 0 0) content-box,
@@ -1496,8 +1565,8 @@ model-viewer::part(default-progress-bar) {
   .hero-stats .hstat .v {
     font-size: 1.3rem;
   }
-  .shero-cta {
-    font-size: 0.875rem;
+  .shero-cta .lm-label {
+    font-size: 0.85rem;
   }
 
   /* tidy the nav so 'Book a call' never wraps */
@@ -1510,9 +1579,14 @@ model-viewer::part(default-progress-bar) {
   .nav .wordmark i {
     display: none;
   }
-  .nav .btn {
+  .nav .btn,
+  .nav .lm-btn {
     white-space: nowrap;
     padding: 9px 16px;
+  }
+  .nav .lm-btn .lm-label {
+    font-size: 0.85rem;
+    gap: 6px;
   }
 }
 
@@ -1561,94 +1635,4 @@ model-viewer::part(default-progress-bar) {
 :root[data-theme="light"] .aurora::before,
 :root[data-theme="light"] .aurora::after {
   opacity: 0.16;
-}
-
-
-/* ————— Metal buttons (green-tinted, animated specular sheen) ————— */
-.btn-metal {
-  position: relative;
-  isolation: isolate;
-  overflow: hidden;
-  border: none;
-  color: #eafff2;
-  background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0) 44%),
-    linear-gradient(180deg, #2f7a52 0%, #1c5637 50%, #123d28 100%);
-  box-shadow:
-    inset 0 1px 0 rgba(214, 255, 228, 0.6),
-    inset 0 -1px 1px rgba(0, 0, 0, 0.55),
-    0 8px 20px -8px rgba(0, 0, 0, 0.6);
-  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.45);
-  transition:
-    transform var(--t-fast) var(--ease),
-    box-shadow var(--t-fast) var(--ease),
-    background var(--t-fast) var(--ease);
-}
-
-.btn-metal .btn-label {
-  position: relative;
-  z-index: 2;
-}
-
-/* brushed-metal rim */
-.btn-metal::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  padding: 1px;
-  background: linear-gradient(180deg, #d6efe0, #3a8a5e 42%, #0c2e1d 58%, #8fe0ae);
-  -webkit-mask:
-    linear-gradient(#000 0 0) content-box,
-    linear-gradient(#000 0 0);
-  mask:
-    linear-gradient(#000 0 0) content-box,
-    linear-gradient(#000 0 0);
-  -webkit-mask-composite: xor;
-  mask-composite: exclude;
-  pointer-events: none;
-  z-index: 1;
-}
-
-/* animated specular sweep across the metal face */
-.btn-metal::after {
-  content: "";
-  position: absolute;
-  top: -30%;
-  bottom: -30%;
-  left: 0;
-  width: 45%;
-  background: linear-gradient(105deg, transparent 18%, rgba(255, 255, 255, 0.45), transparent 82%);
-  transform: translateX(-200%) skewX(-16deg);
-  animation: metal-sheen 3.6s ease-in-out infinite;
-  pointer-events: none;
-  z-index: 0;
-}
-
-@keyframes metal-sheen {
-  0%,
-  55% {
-    transform: translateX(-200%) skewX(-16deg);
-  }
-  100% {
-    transform: translateX(360%) skewX(-16deg);
-  }
-}
-
-.btn-metal:hover {
-  transform: translateY(-2px);
-  background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.36), rgba(255, 255, 255, 0) 44%),
-    linear-gradient(180deg, #368a5d 0%, #206040 50%, #143f2a 100%);
-  box-shadow:
-    inset 0 1px 0 rgba(214, 255, 228, 0.7),
-    inset 0 -1px 1px rgba(0, 0, 0, 0.55),
-    0 12px 26px -8px rgba(0, 0, 0, 0.65);
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .btn-metal::after {
-    animation: none;
-    opacity: 0;
-  }
 }

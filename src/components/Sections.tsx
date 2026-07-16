@@ -3,6 +3,7 @@ import { accounts } from "../data";
 import { compact } from "../lib/format";
 import { Reveal } from "./Reveal";
 import { ThemeToggle } from "./ThemeToggle";
+import { LiquidMetalButton } from "./LiquidMetalButton";
 
 export function Nav() {
   const [scrolled, setScrolled] = useState(false);
@@ -26,9 +27,12 @@ export function Nav() {
         </div>
         <div className="nav-actions">
           <ThemeToggle />
-          <a className="btn btn-metal" href="#contact">
-            <span className="btn-label">Book a call</span>
-          </a>
+          <LiquidMetalButton
+            label="Book a call"
+            onClick={() => {
+              window.location.hash = "contact";
+            }}
+          />
         </div>
       </div>
     </nav>
