@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, type CSSProperties } from "react";
 import { accounts } from "../data";
 import { compact } from "../lib/format";
 import { Reveal } from "./Reveal";
@@ -210,7 +210,10 @@ export function Process() {
         <div className="proc-grid">
           {steps.map((s, i) => (
             <Reveal key={s.num} delay={i * 110}>
-              <div className="proc glass">
+              <div
+                className="proc glass"
+                style={{ "--progress": ["25%", "50%", "75%", "100%"][i] } as CSSProperties}
+              >
                 <div className="num">{["I", "II", "III", "IV"][i]}</div>
                 <h3>{s.title}</h3>
                 <p>{s.body}</p>
