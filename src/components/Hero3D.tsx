@@ -19,7 +19,7 @@ interface MV extends HTMLElement {
  * model-viewer runtime is code-split and loaded after mount so it never blocks
  * first paint. Cipher animations wait for `entered` so they play on arrival.
  */
-export function Hero3D({ entered }: { entered: boolean }) {
+export function Hero3D({ entered, onReady }: { entered: boolean; onReady?: () => void }) {
   const secRef = useRef<HTMLElement | null>(null);
   const mvRef = useRef<MV | null>(null);
   const stageRef = useRef<HTMLDivElement | null>(null);
@@ -50,7 +50,7 @@ export function Hero3D({ entered }: { entered: boolean }) {
     const theta = 0 + mouse.current.x * 14 + scroll.current * 95; // yaw — faces forward, turns more on scroll
     const phi = 90 - mouse.current.y * 9 - scroll.current * 12; // pitch
     // while the intro zoom is playing it owns the camera; don't fight it
-    if (mv && introDone.current) mv.cameraOrbit = `${theta.toFixed(1)}deg ${phi.toFixed(1)}deg 105%`;
+    if (mv && introDone.current) mv.cameraOrbit = `${theta.toFixed(1)}deg ${phi.toFixed(1)}deg 135%`;
     if (stage) {
       stage.style.transform = `translate3d(${(mouse.current.x * 24).toFixed(1)}px, ${(scroll.current * -120 + mouse.current.y * 16).toFixed(1)}px, 0)`;
     }
@@ -74,8 +74,8 @@ export function Hero3D({ entered }: { entered: boolean }) {
     }
 
     const DUR = 2400;
-    const R0 = 34; // zoomed to head/shoulders
-    const R1 = 105; // resting framing
+    const R0 = 45; // zoomed to head/shoulders
+    const R1 = 135; // resting framing (wide enough to keep the hands in frame)
     const hY = headY.current; // freeze at start
     const cY = centerY.current;
     const easeInOut = (t: number) => (t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2);
@@ -108,16 +108,17 @@ export function Hero3D({ entered }: { entered: boolean }) {
         const c = mv.getBoundingBoxCenter?.();
         if (dim && c) {
           centerY.current = c.y;
-          headY.current = c.y + dim.y * 0.33; // ~head/shoulder height
+          headY.current = c.y + dim.y * 0.3; // ~head/shoulder height
           if (!introStarted.current) {
             mv.cameraTarget = `${c.x}m ${headY.current}m ${c.z}m`;
-            mv.cameraOrbit = `0deg 90deg 34%`;
+            mv.cameraOrbit = `0deg 90deg 45%`;
           }
         }
       } catch {
         /* dimensions unavailable — intro falls back to a radius-only zoom */
       }
       loadedRef.current = true;
+      onReady?.(); // tell the loader the statue is ready so the curtain can lift
       runIntro();
     };
     mv.addEventListener("load", onLoad);
@@ -125,7 +126,7 @@ export function Hero3D({ entered }: { entered: boolean }) {
       mv.removeEventListener("load", onLoad);
       cancelAnimationFrame(introRaf.current);
     };
-  }, [runIntro]);
+  }, [runIntro, onReady]);
 
   // Once the curtain lifts, start the intro when the model is ready — or after
   // a short fallback so a slow model never traps the camera zoomed in.
@@ -215,9 +216,9 @@ export function Hero3D({ entered }: { entered: boolean }) {
           poster={`${BASE}statue.png`}
           alt="Classical statue, the Telos Media mark"
           interaction-prompt="none"
-          camera-orbit="0deg 90deg 34%"
+          camera-orbit="0deg 90deg 45%"
           min-camera-orbit="auto auto 20%"
-          max-camera-orbit="auto auto 200%"
+          max-camera-orbit="auto auto 240%"
           environment-image="neutral"
           tone-mapping="neutral"
           shadow-intensity="0.5"

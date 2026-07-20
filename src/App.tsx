@@ -9,12 +9,13 @@ import { LoadingScreen } from "./components/LoadingScreen";
 
 export default function App() {
   const [entered, setEntered] = useState(false);
+  const [heroReady, setHeroReady] = useState(false);
   return (
     <MotionConfig reducedMotion="user">
-    <LoadingScreen onEnter={() => setEntered(true)} />
+    <LoadingScreen ready={heroReady} onEnter={() => setEntered(true)} />
     <div id="top">
       <Nav />
-      <Hero3D entered={entered} />
+      <Hero3D entered={entered} onReady={() => setHeroReady(true)} />
       <Marquee />
 
       <section className="carousel-sec" id="portfolio">
