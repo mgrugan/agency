@@ -1,5 +1,5 @@
 import { useEffect, useState, type CSSProperties } from "react";
-import { accounts } from "../data";
+import { managedAccounts } from "../data";
 import { compact } from "../lib/format";
 import { Reveal } from "./Reveal";
 import { ThemeToggle } from "./ThemeToggle";
@@ -35,18 +35,25 @@ export function Nav() {
   );
 }
 
-/** Techy scrolling ticker of the live account network. */
+/** Techy scrolling ticker of the accounts under active management. */
 export function Marquee() {
-  const items = accounts.map((a) => (
+  const items = managedAccounts.map((a) => (
     <span className="marquee-item" key={a.handle}>
       <b>@{a.handle}</b>
       <span className="tag">{compact(a.followers)}</span>
     </span>
   ));
+  const label = (
+    <span className="marquee-item marquee-label" key="label">
+      Under active management
+    </span>
+  );
   return (
     <div className="marquee" aria-hidden="true">
       <div className="marquee-track">
+        {label}
         {items}
+        {label}
         {items}
       </div>
     </div>
@@ -260,7 +267,7 @@ export function Footer() {
           <span className="fm">
             Telos<span style={{ color: "var(--emerald)" }}>Media</span>
           </span>
-          <span>Social growth, engineered · 24 brands · 45.4M followers</span>
+          <span>Social growth, engineered · 25 brands · 46.8M followers</span>
           <span className="mono">© 2026 Telos Media</span>
         </div>
       </div>

@@ -101,9 +101,9 @@ export function LiquidMetalButton({
           shaderRef.current,
           liquidMetalFragmentShader,
           {
-            // green-tinted metal — dark forest base, emerald sheen
-            u_colorBack: [0.02, 0.06, 0.04, 1],
-            u_colorTint: [0.16, 0.8, 0.45, 1],
+            // silver metal on a dark base, with only a green undertone
+            u_colorBack: [0.03, 0.055, 0.045, 1],
+            u_colorTint: [0.74, 0.8, 0.76, 1],
             u_repetition: 4,
             u_softness: 0.5,
             u_shiftRed: 0.3,

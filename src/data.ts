@@ -5,43 +5,58 @@ export interface Account {
   handle: string;
   followers: number;
   category: string;
+  managed: boolean; // true = currently under active management (not just access)
   growth: number; // monthly %
   reach: number; // avg monthly reach
   engagement: number; // %
 }
 
-const raw: Array<[string, number, string]> = [
-  ["foodsbible", 5_700_000, "Food"],
-  ["ocean.destinations", 4_900_000, "Travel"],
-  ["howallstuffworks", 4_700_000, "Science"],
-  ["InterestingasTech", 2_100_000, "Tech"],
-  ["oh_no_cringe_mexican", 2_000_000, "Humor"],
-  ["hoodmemeez", 1_900_000, "Memes"],
-  ["seven_seas_explorer", 1_800_000, "Travel"],
-  ["istolegoodmemes", 1_800_000, "Memes"],
-  ["old_trends_again", 1_800_000, "Nostalgia"],
-  ["InterestingAsFacts", 1_700_000, "Facts"],
-  ["howmoviesarefilmed", 1_600_000, "Film"],
-  ["projectarcheology", 1_600_000, "History"],
-  ["ruthless.povs", 1_500_000, "POV"],
-  ["historyclipsonly", 1_400_000, "History"],
-  ["whenactorsfail", 1_200_000, "Film"],
-  ["teacherpranks", 1_200_000, "Humor"],
-  ["males_hub_", 1_200_000, "Lifestyle"],
-  ["crazyhoodkids", 1_100_000, "Humor"],
-  ["spacexplanation", 1_100_000, "Space"],
-  ["culturalmeme.s", 1_100_000, "Culture"],
-  ["postinghoodmemes", 1_000_000, "Memes"],
-  ["terrifyingasfacts", 1_000_000, "Facts"],
-  ["milkyhubs", 1_000_000, "Entertainment"],
-  ["combatreelsonly", 1_000_000, "Combat Sports"],
+// [handle, followers, category, managed]. `managed` accounts are the ones under
+// active, hands-on management right now; the rest are part of the wider network
+// we run or have access to.
+const raw: Array<[string, number, string, boolean]> = [
+  // ————— under active management —————
+  ["InterestingAsFacts", 4_600_000, "Facts", true],
+  ["InterestingasTech", 2_000_000, "Tech", true],
+  ["conspiracyhistory", 1_700_000, "History", true],
+  ["historyclipsonly", 1_700_000, "History", true],
+  ["istolegoodmemes", 1_700_000, "Memes", true],
+  ["unseenfactsonly", 1_700_000, "Facts", true],
+  ["howallstuffworks", 1_500_000, "Science", true],
+  ["terrifyingasfacts", 1_000_000, "Facts", true],
+  // ————— wider network (managed or access) —————
+  ["foodsbible", 5_700_000, "Food", false],
+  ["ocean.destinations", 4_900_000, "Travel", false],
+  ["oh_no_cringe_mexican", 2_000_000, "Humor", false],
+  ["hoodmemeez", 1_900_000, "Memes", false],
+  ["old_trends_again", 1_800_000, "Nostalgia", false],
+  ["howmoviesarefilmed", 1_600_000, "Film", false],
+  ["projectarcheology", 1_600_000, "History", false],
+  ["ruthless.povs", 1_500_000, "POV", false],
+  ["whenactorsfail", 1_200_000, "Film", false],
+  ["teacherpranks", 1_200_000, "Humor", false],
+  ["males_hub_", 1_200_000, "Lifestyle", false],
+  ["crazyhoodkids", 1_100_000, "Humor", false],
+  ["spacexplanation", 1_100_000, "Space", false],
+  ["culturalmeme.s", 1_100_000, "Culture", false],
+  ["postinghoodmemes", 1_000_000, "Memes", false],
+  ["milkyhubs", 1_000_000, "Entertainment", false],
+  ["combatreelsonly", 1_000_000, "Combat Sports", false],
 ];
 
-export const accounts: Account[] = raw.map(([handle, followers, category]) => ({
+export const accounts: Account[] = raw.map(([handle, followers, category, managed]) => ({
   handle,
   followers,
   category,
+  managed,
   growth: 2.2 + seeded(handle, 1) * 6.3, // 2.2–8.5 %/mo
   reach: followers * (2.4 + seeded(handle, 2) * 4.2), // 2.4–6.6× followers
   engagement: 3.1 + seeded(handle, 3) * 4.4, // 3.1–7.5 %
 }));
+
+/** Only the accounts under active, hands-on management right now. */
+export const managedAccounts: Account[] = accounts.filter((a) => a.managed);
+
+/** Totals for headline copy, derived so they stay in sync with the list. */
+export const networkCount = accounts.length;
+export const networkFollowers = accounts.reduce((s, a) => s + a.followers, 0);

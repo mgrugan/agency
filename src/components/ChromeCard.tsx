@@ -49,6 +49,9 @@ export function ChromeCard({ acct, className = "" }: Props) {
             </div>
             <div className="cc-cat">{acct.category}</div>
           </div>
+          <span className={`cc-tag ${acct.managed ? "is-managed" : ""}`}>
+            {acct.managed ? "Managed" : "Network"}
+          </span>
         </div>
 
         <div className="cc-followers">

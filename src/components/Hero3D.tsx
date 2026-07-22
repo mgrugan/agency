@@ -237,9 +237,9 @@ export function Hero3D({ entered, onReady }: { entered: boolean; onReady?: () =>
         transition={{ duration: 0.7, delay: 0.7, ease: [0.22, 1, 0.36, 1] }}
       >
         <div className="hero-stats">
-          <GlitchStat value="45.4M" label="Followers" run={entered} delay={0} />
+          <GlitchStat value="46.8M" label="Followers" run={entered} delay={0} />
           <GlitchStat value="128M+" label="Monthly reach" run={entered} delay={180} />
-          <GlitchStat value="24" label="Brands" run={entered} delay={360} />
+          <GlitchStat value="25" label="Brands" run={entered} delay={360} />
         </div>
         <LiquidMetalButton
           label="See the network"

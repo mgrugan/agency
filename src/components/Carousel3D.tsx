@@ -30,7 +30,7 @@ export function Carousel3D() {
             <ChromeCard key={a.handle} acct={a} className="cc-flat" />
           ))}
         </div>
-        <div className="carousel-hint">Swipe · 24 accounts · 45.4M followers</div>
+        <div className="carousel-hint">Swipe · 25 accounts · 46.8M followers</div>
       </>
     );
   }
@@ -115,7 +115,7 @@ function Carousel3DRing() {
           ))}
         </div>
       </div>
-      <div className="carousel-hint">Drag to spin · 24 accounts · 45.4M followers</div>
+      <div className="carousel-hint">Drag to spin · 25 accounts · 46.8M followers</div>
     </>
   );
 }

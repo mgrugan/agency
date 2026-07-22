@@ -25,12 +25,12 @@ export default function App() {
             <div>
               <span className="eyebrow">The network</span>
               <h2>
-                Twenty-four brands. <em>One</em> growth machine.
+                Twenty-five brands. <em>One</em> growth machine.
               </h2>
             </div>
             <p>
-              Brands we built and run ourselves — the distribution network behind everything we make,
-              and the proof we practice what we sell.
+              The full network we manage or have access to — with eight brands under active,
+              hands-on management right now. The distribution engine behind everything we ship.
             </p>
           </div>
         </Reveal>
