@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { accounts } from "../data";
 import { ChromeCard } from "./ChromeCard";
 
-const CARD_W = 210;
+const CARD_W = 240;
 const GAP = 26;
 const N = accounts.length;
 const STEP = 360 / N;

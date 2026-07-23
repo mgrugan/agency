@@ -42,7 +42,7 @@ export function ChromeCard({ acct, className = "" }: Props) {
           </div>
           <div className="cc-id">
             <div className="cc-handle">
-              @{acct.handle}
+              <span className="cc-name">@{acct.handle}</span>
               <span className="cc-verified" aria-label="verified">
                 ✓
               </span>
