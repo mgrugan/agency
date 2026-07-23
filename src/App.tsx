@@ -2,7 +2,6 @@ import { useState } from "react";
 import { MotionConfig } from "framer-motion";
 import { Hero3D } from "./components/Hero3D";
 import { Carousel3D } from "./components/Carousel3D";
-import { Mark3D } from "./components/Mark3D";
 import { CtaBand, Footer, Marquee, Nav, Process, Results, Services } from "./components/Sections";
 import { Reveal } from "./components/Reveal";
 import { LoadingScreen } from "./components/LoadingScreen";
@@ -29,7 +28,7 @@ export default function App() {
               </h2>
             </div>
             <p>
-              The full network we manage or have access to — with eight brands under active,
+              The full network we manage or have access to, with eight brands under active,
               hands-on management right now. The distribution engine behind everything we ship.
             </p>
           </div>
@@ -39,7 +38,6 @@ export default function App() {
 
       <Services />
       <Results />
-      <Mark3D />
       <Process />
       <CtaBand />
       <Footer />

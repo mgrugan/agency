@@ -25,14 +25,6 @@ export function Hero3D({ entered, onReady }: { entered: boolean; onReady?: () =>
   const stageRef = useRef<HTMLDivElement | null>(null);
   const mouse = useRef({ x: 0, y: 0 });
   const scroll = useRef(0);
-  // intro zoom: start framed on the head/shoulders, then ease out to full
-  const introDone = useRef(false);
-  const introStarted = useRef(false);
-  const enteredRef = useRef(false);
-  const loadedRef = useRef(false);
-  const introRaf = useRef(0);
-  const headY = useRef<number | null>(null);
-  const centerY = useRef(0);
 
   // Load the ~1MB model-viewer custom element lazily, off the critical path.
   useEffect(() => {
@@ -47,102 +39,27 @@ export function Hero3D({ entered, onReady }: { entered: boolean; onReady?: () =>
   const apply = useCallback(() => {
     const mv = mvRef.current;
     const stage = stageRef.current;
-    const theta = 0 + mouse.current.x * 14 + scroll.current * 95; // yaw — faces forward, turns more on scroll
+    const theta = 0 + mouse.current.x * 14 + scroll.current * 95; // yaw, faces forward, turns more on scroll
     const phi = 90 - mouse.current.y * 9 - scroll.current * 12; // pitch
-    // while the intro zoom is playing it owns the camera; don't fight it
-    if (mv && introDone.current) mv.cameraOrbit = `${theta.toFixed(1)}deg ${phi.toFixed(1)}deg 135%`;
+    if (mv) mv.cameraOrbit = `${theta.toFixed(1)}deg ${phi.toFixed(1)}deg 135%`;
     if (stage) {
       stage.style.transform = `translate3d(${(mouse.current.x * 24).toFixed(1)}px, ${(scroll.current * -120 + mouse.current.y * 16).toFixed(1)}px, 0)`;
     }
   }, []);
 
-  // Play the head→full zoom-out, but only once BOTH the page has revealed and
-  // the model is ready (or a fallback timer fires), so it always starts framed
-  // on the head. The head target is frozen at tween start to avoid a mid-run
-  // pop if the model finishes loading late.
-  const runIntro = useCallback(() => {
-    if (introStarted.current || !enteredRef.current) return;
-    const mv = mvRef.current;
-    if (!mv) return;
-    introStarted.current = true;
-
-    if (matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      introDone.current = true;
-      mv.cameraTarget = "auto auto auto";
-      apply();
-      return;
-    }
-
-    const DUR = 2400;
-    const R0 = 45; // zoomed to head/shoulders
-    const R1 = 135; // resting framing (wide enough to keep the hands in frame)
-    const hY = headY.current; // freeze at start
-    const cY = centerY.current;
-    const easeInOut = (t: number) => (t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2);
-    let start = 0;
-    const tick = (now: number) => {
-      if (!start) start = now;
-      const t = Math.min(1, (now - start) / DUR);
-      const e = easeInOut(t);
-      mv.cameraOrbit = `0deg 90deg ${(R0 + (R1 - R0) * e).toFixed(2)}%`;
-      if (hY != null) mv.cameraTarget = `auto ${(hY + (cY - hY) * e).toFixed(3)}m auto`;
-      if (t < 1) {
-        introRaf.current = requestAnimationFrame(tick);
-      } else {
-        introDone.current = true;
-        mv.cameraTarget = "auto auto auto";
-        apply();
-      }
-    };
-    introRaf.current = requestAnimationFrame(tick);
-  }, [apply]);
-
-  // Read the model's bounds on load and pre-frame it on the head, then try to
-  // start the intro (it will no-op until the page has revealed).
+  // Signal the loader once the model is ready so the curtain waits for it
+  // (avoids a poster-to-model pop). The statue sits at its resting framing;
+  // no intro zoom.
   useEffect(() => {
     const mv = mvRef.current;
     if (!mv) return;
     const onLoad = () => {
-      try {
-        const dim = mv.getDimensions?.();
-        const c = mv.getBoundingBoxCenter?.();
-        if (dim && c) {
-          centerY.current = c.y;
-          headY.current = c.y + dim.y * 0.3; // ~head/shoulder height
-          if (!introStarted.current) {
-            mv.cameraTarget = `${c.x}m ${headY.current}m ${c.z}m`;
-            mv.cameraOrbit = `0deg 90deg 45%`;
-          }
-        }
-      } catch {
-        /* dimensions unavailable — intro falls back to a radius-only zoom */
-      }
-      loadedRef.current = true;
-      onReady?.(); // tell the loader the statue is ready so the curtain can lift
-      runIntro();
+      onReady?.();
+      apply();
     };
     mv.addEventListener("load", onLoad);
-    return () => {
-      mv.removeEventListener("load", onLoad);
-      cancelAnimationFrame(introRaf.current);
-    };
-  }, [runIntro, onReady]);
-
-  // Once the curtain lifts, start the intro when the model is ready — or after
-  // a short fallback so a slow model never traps the camera zoomed in.
-  useEffect(() => {
-    enteredRef.current = entered;
-    if (!entered) return;
-    if (loadedRef.current) {
-      runIntro();
-      return;
-    }
-    const fb = setTimeout(() => {
-      loadedRef.current = true;
-      runIntro();
-    }, 1400);
-    return () => clearTimeout(fb);
-  }, [entered, runIntro]);
+    return () => mv.removeEventListener("load", onLoad);
+  }, [onReady, apply]);
 
   useEffect(() => {
     const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -216,8 +133,8 @@ export function Hero3D({ entered, onReady }: { entered: boolean; onReady?: () =>
           poster={`${BASE}statue.png`}
           alt="Classical statue, the Telos Media mark"
           interaction-prompt="none"
-          camera-orbit="0deg 90deg 45%"
-          min-camera-orbit="auto auto 20%"
+          camera-orbit="0deg 90deg 135%"
+          min-camera-orbit="auto auto 60%"
           max-camera-orbit="auto auto 240%"
           environment-image="neutral"
           tone-mapping="neutral"
@@ -238,7 +155,7 @@ export function Hero3D({ entered, onReady }: { entered: boolean; onReady?: () =>
       >
         <div className="hero-stats">
           <GlitchStat value="46.8M" label="Followers" run={entered} delay={0} />
-          <GlitchStat value="128M+" label="Monthly reach" run={entered} delay={180} />
+          <GlitchStat value="500M+" label="Monthly reach" run={entered} delay={180} />
           <GlitchStat value="25" label="Brands" run={entered} delay={360} />
         </div>
         <LiquidMetalButton

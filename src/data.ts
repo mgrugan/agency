@@ -11,19 +11,20 @@ export interface Account {
   engagement: number; // %
 }
 
-// [handle, followers, category, managed]. `managed` accounts are the ones under
-// active, hands-on management right now; the rest are part of the wider network
-// we run or have access to.
-const raw: Array<[string, number, string, boolean]> = [
+// [handle, followers, category, managed, reachOverride?]. `managed` accounts are
+// under active, hands-on management right now; the rest are part of the wider
+// network we run or have access to. Managed pages carry an explicit monthly
+// reach (far higher than a follower multiple would imply).
+const raw: Array<[string, number, string, boolean, number?]> = [
   // ————— under active management —————
-  ["InterestingAsFacts", 4_600_000, "Facts", true],
-  ["InterestingasTech", 2_000_000, "Tech", true],
-  ["conspiracyhistory", 1_700_000, "History", true],
-  ["historyclipsonly", 1_700_000, "History", true],
-  ["istolegoodmemes", 1_700_000, "Memes", true],
-  ["unseenfactsonly", 1_700_000, "Facts", true],
-  ["howallstuffworks", 1_500_000, "Science", true],
-  ["terrifyingasfacts", 1_000_000, "Facts", true],
+  ["howallstuffworks", 4_600_000, "Science", true, 58_000_000],
+  ["InterestingasTech", 2_000_000, "Tech", true, 41_000_000],
+  ["conspiracyhistory", 1_700_000, "History", true, 33_000_000],
+  ["historyclipsonly", 1_700_000, "History", true, 36_000_000],
+  ["istolegoodmemes", 1_700_000, "Memes", true, 31_000_000],
+  ["unseenfactsonly", 1_700_000, "Facts", true, 38_000_000],
+  ["InterestingAsFacts", 1_500_000, "Facts", true, 112_000_000],
+  ["terrifyingasfacts", 1_000_000, "Facts", true, 30_000_000],
   // ————— wider network (managed or access) —————
   ["foodsbible", 5_700_000, "Food", false],
   ["ocean.destinations", 4_900_000, "Travel", false],
@@ -44,14 +45,14 @@ const raw: Array<[string, number, string, boolean]> = [
   ["combatreelsonly", 1_000_000, "Combat Sports", false],
 ];
 
-export const accounts: Account[] = raw.map(([handle, followers, category, managed]) => ({
+export const accounts: Account[] = raw.map(([handle, followers, category, managed, reachOverride]) => ({
   handle,
   followers,
   category,
   managed,
-  growth: 2.2 + seeded(handle, 1) * 6.3, // 2.2–8.5 %/mo
-  reach: followers * (2.4 + seeded(handle, 2) * 4.2), // 2.4–6.6× followers
-  engagement: 3.1 + seeded(handle, 3) * 4.4, // 3.1–7.5 %
+  growth: 2.2 + seeded(handle, 1) * 6.3, // 2.2 to 8.5 %/mo
+  reach: reachOverride ?? followers * (2.4 + seeded(handle, 2) * 4.2), // 2.4 to 6.6x followers
+  engagement: 3.1 + seeded(handle, 3) * 4.4, // 3.1 to 7.5 %
 }));
 
 /** Only the accounts under active, hands-on management right now. */

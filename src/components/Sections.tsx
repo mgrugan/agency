@@ -18,7 +18,7 @@ export function Nav() {
     <nav className={`nav ${scrolled ? "scrolled" : ""}`}>
       <div className="nav-inner">
         <a className="wordmark" href="#top">
-          Telos<span style={{ color: "var(--emerald)" }}>Media</span> <i>128M / MO</i>
+          Telos<span style={{ color: "var(--emerald)" }}>Media</span> <i>500M / MO</i>
         </a>
         <div className="nav-links">
           <a href="#portfolio">Network</a>
@@ -87,21 +87,21 @@ const services = [
     num: "01",
     icon: <NodeIcon />,
     title: "Brand & identity",
-    body: "Logo, positioning, and a full visual identity — the system that makes a new company look like it has been winning for years.",
+    body: "Logo, positioning, and a full visual identity. The system that makes a new company look like it has been winning for years.",
     points: ["Logo & brand identity", "Design systems & guidelines", "Messaging & positioning"],
   },
   {
     num: "02",
     icon: <BoltIcon />,
     title: "Websites & apps",
-    body: "Designers and developers who ship the site or app your product deserves — fast, beautiful, and built to convert.",
+    body: "Designers and developers who ship the site or app your product deserves: fast, beautiful, and built to convert.",
     points: ["Web design & development", "Product & app interfaces", "Landing pages that convert"],
   },
   {
     num: "03",
     icon: <ShareIcon />,
     title: "Content & virality",
-    body: "Editing, short-form, and campaigns engineered to travel — the same instincts that put our work in front of 100 million people a month.",
+    body: "Editing, short-form, and campaigns engineered to travel. The same instincts that put our work in front of hundreds of millions of people a month.",
     points: ["Short-form editing & production", "Organic growth & virality", "Always-on content engine"],
   },
 ];
@@ -118,7 +118,7 @@ export function Services() {
             </h2>
           </div>
           <p>
-            Full-stack marketing for startups and growing businesses — brand, website, and content
+            Full-stack marketing for startups and growing businesses: brand, website, and content
             from one team that has spent a decade getting people to care.
           </p>
         </div>
@@ -152,7 +152,7 @@ const results = [
   {
     v: "48M",
     t: "views on a single video",
-    p: "One edit out-delivered a national TV spot — produced in an afternoon.",
+    p: "One edit out-delivered a national TV spot, produced in an afternoon.",
   },
   {
     v: "+212K",
@@ -196,8 +196,8 @@ export function Results() {
 }
 
 const steps = [
-  { num: "01", title: "Discover", body: "We learn your product, market, and goals — then pressure-test the positioning against what actually spreads." },
-  { num: "02", title: "Design", body: "Brand, identity, and the site or app — the full look and feel, built to convert from day one." },
+  { num: "01", title: "Discover", body: "We learn your product, market, and goals, then pressure-test the positioning against what actually spreads." },
+  { num: "02", title: "Design", body: "Brand, identity, and the site or app: the full look and feel, built to convert from day one." },
   { num: "03", title: "Produce", body: "Our team ships content on a steady cadence: short-form, campaigns, and everything in between." },
   { num: "04", title: "Amplify", body: "We put it in front of the right people and scale what works across our 100M-reach network." },
 ];
