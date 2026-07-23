@@ -33,9 +33,9 @@ jobs:
       - name: Fetch generated assets
         run: |
           mkdir -p public
-          # Primary source is our own live Pages site (the Higgsfield CDN links
+          # Primary source is our own live site (the Higgsfield CDN links
           # expire); the original CDN URLs are kept as a fallback.
-          SITE="https://mgrugan.github.io/agency"
+          SITE="https://thetelosmedia.com"
           fetch() {
             out="$1"; shift
             [ -s "$out" ] && { echo "cached: $out"; return 0; }
