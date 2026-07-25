@@ -153,11 +153,11 @@ export function Services() {
    gallery. views/followers feed the caption under each image. */
 const insights = [
   { img: "proof/insight-114m.jpg", views: "114.1M", followers: "+22.7K" },
-  { img: "proof/insight-108m.jpg", views: "108.1M", followers: "+246.4K" },
-  { img: "proof/insight-86m.jpg", views: "86.1M", followers: "+43.8K" },
-  { img: "proof/insight-47m.jpg", views: "47.6M", followers: "+25.1K" },
-  { img: "proof/insight-45m.jpg", views: "45.1M", followers: "+7.9K" },
-  { img: "proof/insight-42m.jpg", views: "42.6M", followers: "+12.6K" },
+  { img: "proof/profile-conspiracies.jpg", views: "108.1M", followers: "+246.4K" },
+  { img: "proof/profile-historyclips.jpg", views: "86.1M", followers: "+43.8K" },
+  { img: "proof/profile-terrifying.jpg", views: "47.6M", followers: "+25.1K" },
+  { img: "proof/profile-tech.jpg", views: "45.4M", followers: "+7.9K" },
+  { img: "proof/profile-unseenfacts.jpg", views: "42.6M", followers: "+12.6K" },
 ];
 
 function InsightCard({ d }: { d: (typeof insights)[number] }) {
