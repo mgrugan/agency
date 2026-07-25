@@ -475,7 +475,7 @@ model-viewer::part(default-progress-bar) {
 
 .sec-head {
   max-width: 1240px;
-  margin: 0 auto 40px;
+  margin: 0 auto 32px;
   padding: 0 40px;
   display: grid;
   grid-template-columns: 1.1fr 0.9fr;
@@ -913,7 +913,7 @@ model-viewer::part(default-progress-bar) {
 
 /* ————— Carousel ————— */
 .carousel-sec {
-  padding: var(--s-2xl) 0 56px;
+  padding: var(--s-2xl) 0 40px;
   overflow: hidden;
   position: relative;
 }
@@ -957,7 +957,7 @@ model-viewer::part(default-progress-bar) {
 
 .carousel-hint {
   text-align: center;
-  margin-top: 44px;
+  margin-top: 30px;
   color: var(--ink-3);
   font-size: 0.6875rem;
   font-weight: 600;

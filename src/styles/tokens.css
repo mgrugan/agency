@@ -51,8 +51,8 @@
   --s-sm: 8px;
   --s-md: 16px;
   --s-lg: 32px;
-  --s-xl: 48px;
-  --s-2xl: 64px;
+  --s-xl: 40px;
+  --s-2xl: 44px;
 
   /* Elevation */
   --shadow-2: 0 20px 50px -18px rgba(0, 0, 0, 0.6);
