@@ -148,47 +148,58 @@ export function Services() {
   );
 }
 
-const results = [
-  {
-    v: "48M",
-    t: "views on a single video",
-    p: "One edit out-delivered a national TV spot, produced in an afternoon.",
-  },
-  {
-    v: "+212K",
-    t: "followers in 30 days",
-    p: "A brand's record growth month, driven by a repeatable hook framework.",
-  },
-  {
-    v: "9.2%",
-    t: "peak engagement rate",
-    p: "3× the account average, engineered from real comment and retention data.",
-  },
+/* Last-month dashboard numbers, one card per page. Add a new object here to
+   add another card to the gallery. */
+const insights = [
+  { period: "Jun 25 to Jul 24", views: "114.1M", followers: "+22.7K", posts: "554" },
+  { period: "Jun 25 to Jul 24", views: "108.1M", followers: "+246.4K", posts: "175" },
+  { period: "Jun 25 to Jul 24", views: "47.6M", followers: "+25.1K", posts: "168" },
+  { period: "Jun 25 to Jul 24", views: "45.1M", followers: "+7.9K", posts: "158" },
 ];
 
+function InsightCard({ d }: { d: (typeof insights)[number] }) {
+  return (
+    <div className="insight glass">
+      <div className="insight-head">
+        <span className="insight-title">Professional dashboard</span>
+        <span className="insight-period">{d.period}</span>
+      </div>
+      <div className="insight-row">
+        <span className="k">Views</span>
+        <span className="v up">{d.views}</span>
+      </div>
+      <div className="insight-row">
+        <span className="k">New followers</span>
+        <span className="v up">{d.followers}</span>
+      </div>
+      <div className="insight-row">
+        <span className="k">Content shared</span>
+        <span className="v">{d.posts}</span>
+      </div>
+    </div>
+  );
+}
+
 export function Results() {
+  const cards = insights.map((d, i) => <InsightCard key={i} d={d} />);
   return (
     <section className="section on-forest" id="results">
       <Reveal>
         <div className="sec-head">
           <div>
             <div className="label-caps">Proof</div>
-            <h2 style={{ marginTop: 14 }}>Numbers that convince the room.</h2>
+            <h2 style={{ marginTop: 14 }}>The last 30 days, straight from the dashboards.</h2>
           </div>
-          <p>No vanity dashboards. Just outcomes our clients repeat in their board decks.</p>
+          <p>
+            Real reach and real new followers across the pages we run, pulled from the
+            professional dashboards every month.
+          </p>
         </div>
       </Reveal>
-      <div className="wrap">
-        <div className="res-grid">
-          {results.map((r, i) => (
-            <Reveal key={r.v} delay={i * 90}>
-              <div className="res glass">
-                <div className="v">{r.v}</div>
-                <h3>{r.t}</h3>
-                <p>{r.p}</p>
-              </div>
-            </Reveal>
-          ))}
+      <div className="insight-gallery" aria-label="Monthly reach and follower growth across managed pages">
+        <div className="insight-track">
+          {cards}
+          {cards}
         </div>
       </div>
     </section>
@@ -197,9 +208,9 @@ export function Results() {
 
 const steps = [
   { num: "01", title: "Discover", body: "We learn your product, market, and goals, then pressure-test the positioning against what actually spreads." },
-  { num: "02", title: "Design", body: "Brand, identity, and the site or app: the full look and feel, built to convert from day one." },
+  { num: "02", title: "Design", body: "Design, upgrade, or work with your existing brand identity, and the site or app: the full look and feel, built to convert." },
   { num: "03", title: "Produce", body: "Our team ships content on a steady cadence: short-form, campaigns, and everything in between." },
-  { num: "04", title: "Amplify", body: "We put it in front of the right people and scale what works across our 100M-reach network." },
+  { num: "04", title: "Amplify", body: "We put your content in front of the right people and scale what works. Engagement and conversions go up. Guaranteed." },
 ];
 
 export function Process() {

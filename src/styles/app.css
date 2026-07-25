@@ -1089,43 +1089,101 @@ model-viewer::part(default-progress-bar) {
   background: transparent;
 }
 
-.res-grid {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 0 48px;
+/* ————— Proof gallery: auto-scrolling dashboard cards ————— */
+.insight-gallery {
+  overflow: hidden;
+  padding: 6px 0 10px;
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 7%, #000 93%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 7%, #000 93%, transparent);
 }
 
-/* separators via the grid wrapper (each .res is wrapped in a Reveal, so
-   :first-child/:nth-child don't work here) */
-.res-grid > * + * .res {
-  padding-left: 36px;
-  border-left: 1px solid var(--line);
+.insight-track {
+  display: inline-flex;
+  gap: 22px;
+  padding-left: 22px;
+  animation: scrollx 45s linear infinite;
+  will-change: transform;
 }
 
-.res .v {
+.insight-gallery:hover .insight-track {
+  animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .insight-track {
+    animation: none;
+    overflow-x: auto;
+  }
+}
+
+/* one standardized dashboard card */
+.insight {
+  flex: none;
+  width: 300px;
+  padding: 20px 22px 18px;
+  border-radius: var(--r-md);
+  border: 1px solid var(--line-2);
+}
+
+.insight-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--line);
+}
+
+.insight-title {
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  white-space: nowrap;
+}
+
+.insight-period {
+  font-size: 0.6875rem;
+  color: var(--ink-3);
+  white-space: nowrap;
+}
+
+.insight-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 11px 0 0;
+}
+
+.insight-row .k {
+  font-size: 0.875rem;
+  color: var(--ink-2);
+}
+
+.insight-row .v {
   font-family: var(--font-display);
-  font-size: clamp(3rem, 5vw, 4.4rem);
+  font-size: 1.35rem;
   font-weight: 600;
-  letter-spacing: -0.04em;
-  line-height: 1;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+  font-variant-numeric: tabular-nums;
+}
+
+/* green up-arrow on growing numbers, like the dashboard */
+.insight-row .v.up {
   background: linear-gradient(120deg, var(--lime), var(--emerald));
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
 }
 
-.res h3 {
-  font-size: 1.1rem;
-  font-weight: 600;
+.insight-row .v.up::before {
+  content: "↗ ";
   font-family: var(--font-body);
-  margin: 22px 0 8px;
-  color: var(--ink);
-}
-
-.res p {
-  margin: 0;
-  font-size: 0.875rem;
-  color: var(--ink-2);
+  font-size: 0.9rem;
+  -webkit-text-fill-color: var(--emerald);
 }
 
 /* ————— 3D mark ————— */
@@ -1329,21 +1387,8 @@ model-viewer::part(default-progress-bar) {
   .intro-grid,
   .sec-head,
   .svc-grid,
-  .res-grid,
-  .proc-grid,
-  .mark3d-grid {
+  .proc-grid {
     grid-template-columns: 1fr;
-  }
-
-  .res-grid {
-    gap: 0;
-  }
-  .res-grid > * + * .res {
-    border-left: none;
-    padding-left: 0;
-    border-top: 1px solid var(--line);
-    padding-top: 26px;
-    margin-top: 26px;
   }
 
   .proc {
