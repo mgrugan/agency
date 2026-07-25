@@ -148,35 +148,37 @@ export function Services() {
   );
 }
 
-/* Last-month dashboard numbers, one card per page. Add a new object here to
-   add another card to the gallery. */
+/* Real professional-dashboard screenshots from the last month, one per page.
+   Drop a new screenshot in public/proof/ and add an entry here to extend the
+   gallery. views/followers feed the caption under each image. */
 const insights = [
-  { period: "Jun 25 to Jul 24", views: "114.1M", followers: "+22.7K", posts: "554" },
-  { period: "Jun 25 to Jul 24", views: "108.1M", followers: "+246.4K", posts: "175" },
-  { period: "Jun 25 to Jul 24", views: "47.6M", followers: "+25.1K", posts: "168" },
-  { period: "Jun 25 to Jul 24", views: "45.1M", followers: "+7.9K", posts: "158" },
+  { img: "proof/insight-114m.jpg", views: "114.1M", followers: "+22.7K" },
+  { img: "proof/insight-108m.jpg", views: "108.1M", followers: "+246.4K" },
+  { img: "proof/insight-86m.jpg", views: "86.1M", followers: "+43.8K" },
+  { img: "proof/insight-47m.jpg", views: "47.6M", followers: "+25.1K" },
+  { img: "proof/insight-45m.jpg", views: "45.1M", followers: "+7.9K" },
+  { img: "proof/insight-42m.jpg", views: "42.6M", followers: "+12.6K" },
 ];
 
 function InsightCard({ d }: { d: (typeof insights)[number] }) {
   return (
-    <div className="insight glass">
-      <div className="insight-head">
-        <span className="insight-title">Professional dashboard</span>
-        <span className="insight-period">{d.period}</span>
+    <figure className="insight glass">
+      <div className="insight-shot">
+        <img
+          src={`${import.meta.env.BASE_URL}${d.img}`}
+          alt={`Professional dashboard: ${d.views} views, ${d.followers} new followers in the last 30 days`}
+          loading="lazy"
+          draggable={false}
+        />
       </div>
-      <div className="insight-row">
-        <span className="k">Views</span>
+      <figcaption className="insight-caption">
         <span className="v up">{d.views}</span>
-      </div>
-      <div className="insight-row">
-        <span className="k">New followers</span>
+        <span className="k">views</span>
+        <span className="sep" aria-hidden="true" />
         <span className="v up">{d.followers}</span>
-      </div>
-      <div className="insight-row">
-        <span className="k">Content shared</span>
-        <span className="v">{d.posts}</span>
-      </div>
-    </div>
+        <span className="k">new followers</span>
+      </figcaption>
+    </figure>
   );
 }
 
