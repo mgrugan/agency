@@ -101,8 +101,12 @@ const services = [
     num: "03",
     icon: <ShareIcon />,
     title: "Content & virality",
-    body: "Editing, short-form, and campaigns engineered to travel. The same instincts that put our work in front of hundreds of millions of people a month.",
-    points: ["Short-form editing & production", "Organic growth & virality", "Always-on content engine"],
+    body: "From short-form to high-end launch videos, motion graphics, and talking-head marketing: content engineered to travel, with the same instincts that put our work in front of hundreds of millions of people a month.",
+    points: [
+      "Short-form editing & production",
+      "High-end launch & talking-head videos",
+      "Motion graphics & After Effects editing",
+    ],
   },
 ];
 
@@ -210,7 +214,7 @@ export function Results() {
 const steps = [
   { num: "01", title: "Discover", body: "We learn your product, market, and goals, then pressure-test the positioning against what actually spreads." },
   { num: "02", title: "Design", body: "Design, upgrade, or work with your existing brand identity, and the site or app: the full look and feel, built to convert." },
-  { num: "03", title: "Produce", body: "Our team ships content on a steady cadence: short-form, campaigns, and everything in between." },
+  { num: "03", title: "Produce", body: "Our team ships content on a steady cadence: short-form, high-end launch videos, motion graphics, talking-head marketing, and everything in between." },
   { num: "04", title: "Amplify", body: "We put your content in front of the right people and scale what works. Engagement and conversions go up. Guaranteed." },
 ];
 
