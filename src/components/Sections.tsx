@@ -152,7 +152,6 @@ export function Services() {
    Drop a new screenshot in public/proof/ and add an entry here to extend the
    gallery. views/followers feed the caption under each image. */
 const insights = [
-  { img: "proof/insight-114m.jpg", views: "114.1M", followers: "+22.7K" },
   { img: "proof/profile-conspiracies.jpg", views: "108.1M", followers: "+246.4K" },
   { img: "proof/profile-historyclips.jpg", views: "86.1M", followers: "+43.8K" },
   { img: "proof/profile-terrifying.jpg", views: "47.6M", followers: "+25.1K" },
